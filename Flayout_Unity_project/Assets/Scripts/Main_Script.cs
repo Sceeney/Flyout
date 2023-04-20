@@ -91,7 +91,7 @@ public class Main_Script : MonoBehaviour
     private void Awake()
     {        
         which_round = PlayerPrefs.GetInt("Try's");
-        Money = Progress.Instance.PlayerInfo.Coins;//PlayerPrefs.GetInt("Money_save");
+        Money = PlayerPrefs.GetInt("Money_save");//Progress.Instance.PlayerInfo.Coins;
         state = State.No_medal;
         Time.timeScale = 1f;
         isDone_UI = false;
@@ -212,24 +212,28 @@ public class Main_Script : MonoBehaviour
         AIM_Shot.is_Crash = false;
         if(state == State.Gold){
             Money = Money + Gold_Money;
-            //PlayerPrefs.SetInt("Money_save", Money);
-                Progress.Instance.PlayerInfo.Coins = Money;
-                Progress.Instance.Save();}
+            PlayerPrefs.SetInt("Money_save", Money);
+                //Progress.Instance.PlayerInfo.Coins = Money;
+                //Progress.Instance.Save();
+                }
         else if(state == State.Silver){
             Money = Money + Silver_Money;
-            //PlayerPrefs.SetInt("Money_save", Money);
-                Progress.Instance.PlayerInfo.Coins = Money;
-                Progress.Instance.Save();}
+            PlayerPrefs.SetInt("Money_save", Money);
+                //Progress.Instance.PlayerInfo.Coins = Money;
+                //Progress.Instance.Save();
+                }
         else if(state == State.Bronze){
             Money = Money + Bronze_Money;
-            //PlayerPrefs.SetInt("Money_save", Money);
-                Progress.Instance.PlayerInfo.Coins = Money;
-                Progress.Instance.Save();}
+            PlayerPrefs.SetInt("Money_save", Money);
+                //Progress.Instance.PlayerInfo.Coins = Money;
+                //Progress.Instance.Save();
+                }
         else{
             Money = Money + 0;
-            //PlayerPrefs.SetInt("Money_save", Money);
-                Progress.Instance.PlayerInfo.Coins = Money;
-                Progress.Instance.Save();}
+            PlayerPrefs.SetInt("Money_save", Money);
+                //Progress.Instance.PlayerInfo.Coins = Money;
+                //Progress.Instance.Save();
+            }
 
 
         PlayerPrefs.SetInt("Try's", 1);
@@ -252,27 +256,31 @@ public class Main_Script : MonoBehaviour
     {
         if(state == State.Gold){
             Money = Money + Gold_Money;
-            //PlayerPrefs.SetInt("Money_save", Money);
-                Progress.Instance.PlayerInfo.Coins = Money;
-                Progress.Instance.Save();}
+            PlayerPrefs.SetInt("Money_save", Money);
+                //Progress.Instance.PlayerInfo.Coins = Money;
+                //Progress.Instance.Save();
+            }
 
             
         else if(state == State.Silver){
             Money = Money + Silver_Money;
-            //PlayerPrefs.SetInt("Money_save", Money);
-                Progress.Instance.PlayerInfo.Coins = Money;
-                Progress.Instance.Save();}
+            PlayerPrefs.SetInt("Money_save", Money);
+                //Progress.Instance.PlayerInfo.Coins = Money;
+                //Progress.Instance.Save();
+            }
 
         else if(state == State.Bronze){
             Money = Money + Bronze_Money;
-            //PlayerPrefs.SetInt("Money_save", Money);
-                Progress.Instance.PlayerInfo.Coins = Money;
-                Progress.Instance.Save();}
+            PlayerPrefs.SetInt("Money_save", Money);
+                //Progress.Instance.PlayerInfo.Coins = Money;
+                //Progress.Instance.Save();
+            }
         else{
             Money = Money + 0;
-            //PlayerPrefs.SetInt("Money_save", Money);
-                Progress.Instance.PlayerInfo.Coins = Money;
-                Progress.Instance.Save();}
+            PlayerPrefs.SetInt("Money_save", Money);
+                //Progress.Instance.PlayerInfo.Coins = Money;
+                //Progress.Instance.Save();
+            }
 
         PlayerPrefs.SetInt("Try's", 1);
         PlayerPrefs.DeleteKey ("round_1");  

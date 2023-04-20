@@ -20,7 +20,8 @@ public class Select_cars_mainMenu : MonoBehaviour
 
     private void Awake()
     {
-        car_index = Progress.Instance.PlayerInfo.Cars;//PlayerPrefs.GetInt("Selected_car");
+        car_index = PlayerPrefs.GetInt("Selected_car");
+        //Progress.Instance.PlayerInfo.Cars;
         //Progress.Instance.PlayerInfo.Cars = car_index;
         All_Cars = new GameObject[transform.childCount];
         Price_Car();
@@ -61,8 +62,8 @@ public class Select_cars_mainMenu : MonoBehaviour
 
     public void Select_Car()
     {
-        //PlayerPrefs.SetInt("Selected_car", car_index);
-        Progress.Instance.PlayerInfo.Cars = car_index;
+        PlayerPrefs.SetInt("Selected_car", car_index);
+        //Progress.Instance.PlayerInfo.Cars = car_index;
     }
 
     public void By_Car()
@@ -73,7 +74,8 @@ public class Select_cars_mainMenu : MonoBehaviour
         else
         {
             PlayerPrefs.SetInt("Money_save", by_Car);
-            Progress.Instance.PlayerInfo.Cars = car_index; //PlayerPrefs.SetInt("Selected_car", car_index);
+            //Progress.Instance.PlayerInfo.Cars = car_index; 
+            PlayerPrefs.SetInt("Selected_car", car_index);
             PlayerPrefs.SetInt("Byed_car"+car_index, car_index);
             Price_Car();
         }
@@ -81,7 +83,8 @@ public class Select_cars_mainMenu : MonoBehaviour
 
     void Price_Car()
     {
-        Progress.Instance.PlayerInfo.Cars = car_index;//PlayerPrefs.GetInt("Byed_car"+car_index);
+        //Progress.Instance.PlayerInfo.Cars = car_index;
+        PlayerPrefs.GetInt("Byed_car"+car_index);
         switch(car_index)
         {
             case 0:

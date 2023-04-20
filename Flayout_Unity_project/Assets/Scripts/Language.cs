@@ -21,7 +21,7 @@ public class Language : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            CurrentLanguage = GetLang();
+            CurrentLanguage = "ru";//GetLang();
             _languageText.text = CurrentLanguage;
         }
         else {

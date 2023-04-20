@@ -22,7 +22,7 @@ public class Progress : MonoBehaviour
 
     private void Awake()
     {
-            LoadExtern();
+            //LoadExtern();
     }
 
 
