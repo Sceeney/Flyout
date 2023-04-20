@@ -34,7 +34,7 @@ public class Money_script : MonoBehaviour
         //Progress.Instance.PlayerInfo.Coins = Money;
         PlayerPrefs.SetInt("Money_save", Money);
         How_much_money();
-        // fgeg
+        // fgeg‡Û
     }
 
 }
