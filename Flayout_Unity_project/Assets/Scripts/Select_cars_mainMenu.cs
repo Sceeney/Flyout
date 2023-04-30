@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,11 +5,6 @@ using UnityEngine.UI;
 public class Select_cars_mainMenu : MonoBehaviour
 {
     public Text Price_text;
-    public int Price_1_car;
-    public int Price_2_car;
-        private int price;
-        private int by_Car;
-        [Space(20)]
     public GameObject Select_button;
     public GameObject By_button;
         [Space(20)]
@@ -21,8 +14,7 @@ public class Select_cars_mainMenu : MonoBehaviour
     private void Awake()
     {
         car_index = PlayerPrefs.GetInt("Selected_car");
-        //Progress.Instance.PlayerInfo.Cars;
-        //Progress.Instance.PlayerInfo.Cars = car_index;
+
         All_Cars = new GameObject[transform.childCount];
         Price_Car();
 
@@ -68,17 +60,17 @@ public class Select_cars_mainMenu : MonoBehaviour
 
     public void By_Car()
     {
-        by_Car = Money_script.Money - price;
-        if(by_Car < 0)
-            print("need more money");
-        else
-        {
-            PlayerPrefs.SetInt("Money_save", by_Car);
-            //Progress.Instance.PlayerInfo.Cars = car_index; 
-            PlayerPrefs.SetInt("Selected_car", car_index);
-            PlayerPrefs.SetInt("Byed_car"+car_index, car_index);
-            Price_Car();
-        }
+        ////by_Car = 0;
+        //if(by_Car < 0)
+        //    print("need more money");
+        //else
+        //{
+        //    PlayerPrefs.SetInt("Money_save", by_Car);
+        //    //Progress.Instance.PlayerInfo.Cars = car_index; 
+        //    PlayerPrefs.SetInt("Selected_car", car_index);
+        //    PlayerPrefs.SetInt("Byed_car"+car_index, car_index);
+        //    Price_Car();
+        //}
     }
 
     void Price_Car()
@@ -101,10 +93,10 @@ public class Select_cars_mainMenu : MonoBehaviour
                 }
                 else
                 {    
-                    price = Price_1_car;
-                    Price_text.text = price.ToString();
-                    Select_button.SetActive(false);
-                    By_button.SetActive(true);
+                    //price = Price_1_car;
+                    //Price_text.text = price.ToString();
+                    //Select_button.SetActive(false);
+                    //By_button.SetActive(true);
                 }
                 break;
             case 2:
@@ -116,24 +108,12 @@ public class Select_cars_mainMenu : MonoBehaviour
                 }
                 else
                 {    
-                    price = Price_2_car;
-                    Price_text.text = price.ToString();
-                    Select_button.SetActive(false);
-                    By_button.SetActive(true);
+                    //price = Price_2_car;
+                    //Price_text.text = price.ToString();
+                    //Select_button.SetActive(false);
+                    //By_button.SetActive(true);
                 }
                 break;
         }
-    }
-
-    public void Remove_save()
-    {
-        PlayerPrefs.DeleteKey ("Byed_car"+1);  
-        PlayerPrefs.DeleteKey ("Byed_car"+2);  
-        PlayerPrefs.DeleteKey ("Money_save");
-        PlayerPrefs.DeleteKey ("First_Start_Save");
-        PlayerPrefs.DeleteKey ("Slidel_Music.value");
-        PlayerPrefs.DeleteKey ("Listener");
-        PlayerPrefs.DeleteKey ("music_Volume");
-        Price_Car();
     }
 }
