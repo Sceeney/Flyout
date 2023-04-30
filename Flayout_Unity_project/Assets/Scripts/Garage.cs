@@ -1,0 +1,71 @@
+using System.Collections.Generic;
+using UnityEngine;
+using YG;
+
+public class Garage : MonoBehaviour, ISaver
+{
+    private List<Car> _cars = new();
+
+    public int CarCount { get { return _cars.Count; } }
+
+    private void OnEnable() => YandexGame.GetDataEvent += GetData;
+    private void OnDisable() => YandexGame.GetDataEvent -= GetData;
+
+    private void Start()
+    {
+        Car[] cars = GetComponentsInChildren<Car>();
+
+        foreach (Car car in cars)
+        {
+            if (car.IsPurchased)
+            {
+                _cars.Add(car);
+            }
+        }
+
+        if (YandexGame.SDKEnabled == true)
+        {
+            GetData();
+        }
+    }
+
+    public void OnPurchase(Car car)
+    {
+        car.Purchase();
+        _cars.Add(car);
+
+        Save();
+    }
+
+    public void Save()
+    {
+        YandexGame.savesData.Garage = this;
+
+        YandexGame.SaveProgress();
+    }
+
+    private void GetData()
+    {
+        Garage garage = YandexGame.savesData.Garage;
+
+        SyncGarage(garage);
+    }
+
+    private void SyncGarage(Garage garage)
+    {
+        for (int i = 0; i < garage.CarCount; i++)
+        {
+            _cars.Add(garage.GetCarByIndex(i));
+        }
+    }
+
+    protected Car GetCarByIndex(int index)
+    {
+        if (index < 0 || index >= _cars.Count)
+        {
+            return null;
+        }
+
+        return _cars[index];
+    }
+}
