@@ -111,7 +111,7 @@ public class Select_cars_mainMenu : MonoBehaviour
                     //price = Price_2_car;
                     //Price_text.text = price.ToString();
                     //Select_button.SetActive(false);
-                    //By_button.SetActive(true);
+                    //By_button.SetActive(true); 
                 }
                 break;
         }

@@ -9,23 +9,75 @@ public class CarShop : MonoBehaviour
     [SerializeField] private Wallet _wallet;
 
     [SerializeField] private UnityEvent<Car> _purchased;
+    [SerializeField] private UnityEvent _changeCar;
 
     private int _lastSelectedCarIndex => YandexGame.savesData.LastSelectedCarIndex;
+    
+    private void OnEnable() => YandexGame.GetDataEvent += GetData;
+    private void OnDisable() => YandexGame.GetDataEvent -= GetData;
 
     private void Start()
     {
         _cars = GetComponentsInChildren<Car>();
+
+        if (YandexGame.SDKEnabled == true)
+        {
+            GetData();
+        }
     }
 
-    public void TryPurchase()
+    public void OnTryPurchase()
     {
         if (CheckPossibilityPurchase())
         {
             _purchased?.Invoke(_cars[_lastSelectedCarIndex]);
+            _changeCar?.Invoke();
         }
         else
         {
             Console.WriteLine("purchased impossible");
+        }
+    }
+
+    public void OnNextCar(int key)
+    {
+        int index = _lastSelectedCarIndex + key;
+
+        if (index < 0)
+        {
+            index = _cars.Length - 1;
+        }
+        else if(index >= _cars.Length)
+        {
+            index = 0;
+        }
+
+        YandexGame.savesData.LastSelectedCarIndex = index;
+        _changeCar?.Invoke();
+    }
+
+    private void GetData()
+    {
+        Garage garage = YandexGame.savesData.Garage;
+
+        if (garage != null) SyncShop(garage);
+    }
+
+    private void SyncShop(Garage garage)
+    {
+        for (int i = 0; i < garage.CarCount; i++)
+        {
+            Car saveCar = garage.GetCarByIndex(i);
+
+            for (int j = 0; j < _cars.Length; j++)
+            {
+                Car car = _cars[j];
+
+                if (car.Name == saveCar.Name)
+                {
+                    car.Purchase();
+                }
+            }
         }
     }
 

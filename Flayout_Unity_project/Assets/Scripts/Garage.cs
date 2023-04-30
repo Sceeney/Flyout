@@ -41,14 +41,27 @@ public class Garage : MonoBehaviour, ISaver
     {
         YandexGame.savesData.Garage = this;
 
+#if !UNITY_EDITOR
         YandexGame.SaveProgress();
+#endif
+
+    }
+
+    public Car GetCarByIndex(int index)
+    {
+        if (index < 0 || index >= _cars.Count)
+        {
+            return null;
+        }
+
+        return _cars[index];
     }
 
     private void GetData()
     {
         Garage garage = YandexGame.savesData.Garage;
 
-        SyncGarage(garage);
+        if (garage != null) SyncGarage(garage);
     }
 
     private void SyncGarage(Garage garage)
@@ -57,15 +70,5 @@ public class Garage : MonoBehaviour, ISaver
         {
             _cars.Add(garage.GetCarByIndex(i));
         }
-    }
-
-    protected Car GetCarByIndex(int index)
-    {
-        if (index < 0 || index >= _cars.Count)
-        {
-            return null;
-        }
-
-        return _cars[index];
     }
 }
