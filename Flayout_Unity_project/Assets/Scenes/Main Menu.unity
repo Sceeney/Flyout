@@ -340,22 +340,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1625716136}
-        m_TargetAssemblyTypeName: Select_cars, Assembly-CSharp
-        m_MethodName: Select_Car
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 339379135}
-        m_TargetAssemblyTypeName: Money_script, Assembly-CSharp
-        m_MethodName: How_much_money
-        m_Mode: 1
+      - m_Target: {fileID: 1625716138}
+        m_TargetAssemblyTypeName: CarShop, Assembly-CSharp
+        m_MethodName: OnNextCar
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1082,7 +1070,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 865305994}
   m_HandleRect: {fileID: 865305993}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5212,7 +5200,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1625716136}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Select_cars, Assembly-CSharp
         m_MethodName: Remove_save
         m_Mode: 1
@@ -10388,6 +10376,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1625716139}
+        m_TargetAssemblyTypeName: CarShopView, Assembly-CSharp
+        m_MethodName: OnChangeCar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1163328255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11672,14 +11672,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1625716136}
-        m_TargetAssemblyTypeName: Select_cars, Assembly-CSharp
-        m_MethodName: Select_Right
-        m_Mode: 1
+      - m_Target: {fileID: 1625716138}
+        m_TargetAssemblyTypeName: CarShop, Assembly-CSharp
+        m_MethodName: OnNextCar
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -13393,9 +13393,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1625716135}
-  - component: {fileID: 1625716136}
+  - component: {fileID: 1625716138}
+  - component: {fileID: 1625716137}
+  - component: {fileID: 1625716139}
   m_Layer: 0
-  m_Name: Car Shop
+  m_Name: Cars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13419,7 +13421,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1625716136
+--- !u!114 &1625716137
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13428,13 +13430,69 @@ MonoBehaviour:
   m_GameObject: {fileID: 1625716134}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04fe051e1ed87a647a4d3d65e098cb10, type: 3}
+  m_Script: {fileID: 11500000, guid: 86a3e38bac52b6042bffddb7ee94fd8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Price_text: {fileID: 1620514178}
-  Select_button: {fileID: 29568589}
-  By_button: {fileID: 1983226169}
-  All_Cars: []
+--- !u!114 &1625716138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625716134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd31f3765b62e1b408d4a6effbdecea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cars: []
+  _wallet: {fileID: 582717947}
+  _purchased:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1625716137}
+        m_TargetAssemblyTypeName: Garage, Assembly-CSharp
+        m_MethodName: OnPurchase
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _changeCar:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1625716139}
+        m_TargetAssemblyTypeName: CarShopView, Assembly-CSharp
+        m_MethodName: OnChangeCar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1625716139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625716134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3170434d15e57c84eaa2236c606c8251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cars: []
+  _priceText: {fileID: 1620514178}
+  _selectButton: {fileID: 29568591}
+  _BuyButton: {fileID: 1983226171}
 --- !u!1 &1644344865
 GameObject:
   m_ObjectHideFlags: 0
@@ -15244,14 +15302,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1625716136}
-        m_TargetAssemblyTypeName: Select_cars_mainMenu, Assembly-CSharp
-        m_MethodName: Select_Left
-        m_Mode: 1
+      - m_Target: {fileID: 1625716138}
+        m_TargetAssemblyTypeName: CarShop, Assembly-CSharp
+        m_MethodName: OnNextCar
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: -1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -15783,21 +15841,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1625716136}
-        m_TargetAssemblyTypeName: Select_cars, Assembly-CSharp
-        m_MethodName: By_Car
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 339379135}
-        m_TargetAssemblyTypeName: Money_script, Assembly-CSharp
-        m_MethodName: How_much_money
+      - m_Target: {fileID: 1625716138}
+        m_TargetAssemblyTypeName: CarShop, Assembly-CSharp
+        m_MethodName: OnTryPurchase
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
