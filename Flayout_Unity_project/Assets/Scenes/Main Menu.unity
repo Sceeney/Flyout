@@ -2305,6 +2305,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moneyView: {fileID: 0}
+  _updateMoney:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!82 &339379136
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3870,6 +3873,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moneyView: {fileID: 1102064917}
+  _updateMoney:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1102064917}
+        m_TargetAssemblyTypeName: MoneyView, Assembly-CSharp
+        m_MethodName: OnUpdateMoney
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &606856868
 GameObject:
   m_ObjectHideFlags: 0
@@ -13462,6 +13480,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 582717947}
+        m_TargetAssemblyTypeName: Wallet, Assembly-CSharp
+        m_MethodName: OnPurchased
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _changeCar:
     m_PersistentCalls:
       m_Calls:
@@ -17296,6 +17326,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2211564899198745196, guid: caf9732433f4dc044845763962493607,
+        type: 3}
+      propertyPath: singleton
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211564899198745197, guid: caf9732433f4dc044845763962493607,
         type: 3}
       propertyPath: m_Name

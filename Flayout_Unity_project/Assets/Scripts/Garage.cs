@@ -29,22 +29,23 @@ public class Garage : MonoBehaviour, ISaver
         }
     }
 
+    public void Save()
+    {
+        YandexGame.savesData.Garage = this;
+
+        YandexGame.SaveLocal();
+
+#if !UNITY_EDITOR
+        YandexGame.SaveProgress();
+#endif
+    }
+
     public void OnPurchase(Car car)
     {
         car.Purchase();
         _cars.Add(car);
 
         Save();
-    }
-
-    public void Save()
-    {
-        YandexGame.savesData.Garage = this;
-
-#if !UNITY_EDITOR
-        YandexGame.SaveProgress();
-#endif
-
     }
 
     public Car GetCarByIndex(int index)
@@ -59,6 +60,8 @@ public class Garage : MonoBehaviour, ISaver
 
     private void GetData()
     {
+        //YandexGame.LoadLocal();
+
         Garage garage = YandexGame.savesData.Garage;
 
         if (garage != null) SyncGarage(garage);

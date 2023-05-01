@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using YG;
 
-public class CarShop : MonoBehaviour
+public class CarShop : MonoBehaviour, ISaver
 {
     [SerializeField] private Car[] _cars;
     [SerializeField] private Wallet _wallet;
@@ -32,10 +32,11 @@ public class CarShop : MonoBehaviour
         {
             _purchased?.Invoke(_cars[_lastSelectedCarIndex]);
             _changeCar?.Invoke();
+            Save();
         }
         else
         {
-            Console.WriteLine("purchased impossible");
+            Debug.Log("Purchase impossible");
         }
     }
 
@@ -54,10 +55,14 @@ public class CarShop : MonoBehaviour
 
         YandexGame.savesData.LastSelectedCarIndex = index;
         _changeCar?.Invoke();
+
+        Save();
     }
 
     private void GetData()
     {
+        //YandexGame.LoadLocal();
+
         Garage garage = YandexGame.savesData.Garage;
 
         if (garage != null) SyncShop(garage);
@@ -84,5 +89,14 @@ public class CarShop : MonoBehaviour
     private bool CheckPossibilityPurchase()
     {
         return _cars[_lastSelectedCarIndex].Price <= _wallet.Money;
+    }
+
+    public void Save()
+    {
+        YandexGame.SaveLocal();
+
+#if !UNITY_EDITOR
+        YandexGame.SaveProgress();
+#endif
     }
 }

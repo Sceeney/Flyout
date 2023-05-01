@@ -1,16 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using YG;
 
 public class Select_cars_Levels : MonoBehaviour
 {
     public GameObject[] All_Cars; 
     private int car_index;
 
-    private void Awake()
+    private void OnEnable() => YandexGame.GetDataEvent += GetData;
+    private void OnDisable() => YandexGame.GetDataEvent -= GetData;
+
+    private void Start()
     {
-        car_index = PlayerPrefs.GetInt("Selected_car");
+        if (YandexGame.SDKEnabled == true)
+        {
+            GetData();
+        }
+    }
+
+    private void GetData()
+    {
+        //YandexGame.LoadLocal();
+
+        car_index = YandexGame.savesData.LastSelectedCarIndex;
         All_Cars = new GameObject[transform.childCount];
 
         for(int i = 0; i< transform.childCount; i++)
@@ -27,7 +38,4 @@ public class Select_cars_Levels : MonoBehaviour
             All_Cars[car_index].SetActive(true);
         }
     }
-
-
-
 }
