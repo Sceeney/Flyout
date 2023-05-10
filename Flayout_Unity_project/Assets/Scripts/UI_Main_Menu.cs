@@ -32,11 +32,11 @@ public class UI_Main_Menu : MonoBehaviour
     void Awake()
     {
         Time.timeScale = 1f;
-        button_Index = 1;
         Show_UI();
     }
     void Start()
     {
+        button_Index = 1;
         audio_Music = GetComponent<AudioSource>();
         music_Volume = 1f;
         Slidel_Music.value = 1f;
