@@ -2,14 +2,16 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
+    [SerializeField] private int _index;
     [SerializeField] private string _name;
     [SerializeField] private int _price;
     [SerializeField] private bool _isDefaultActive;
-    [SerializeField] private bool _isPurchased;
+    [SerializeField] private bool _isBuyed;
 
-    public string Name { get { return _name; } }
-    public int Price { get { return _price; } }
-    public bool IsPurchased { get { return _isPurchased; } }
+    public int Index => _index;
+    public string Name => _name;
+    public int Price => _price;
+    public bool IsBuyed => _isBuyed;
 
     private void Start()
     {
@@ -23,6 +25,6 @@ public class Car : MonoBehaviour
 
     public void Purchase()
     {
-        _isPurchased = true;
+        _isBuyed = true;
     }
 }

@@ -1,65 +1,33 @@
 using UnityEngine;
 using UnityEngine.Events;
-using YG;
 
-public class Wallet : MonoBehaviour, ISaver
+public class Wallet : YandexDataReader
 {
     [SerializeField] private MoneyView _moneyView;
     private int _money;
 
-    public int Money { get { return GetMoney(); } }
+    public int Money => _money;
 
     [SerializeField] private UnityEvent<int> _updateMoney;
 
-    private void OnEnable() => YandexGame.GetDataEvent += GetData;
-    private void OnDisable() => YandexGame.GetDataEvent -= GetData;
-
-    private void Start()
-    {
-        if (YandexGame.SDKEnabled == true)
-        {
-            GetData();
-        }
-    }
-
-    private void GetData()
-    {
-        GetMoney();
-    }
-
-    private int GetMoney()
-    {
-        //YandexGame.LoadLocal();
-
-        _money = YandexGame.savesData.Money;
-
-        return _money;
-    }
-
     public void OnPurchased(Car car)
     {
-        int price = car.Price;
+        _money -= car.Price;
 
-        _money -= price;
-
-        SetMoney(_money);
+        _updateMoney?.Invoke(_money);
     }
 
-    private void SetMoney(int value)
+    public void OnSetMoney()
     {
-        YandexGame.savesData.Money = value;
+        _money += 100000;
 
-        _updateMoney?.Invoke(value);
-
-        Save();
+        _updateMoney?.Invoke(_money);
     }
 
-    public void Save()
+    protected override void OnDataUpdated()
     {
-        YandexGame.SaveLocal();
+        _money = Saver.Money;
 
-#if !UNITY_EDITOR
-        YandexGame.SaveProgress();
-#endif
+        _updateMoney?.Invoke(_money);
     }
 }
