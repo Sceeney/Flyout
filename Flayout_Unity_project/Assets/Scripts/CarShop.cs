@@ -1,29 +1,21 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
-using YG;
 
-public class CarShop : MonoBehaviour, ISaver
+public class CarShop : YandexDataReader
 {
     [SerializeField] private Car[] _cars;
     [SerializeField] private Wallet _wallet;
 
     [SerializeField] private UnityEvent<Car> _purchased;
-    [SerializeField] private UnityEvent _changeCar;
+    [SerializeField] private UnityEvent _carChanged;
 
-    private int _lastSelectedCarIndex => YandexGame.savesData.LastSelectedCarIndex;
-    
-    private void OnEnable() => YandexGame.GetDataEvent += GetData;
-    private void OnDisable() => YandexGame.GetDataEvent -= GetData;
+    private int _lastSelectedCarIndex = 0;
 
-    private void Start()
+    public int LastSelectedCarIndex => _lastSelectedCarIndex;
+
+    private void Awake()
     {
         _cars = GetComponentsInChildren<Car>();
-
-        if (YandexGame.SDKEnabled == true)
-        {
-            GetData();
-        }
     }
 
     public void OnTryPurchase()
@@ -31,13 +23,17 @@ public class CarShop : MonoBehaviour, ISaver
         if (CheckPossibilityPurchase())
         {
             _purchased?.Invoke(_cars[_lastSelectedCarIndex]);
-            _changeCar?.Invoke();
-            Save();
+            _carChanged?.Invoke();
         }
         else
         {
             Debug.Log("Purchase impossible");
         }
+    }
+
+    public void OnPurchase(Car car)
+    {
+        car.Purchase();
     }
 
     public void OnNextCar(int key)
@@ -53,50 +49,17 @@ public class CarShop : MonoBehaviour, ISaver
             index = 0;
         }
 
-        YandexGame.savesData.LastSelectedCarIndex = index;
-        _changeCar?.Invoke();
-
-        Save();
+        _lastSelectedCarIndex = index;
+        _carChanged?.Invoke();
     }
 
-    private void GetData()
+    protected override void OnDataUpdated()
     {
-        //YandexGame.LoadLocal();
-
-        Garage garage = YandexGame.savesData.Garage;
-
-        if (garage != null) SyncShop(garage);
-    }
-
-    private void SyncShop(Garage garage)
-    {
-        for (int i = 0; i < garage.CarCount; i++)
-        {
-            Car saveCar = garage.GetCarByIndex(i);
-
-            for (int j = 0; j < _cars.Length; j++)
-            {
-                Car car = _cars[j];
-
-                if (car.Name == saveCar.Name)
-                {
-                    car.Purchase();
-                }
-            }
-        }
+        _lastSelectedCarIndex = Saver.LastSelectedCarIndex;
     }
 
     private bool CheckPossibilityPurchase()
     {
         return _cars[_lastSelectedCarIndex].Price <= _wallet.Money;
-    }
-
-    public void Save()
-    {
-        YandexGame.SaveLocal();
-
-#if !UNITY_EDITOR
-        YandexGame.SaveProgress();
-#endif
     }
 }

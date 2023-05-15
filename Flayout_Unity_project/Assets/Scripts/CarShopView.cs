@@ -13,7 +13,7 @@ public class CarShopView : MonoBehaviour
     private int _lastSelectCarIndex 
                 => YandexGame.savesData.LastSelectedCarIndex;
 
-    private void Start()
+    private void Awake()
     {
         _cars = gameObject.GetComponentsInChildren<Car>();
     }
@@ -25,7 +25,7 @@ public class CarShopView : MonoBehaviour
 
         _cars[_lastSelectCarIndex].gameObject.SetActive(true);
 
-        if (_cars[_lastSelectCarIndex].IsPurchased)
+        if (_cars[_lastSelectCarIndex].IsBuyed)
         {
             PossibleSelect();
         }
