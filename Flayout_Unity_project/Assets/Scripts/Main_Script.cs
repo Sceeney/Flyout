@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Main_Script : MonoBehaviour
 {
@@ -68,7 +69,7 @@ public class Main_Script : MonoBehaviour
         
         [Space(20)]
     // Какой раунд
-    [SerializeField] Text wich_round_text;
+    [SerializeField] TextMeshProUGUI wich_round_text;
     // Выстрел
         [Space(20)]        
     [SerializeField] Text Angle_Text;
