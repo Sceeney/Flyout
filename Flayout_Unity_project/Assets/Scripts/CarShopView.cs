@@ -1,8 +1,9 @@
+using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using YG;
 
+[RequireComponent(typeof(CarShop))]
 public class CarShopView : MonoBehaviour
 {
     [SerializeField] private Car[] _cars;
@@ -10,37 +11,59 @@ public class CarShopView : MonoBehaviour
     [SerializeField] private Button _selectButton;
     [SerializeField] private Button _BuyButton;
 
-    private int _lastSelectCarIndex 
-                => YandexGame.savesData.LastSelectedCarIndex;
+    private CarShop _shop;
 
     private void Awake()
     {
+        _shop = GetComponent<CarShop>();
         _cars = gameObject.GetComponentsInChildren<Car>();
     }
 
-    public void OnChangeCar()
+    private void OnEnable()
+    {
+        _shop.LasrSelectedCarIndexChanged += OnLasrSelectedCarIndexChanged;
+        _shop.Purchased += OnPurchased;
+    }
+
+    private void OnDisable()
+    {
+        _shop.LasrSelectedCarIndexChanged -= OnLasrSelectedCarIndexChanged;
+        _shop.Purchased -= OnPurchased;
+    }
+
+    private void OnLasrSelectedCarIndexChanged(int index)
     {
         Car car = _cars.First(c => c.gameObject.activeSelf == true);
         car.gameObject.SetActive(false);
 
-        _cars[_lastSelectCarIndex].gameObject.SetActive(true);
+        _cars[index].gameObject.SetActive(true);
 
-        if (_cars[_lastSelectCarIndex].IsBuyed)
+        UpdateButtonDisplay(index);
+    }
+
+    private void OnPurchased(Car car)
+    {
+        UpdateButtonDisplay(car.Index);
+    }
+
+    private void UpdateButtonDisplay(int index)
+    {
+        if (_cars[index].IsBuyed)
         {
             PossibleSelect();
         }
         else
         {
-            PossibleBuy();
+            PossibleBuy(index);
         }
     }
 
-    private void PossibleBuy()
+    private void PossibleBuy(int index)
     {
         _BuyButton.gameObject.SetActive(true);
         _selectButton.gameObject.SetActive(false);
 
-        _priceText.text = _cars[_lastSelectCarIndex]
+        _priceText.text = _cars[index]
                                 .Price.ToString();
     }
 

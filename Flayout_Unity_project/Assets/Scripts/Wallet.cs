@@ -1,33 +1,51 @@
-using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine;
+using System;
 
 public class Wallet : YandexDataReader
 {
-    [SerializeField] private MoneyView _moneyView;
+    [SerializeField] private CarShop _shop;
+
     private int _money;
 
     public int Money => _money;
 
-    [SerializeField] private UnityEvent<int> _updateMoney;
+    public event UnityAction<int> UpdateMoney;
 
-    public void OnPurchased(Car car)
+    private void OnValidate()
     {
-        _money -= car.Price;
+        if (_shop == null)
+            throw new ArgumentNullException(nameof(_shop));
+    }
 
-        _updateMoney?.Invoke(_money);
+    private void OnEnable()
+    {
+        _shop.Purchased += OnPurchased;
+    }
+
+    private void OnDisable()
+    {
+        _shop.Purchased -= OnPurchased;
     }
 
     public void OnSetMoney()
     {
         _money += 100000;
 
-        _updateMoney?.Invoke(_money);
+        UpdateMoney?.Invoke(_money);
+    }
+
+    private void OnPurchased(Car car)
+    {
+        _money -= car.Price;
+
+        UpdateMoney?.Invoke(_money);
     }
 
     protected override void OnDataUpdated()
     {
         _money = Saver.Money;
 
-        _updateMoney?.Invoke(_money);
+        UpdateMoney?.Invoke(_money);
     }
 }

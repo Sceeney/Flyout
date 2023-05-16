@@ -12,6 +12,7 @@ public class Car : MonoBehaviour
     public string Name => _name;
     public int Price => _price;
     public bool IsBuyed => _isBuyed;
+    public bool IsDefaultActive => _isDefaultActive;
 
     private void Start()
     {
