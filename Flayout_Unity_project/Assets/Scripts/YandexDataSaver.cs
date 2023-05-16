@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using YG;
@@ -19,8 +20,7 @@ public class YandexDataSaver : MonoBehaviour
     private void OnValidate()
     {
         if (_wallet == null)
-            throw new System.Exception($"В {nameof(YandexDataSaver)} " +
-                $"нужно добавить {nameof(Wallet)}");
+            throw new ArgumentNullException(nameof(_wallet));
 
         if (_carShop == null)
             _carShop = GetComponent<CarShop>();
@@ -44,6 +44,7 @@ public class YandexDataSaver : MonoBehaviour
 
     public void Save()
     {
+        Debug.Log(_wallet.Money);
         YandexGame.savesData.Money = _wallet.Money;
         YandexGame.savesData.LastSelectedCarIndex = _carShop.LastSelectedCarIndex;
 

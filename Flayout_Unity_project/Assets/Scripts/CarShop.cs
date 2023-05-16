@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,8 +7,8 @@ public class CarShop : YandexDataReader
     [SerializeField] private Car[] _cars;
     [SerializeField] private Wallet _wallet;
 
-    [SerializeField] private UnityEvent<Car> _purchased;
-    [SerializeField] private UnityEvent _carChanged;
+    public event UnityAction<int> LasrSelectedCarIndexChanged;
+    public event UnityAction<Car> Purchased;
 
     private int _lastSelectedCarIndex = 0;
 
@@ -22,18 +23,15 @@ public class CarShop : YandexDataReader
     {
         if (CheckPossibilityPurchase())
         {
-            _purchased?.Invoke(_cars[_lastSelectedCarIndex]);
-            _carChanged?.Invoke();
+            Car purchasedCar = _cars[_lastSelectedCarIndex];
+            purchasedCar.Purchase();
+
+            Purchased?.Invoke(purchasedCar);
         }
         else
         {
             Debug.Log("Purchase impossible");
         }
-    }
-
-    public void OnPurchase(Car car)
-    {
-        car.Purchase();
     }
 
     public void OnNextCar(int key)
@@ -50,12 +48,22 @@ public class CarShop : YandexDataReader
         }
 
         _lastSelectedCarIndex = index;
-        _carChanged?.Invoke();
+        LasrSelectedCarIndexChanged?.Invoke(_lastSelectedCarIndex);
     }
 
     protected override void OnDataUpdated()
     {
         _lastSelectedCarIndex = Saver.LastSelectedCarIndex;
+
+        LasrSelectedCarIndexChanged?.Invoke(_lastSelectedCarIndex);
+
+        Car car = _cars.First(c => c.IsDefaultActive == true);
+
+        if (car.Index != _lastSelectedCarIndex)
+        {
+            car.gameObject.SetActive(false);
+            _cars[_lastSelectedCarIndex].gameObject.SetActive(true);
+        }
     }
 
     private bool CheckPossibilityPurchase()

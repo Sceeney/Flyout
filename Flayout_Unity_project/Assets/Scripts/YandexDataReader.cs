@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class YandexDataReader : MonoBehaviour
@@ -7,7 +8,7 @@ public abstract class YandexDataReader : MonoBehaviour
     private void OnValidate()
     {
         if (Saver == null)
-            throw new System.Exception("Не добавлен Saver");
+            throw new ArgumentNullException(nameof(Saver));
     }
 
     private void OnEnable()

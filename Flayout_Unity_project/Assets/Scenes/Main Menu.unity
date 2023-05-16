@@ -393,7 +393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &29568590
 RectTransform:
   m_ObjectHideFlags: 0
@@ -459,10 +459,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1625716138}
-        m_TargetAssemblyTypeName: CarShop, Assembly-CSharp
-        m_MethodName: OnNextCar
-        m_Mode: 3
+      - m_Target: {fileID: 1625716137}
+        m_TargetAssemblyTypeName: YandexDataSaver, Assembly-CSharp
+        m_MethodName: Save
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3975,22 +3975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Saver: {fileID: 1625716137}
-  _moneyView: {fileID: 1102064917}
-  _updateMoney:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1102064917}
-        m_TargetAssemblyTypeName: MoneyView, Assembly-CSharp
-        m_MethodName: OnUpdateMoney
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _shop: {fileID: 1625716138}
 --- !u!1 &606856868
 GameObject:
   m_ObjectHideFlags: 0
@@ -9759,6 +9744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moneyUIObject: {fileID: 1824247537}
+  _wallet: {fileID: 582717947}
 --- !u!1 &1103925314
 GameObject:
   m_ObjectHideFlags: 0
@@ -13710,36 +13696,6 @@ MonoBehaviour:
   Saver: {fileID: 1625716137}
   _cars: []
   _wallet: {fileID: 582717947}
-  _purchased:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1625716137}
-        m_TargetAssemblyTypeName: Garage, Assembly-CSharp
-        m_MethodName: OnPurchase
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 582717947}
-        m_TargetAssemblyTypeName: Wallet, Assembly-CSharp
-        m_MethodName: OnPurchased
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _carChanged:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1625716139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16171,7 +16127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1983226170
 RectTransform:
   m_ObjectHideFlags: 0
