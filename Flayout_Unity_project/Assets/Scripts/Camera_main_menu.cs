@@ -8,6 +8,7 @@ public class Camera_main_menu : MonoBehaviour
 
     public float speed_cam = 2; // скорость движения камеры
         [Space(20)]
+    public Transform Start_pose;
     public Transform Main;
     public Transform Cars;
     public Transform Player;
@@ -16,13 +17,15 @@ public class Camera_main_menu : MonoBehaviour
 
     void Start()
     {
-        transform.position = Vector3.Lerp(transform.position, Main.position, speed_cam * Time.deltaTime);
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, Main.localRotation, speed_cam * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, Start_pose.position, speed_cam * Time.deltaTime);
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, Start_pose.localRotation, speed_cam * Time.deltaTime);
+        move_cam = 1;
     }
     void Update()
     {
         move_cam = UI_Main_Menu.button_Index; // чекаем индекс кнопок главного меню
         Case_camera(); // двигаем камеру по индексу кнопки
+        print(move_cam);
     }
 
     void Case_camera()
