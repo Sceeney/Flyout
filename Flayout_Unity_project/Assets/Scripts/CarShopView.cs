@@ -10,17 +10,12 @@ public class CarShopView : MonoBehaviour
     [SerializeField] private Text _priceText;
     [SerializeField] private Button _selectButton;
     [SerializeField] private Button _BuyButton;
-
-    private CarShop _shop;
-
-    private void Awake()
-    {
-        _shop = GetComponent<CarShop>();
-        _cars = gameObject.GetComponentsInChildren<Car>();
-    }
+    [SerializeField] private CarShop _shop;
 
     private void OnEnable()
     {
+        _cars[0].gameObject.SetActive(true);
+
         _shop.LasrSelectedCarIndexChanged += OnLasrSelectedCarIndexChanged;
         _shop.Purchased += OnPurchased;
     }
@@ -33,6 +28,7 @@ public class CarShopView : MonoBehaviour
 
     private void OnLasrSelectedCarIndexChanged(int index)
     {
+        Debug.Log("index " + index);
         Car car = _cars.First(c => c.gameObject.activeSelf == true);
         car.gameObject.SetActive(false);
 

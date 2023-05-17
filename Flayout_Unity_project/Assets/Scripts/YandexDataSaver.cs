@@ -15,7 +15,7 @@ public class YandexDataSaver : MonoBehaviour
     public int Money => _money;
     public int LastSelectedCarIndex => _lastSelectedCarIndex;
 
-    public event UnityAction DataUpdated;
+    [SerializeField] public UnityEvent DataUpdated;
 
     private void OnValidate()
     {
@@ -26,13 +26,20 @@ public class YandexDataSaver : MonoBehaviour
             _carShop = GetComponent<CarShop>();
     }
 
-    private void OnEnable() => YandexGame.GetDataEvent += GetLoad;
-    private void OnDisable() => YandexGame.GetDataEvent -= GetLoad;
+    private void OnEnable()
+    {
+        YandexGame.GetDataEvent += GetLoad;
+        YandexGame.onResetProgress += OnResetProgress;
+    }
+
+    private void OnDisable()
+    {
+        YandexGame.GetDataEvent -= GetLoad;
+        YandexGame.onResetProgress -= OnResetProgress;
+    }
 
     private void Awake()
     {
-        _cars = GetComponentsInChildren<Car>();
-
         if (YandexGame.SDKEnabled)
             GetLoad();
     }
@@ -46,6 +53,8 @@ public class YandexDataSaver : MonoBehaviour
     {
         Debug.Log(_wallet.Money);
         YandexGame.savesData.Money = _wallet.Money;
+        Debug.Log(YandexGame.savesData.Money);
+
         YandexGame.savesData.LastSelectedCarIndex = _carShop.LastSelectedCarIndex;
 
         bool[] temp = new bool[_cars.Length];
@@ -57,11 +66,21 @@ public class YandexDataSaver : MonoBehaviour
         YandexGame.SaveProgress();
     }
 
+    private void OnResetProgress()
+    {
+        Debug.Log("Reset");
+        YandexGame.savesData.Money = 0;
+        YandexGame.savesData.LastSelectedCarIndex = 0;
+        YandexGame.savesData.BuyedCar = new bool[1] { false };
+
+        GetLoad();
+    }
+
     private void GetLoad()
     {
-        _money = YandexGame.savesData.Money;
+        _wallet.Money = YandexGame.savesData.Money;
 
-        _lastSelectedCarIndex = YandexGame.savesData.LastSelectedCarIndex;
+        _carShop.LastSelectedCarIndex = YandexGame.savesData.LastSelectedCarIndex;
 
         for (int i = 0; i < YandexGame.savesData.BuyedCar.Length; i++)
         {

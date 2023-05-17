@@ -13,12 +13,12 @@ public abstract class YandexDataReader : MonoBehaviour
 
     private void OnEnable()
     {
-        Saver.DataUpdated += OnDataUpdated;
+        //Saver.DataUpdated += OnDataUpdated;
     }
 
     private void OnDisable()
     {
-        Saver.DataUpdated -= OnDataUpdated;
+        //Saver.DataUpdated -= OnDataUpdated;
     }
 
     protected abstract void OnDataUpdated();

@@ -2,7 +2,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CarShop : YandexDataReader
+public class CarShop : MonoBehaviour
 {
     [SerializeField] private Car[] _cars;
     [SerializeField] private Wallet _wallet;
@@ -10,20 +10,13 @@ public class CarShop : YandexDataReader
     public event UnityAction<int> LasrSelectedCarIndexChanged;
     public event UnityAction<Car> Purchased;
 
-    private int _lastSelectedCarIndex = 0;
-
-    public int LastSelectedCarIndex => _lastSelectedCarIndex;
-
-    private void Awake()
-    {
-        _cars = GetComponentsInChildren<Car>();
-    }
+    public int LastSelectedCarIndex = 0;
 
     public void OnTryPurchase()
     {
         if (CheckPossibilityPurchase())
         {
-            Car purchasedCar = _cars[_lastSelectedCarIndex];
+            Car purchasedCar = _cars[LastSelectedCarIndex];
             purchasedCar.Purchase();
 
             Purchased?.Invoke(purchasedCar);
@@ -36,7 +29,7 @@ public class CarShop : YandexDataReader
 
     public void OnNextCar(int key)
     {
-        int index = _lastSelectedCarIndex + key;
+        int index = LastSelectedCarIndex + key;
 
         if (index < 0)
         {
@@ -47,27 +40,25 @@ public class CarShop : YandexDataReader
             index = 0;
         }
 
-        _lastSelectedCarIndex = index;
-        LasrSelectedCarIndexChanged?.Invoke(_lastSelectedCarIndex);
+        LastSelectedCarIndex = index;
+        LasrSelectedCarIndexChanged?.Invoke(LastSelectedCarIndex);
     }
 
-    protected override void OnDataUpdated()
+    public void OnDataUpdated()
     {
-        _lastSelectedCarIndex = Saver.LastSelectedCarIndex;
-
-        LasrSelectedCarIndexChanged?.Invoke(_lastSelectedCarIndex);
+        LasrSelectedCarIndexChanged?.Invoke(LastSelectedCarIndex);
 
         Car car = _cars.First(c => c.IsDefaultActive == true);
 
-        if (car.Index != _lastSelectedCarIndex)
+        if (car.Index != LastSelectedCarIndex)
         {
             car.gameObject.SetActive(false);
-            _cars[_lastSelectedCarIndex].gameObject.SetActive(true);
+            _cars[LastSelectedCarIndex].gameObject.SetActive(true);
         }
     }
 
     private bool CheckPossibilityPurchase()
     {
-        return _cars[_lastSelectedCarIndex].Price <= _wallet.Money;
+        return _cars[LastSelectedCarIndex].Price <= _wallet.Money;
     }
 }

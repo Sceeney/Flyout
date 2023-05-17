@@ -2,13 +2,11 @@ using UnityEngine.Events;
 using UnityEngine;
 using System;
 
-public class Wallet : YandexDataReader
+public class Wallet : MonoBehaviour
 {
     [SerializeField] private CarShop _shop;
 
-    private int _money;
-
-    public int Money => _money;
+    public int Money;
 
     public event UnityAction<int> UpdateMoney;
 
@@ -30,22 +28,22 @@ public class Wallet : YandexDataReader
 
     public void OnSetMoney()
     {
-        _money += 100000;
+        Money += 100000;
 
-        UpdateMoney?.Invoke(_money);
+        UpdateMoney?.Invoke(Money);
     }
 
     private void OnPurchased(Car car)
     {
-        _money -= car.Price;
+        Money -= car.Price;
 
-        UpdateMoney?.Invoke(_money);
+        UpdateMoney?.Invoke(Money);
     }
-
-    protected override void OnDataUpdated()
+    
+    public void OnDataUpdated()
     {
-        _money = Saver.Money;
-
-        UpdateMoney?.Invoke(_money);
+        //Money = Saver.Money;
+        Debug.Log($"Wallet.Money = {Money}");
+        UpdateMoney?.Invoke(Money);
     }
 }
