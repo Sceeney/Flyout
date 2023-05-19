@@ -37,7 +37,7 @@ public class Load_Screen : MonoBehaviour
 
         while(!asyncLoad.isDone)
         {            
-            bar.value = asyncLoad.progress;            
+            bar.value = asyncLoad.progress; 
             yield return null;        
         }
     }

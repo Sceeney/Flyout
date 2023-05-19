@@ -21,13 +21,6 @@ public class UI_Main_Menu : MonoBehaviour
     public GameObject Player_select_UI;
     public GameObject Options_UI;
     public GameObject Track_select_UI;
-        [Space(20)]
-    public Slider Slider_Main_audio;
-        [Space(5)]
-    public AudioSource audio_Music;
-    public Slider Slidel_Music;
-        [Space(5)]
-    private float music_Volume = 1f;
 
     void Awake()
     {
@@ -37,18 +30,8 @@ public class UI_Main_Menu : MonoBehaviour
     void Start()
     {
         button_Index = 1;
-        audio_Music = GetComponent<AudioSource>();
-        music_Volume = 1f;
-        Slidel_Music.value = 1f;
-        Slidel_Music.value = PlayerPrefs.GetFloat("Slidel_Music.value");
-        Slider_Main_audio.value = PlayerPrefs.GetFloat("Listener"); 
-        music_Volume = PlayerPrefs.GetFloat("music_Volume");
         isOpen = false;
         Сhoice_Level.Start_Level_1 = false;
-    }
-    void Update()
-    {
-        audio_Music.volume = music_Volume;
     }
 
     public void Main_click() // выход в меню 
@@ -169,17 +152,5 @@ public class UI_Main_Menu : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void Volume_Music()
-    {
-        music_Volume = Slidel_Music.value;
-        PlayerPrefs.SetFloat("music_Volume", music_Volume);
-        PlayerPrefs.SetFloat("Slidel_Music.value", Slidel_Music.value);
-    }
-    public void Main_audio()
-    {
-        Audio_Listener.Listener = Slider_Main_audio.value;
-        PlayerPrefs.SetFloat("Listener", Audio_Listener.Listener);
-        PlayerPrefs.SetFloat("Slider_Main_audio", Slider_Main_audio.value);
-    }
 
 }

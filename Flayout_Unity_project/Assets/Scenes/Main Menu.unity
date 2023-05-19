@@ -37095,7 +37095,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2104192141}
-  - component: {fileID: 2104192143}
   - component: {fileID: 2104192142}
   - component: {fileID: 2104192144}
   m_Layer: 0
@@ -37137,28 +37136,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a82c4be37e9b22649917e8f38622c922, type: 3}
   - {fileID: 8300000, guid: ed55c4f0917fc424f9980dc1f4bf9e9b, type: 3}
   - {fileID: 8300000, guid: ff1c703cd44cc5e45b3796dd19a36fbb, type: 3}
---- !u!114 &2104192143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2104192139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6e540fcf9ae4c94c8fd25270514e5af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Main_menu_panel: {fileID: 0}
-  Car_select_panel: {fileID: 0}
-  Track_menu_panel: {fileID: 0}
-  Options_menu_panel: {fileID: 0}
-  Options_panel: {fileID: 0}
-  Main_Menu_UI: {fileID: 0}
-  Car_select_UI: {fileID: 0}
-  Player_select_UI: {fileID: 0}
-  Options_UI: {fileID: 0}
-  Track_select_UI: {fileID: 0}
   Slider_Main_audio: {fileID: 677050763857265169}
   audio_Music: {fileID: 2104192144}
   Slidel_Music: {fileID: 677050763976648094}
@@ -40443,7 +40420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a34fa112dd1df4d9eeaee16b2aad23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Level_1: {fileID: 6711776015693434309, guid: 509dffc064ca9ce41aa58d82e0208d1d, type: 3}
+  Level_1: {fileID: 2653442703376947145, guid: 6cf63933a0451bf428e147f5cc7cb320, type: 3}
   No_Level: {fileID: 6711776015693434309, guid: 21c0d9ddb6826674685454a570878030,
     type: 3}
   panCount: 3
@@ -42240,7 +42217,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1782074538455045577}
-  - component: {fileID: 1782074538455045590}
   m_Layer: 5
   m_Name: Start Race
   m_TagString: Untagged
@@ -42271,26 +42247,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &1782074538455045590
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1782074538455045576}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 749f83095e5f7bc4a9b010e0a4e44719, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1782074538459011300
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.102
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0004237541, g: 0.0004237541, b: 0.000787167, a: 0.102}
+  m_IndirectSpecularColor: {r: 0.005474903, g: 0.005474903, b: 0.010170198, a: 0.102}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -352,7 +352,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 339379135}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Money_script, Assembly-CSharp
         m_MethodName: How_much_money
         m_Mode: 1
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed_cam: 3
-  Start_pose: {fileID: 0}
+  Start_pose: {fileID: 1299931819}
   Main: {fileID: 1133148164}
   Cars: {fileID: 1268762243}
   Player: {fileID: 1052025391}
@@ -1360,8 +1360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b02f6c6a034b74fa554ccb71087944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _en: SELECT
-  _ru: "\u0432\u044B\u0431\u0440\u0430\u0442\u044C"
 --- !u!1 &157230938
 GameObject:
   m_ObjectHideFlags: 0
@@ -2239,7 +2237,6 @@ GameObject:
   - component: {fileID: 339379133}
   - component: {fileID: 339379132}
   - component: {fileID: 339379134}
-  - component: {fileID: 339379135}
   - component: {fileID: 339379138}
   - component: {fileID: 339379137}
   - component: {fileID: 339379136}
@@ -2307,19 +2304,6 @@ MonoBehaviour:
   Slider_Main_audio: {fileID: 1287586719734696631}
   audio_Music: {fileID: 339379136}
   Slidel_Music: {fileID: 1287586719820852536}
---- !u!114 &339379135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 339379131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1286eac754b47f74091b9c1159253234, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Money_text: {fileID: 1824247537}
 --- !u!82 &339379136
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3242,8 +3226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b02f6c6a034b74fa554ccb71087944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _en: LOADING...
-  _ru: "\u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0430..."
 --- !u!222 &429667666
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3393,8 +3375,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b02f6c6a034b74fa554ccb71087944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _en: MUSIC VOLUME
-  _ru: "\u0433\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C \u043C\u0443\u0437\u044B\u043A\u0438"
 --- !u!222 &444709094
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4447,8 +4427,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd25c6fc5f32c814d91a64fab65e9f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentLanguage: 
-  _languageText: {fileID: 2108024646}
 --- !u!4 &668772726
 Transform:
   m_ObjectHideFlags: 0
@@ -4476,10 +4454,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43494b13c4768134dbfdd630a2e56756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerInfo:
-    Coins: 0
-    Cars: 0
-  _playerInfoText: {fileID: 0}
 --- !u!1 &701297470
 GameObject:
   m_ObjectHideFlags: 0
@@ -5271,7 +5245,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 339379135}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Money_script, Assembly-CSharp
         m_MethodName: How_much_money
         m_Mode: 1
@@ -7860,7 +7834,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 339379135}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Money_script, Assembly-CSharp
         m_MethodName: Add_Money_and_Gold
         m_Mode: 1
@@ -11622,6 +11596,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279536678}
   m_CullTransparentMesh: 1
+--- !u!1 &1299931818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1299931819}
+  m_Layer: 0
+  m_Name: Main (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1299931819
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299931818}
+  m_LocalRotation: {x: 0.010434537, y: 0.111060396, z: -0.0011664702, w: 0.9937582}
+  m_LocalPosition: {x: 4.667, y: 0.891, z: -4.059}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1444732775}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 69.353, z: 0}
 --- !u!1 &1318263548
 GameObject:
   m_ObjectHideFlags: 0
@@ -12534,6 +12539,7 @@ Transform:
   - {fileID: 1052025391}
   - {fileID: 1572434323}
   - {fileID: 1379023495}
+  - {fileID: 1299931819}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13465,8 +13471,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Price_text: {fileID: 1620514178}
-  Price_1_car: 50000
-  Price_2_car: 100000
   Select_button: {fileID: 29568589}
   By_button: {fileID: 1983226169}
   All_Cars: []
@@ -13612,8 +13616,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b02f6c6a034b74fa554ccb71087944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _en: 'OPTIONS '
-  _ru: "\u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"
 --- !u!222 &1644344869
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15633,8 +15635,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b02f6c6a034b74fa554ccb71087944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _en: 'MAIN AUDIO '
-  _ru: "\u043E\u0431\u0449\u0430\u044F \u0433\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C"
 --- !u!222 &1905626947
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15766,8 +15766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977f1b4b3da70f94d8c8d628e882d9d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nameText: {fileID: 653836730}
-  _photo: {fileID: 1987365558}
 --- !u!4 &1970808521
 Transform:
   m_ObjectHideFlags: 0
@@ -15880,7 +15878,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 339379135}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Money_script, Assembly-CSharp
         m_MethodName: How_much_money
         m_Mode: 1
