@@ -72,8 +72,8 @@ public class Main_Script : MonoBehaviour
     [SerializeField] TextMeshProUGUI wich_round_text;
     // Выстрел
         [Space(20)]        
-    [SerializeField] Text Angle_Text;
-    [SerializeField] Text Height_Text;
+    [SerializeField] TextMeshProUGUI Angle_Text;
+    [SerializeField] TextMeshProUGUI Height_Text;
         [Space(5)]
     public GameObject Shoot_UI;
     public GameObject Start_Button;
@@ -164,7 +164,7 @@ public class Main_Script : MonoBehaviour
         for (int i = 0; i >= 0; i++)
         {
             if(text_hight == true){
-                Height_Text.text = Impulse_and_Mass.Value_Height.ToString();
+                Height_Text.text = Impulse_and_Mass.Value_Height.ToString("0.00");
                 yield return null;}        
             else yield break;
         }
@@ -336,51 +336,51 @@ public class Main_Script : MonoBehaviour
                 Finish_but.SetActive(false);
 
                 round_1.SetActive(true);
-                    round_1_text.text = Impulse_and_Mass.Value_Height.ToString();
+                    round_1_text.text = Impulse_and_Mass.Value_Height.ToString("0.00");
                     PlayerPrefs.SetFloat("round_1",Impulse_and_Mass.Value_Height);
                 round_2.SetActive(false);
                 round_3.SetActive(false);
 
                     summ_score = PlayerPrefs.GetFloat("round_1") + PlayerPrefs.GetFloat("round_2") + PlayerPrefs.GetFloat("round_3");
-                    total_text.text = summ_score.ToString();
+                    total_text.text = summ_score.ToString("0.00");
                 break;
             case 2:
                 Next_round_but.SetActive(true);
                 Finish_but.SetActive(false);
 
                 round_1.SetActive(true);
-                    round_1_text.text = (PlayerPrefs.GetFloat("round_1")).ToString();
+                    round_1_text.text = (PlayerPrefs.GetFloat("round_1")).ToString("0.00");
                 round_2.SetActive(true);
-                    round_2_text.text = Impulse_and_Mass.Value_Height.ToString();
+                    round_2_text.text = Impulse_and_Mass.Value_Height.ToString("0.00");
                     PlayerPrefs.SetFloat("round_2",Impulse_and_Mass.Value_Height);
                 round_3.SetActive(false);
 
                     summ_score = PlayerPrefs.GetFloat("round_1") + PlayerPrefs.GetFloat("round_2") + PlayerPrefs.GetFloat("round_3");
-                    total_text.text = summ_score.ToString();
+                    total_text.text = summ_score.ToString("0.00");
                 break;
             case 3:
                 Next_round_but.SetActive(false);
                 Finish_but.SetActive(true);
 
                 round_1.SetActive(true);
-                    round_1_text.text = (PlayerPrefs.GetFloat("round_1")).ToString();
+                    round_1_text.text = (PlayerPrefs.GetFloat("round_1")).ToString("0.00");
                 round_2.SetActive(true);
-                    round_2_text.text = (PlayerPrefs.GetFloat("round_2")).ToString();
+                    round_2_text.text = (PlayerPrefs.GetFloat("round_2")).ToString("0.00");
                 round_3.SetActive(true);
-                    round_3_text.text = Impulse_and_Mass.Value_Height.ToString();
+                    round_3_text.text = Impulse_and_Mass.Value_Height.ToString("0.00");
                     PlayerPrefs.SetFloat("round_3",Impulse_and_Mass.Value_Height);
 
                     summ_score = PlayerPrefs.GetFloat("round_1") + PlayerPrefs.GetFloat("round_2") + PlayerPrefs.GetFloat("round_3");
-                    total_text.text = summ_score.ToString();
+                    total_text.text = summ_score.ToString("0.00");
                 break;
             default:
                 round_1.SetActive(true);
-                    round_1_text.text = Impulse_and_Mass.Value_Height.ToString();
+                    round_1_text.text = Impulse_and_Mass.Value_Height.ToString("0.00");
                     PlayerPrefs.SetFloat("round_1",Impulse_and_Mass.Value_Height);
                 round_2.SetActive(false);
                 round_3.SetActive(false);
                     summ_score = PlayerPrefs.GetFloat("round_1") + PlayerPrefs.GetFloat("round_2") + PlayerPrefs.GetFloat("round_3");
-                    total_text.text = summ_score.ToString();
+                    total_text.text = summ_score.ToString("0.00");
                 break;
         }
     }
@@ -426,7 +426,7 @@ public class Main_Script : MonoBehaviour
                 Medal_Bronze.SetActive(false);
                 No_Medal.SetActive(true);
             }
-        total_text_finish.text = summ_score.ToString();
+        total_text_finish.text = summ_score.ToString("0.00");
     }
 
     void Shoot_UI_active()
