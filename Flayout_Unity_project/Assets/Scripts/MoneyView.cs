@@ -1,10 +1,10 @@
 using System;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MoneyView : MonoBehaviour
 {
-    [SerializeField] private Text _moneyUIObject;
+    [SerializeField] private TMP_Text _moneyUIObject;
     [SerializeField] private Wallet _wallet;
     private int Money => _wallet.Money;
 

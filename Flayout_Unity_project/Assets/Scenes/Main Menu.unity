@@ -36111,6 +36111,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1547260133}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1547260135 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4956192587252543388, guid: 718c3dbd326df4542a3c7b5046ad4694,
+    type: 3}
+  m_PrefabInstance: {fileID: 1547260133}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3261ca8b63e6e41a3db7b13ac19f23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1561636155
 GameObject:
   m_ObjectHideFlags: 0
@@ -36488,6 +36500,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1579245162}
+  - component: {fileID: 1579245165}
+  - component: {fileID: 1579245164}
+  - component: {fileID: 1579245163}
   m_Layer: 0
   m_Name: Cars
   m_TagString: Untagged
@@ -36513,6 +36528,91 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1579245163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579245161}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a3e38bac52b6042bffddb7ee94fd8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _money: 0
+  _lastSelectedCarIndex: 0
+  _cars:
+  - {fileID: 1698235451}
+  - {fileID: 1547260135}
+  - {fileID: 2052008328}
+  _wallet: {fileID: 1900072345}
+  _carShop: {fileID: 1579245165}
+  DataUpdated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1900072345}
+        m_TargetAssemblyTypeName: Wallet, Assembly-CSharp
+        m_MethodName: OnDataUpdated
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1579245165}
+        m_TargetAssemblyTypeName: CarShop, Assembly-CSharp
+        m_MethodName: OnDataUpdated
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1579245164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579245161}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3170434d15e57c84eaa2236c606c8251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cars:
+  - {fileID: 1698235451}
+  - {fileID: 1547260135}
+  - {fileID: 2052008328}
+  _priceText: {fileID: 0}
+  _selectButton: {fileID: 0}
+  _BuyButton: {fileID: 0}
+  _shop: {fileID: 1579245165}
+--- !u!114 &1579245165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579245161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd31f3765b62e1b408d4a6effbdecea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cars:
+  - {fileID: 1698235451}
+  - {fileID: 1547260135}
+  - {fileID: 2052008328}
+  _wallet: {fileID: 1900072345}
+  LastSelectedCarIndex: 0
 --- !u!1 &1597656926
 GameObject:
   m_ObjectHideFlags: 0
@@ -37338,6 +37438,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1698235449}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1698235451 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5903471065548228791, guid: a95f1b484e7802e429473588113285cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1698235449}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3261ca8b63e6e41a3db7b13ac19f23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1746807581
 GameObject:
   m_ObjectHideFlags: 0
@@ -37879,6 +37991,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c08aaade51cbb584fa3c218ce60734a9, type: 3}
+--- !u!1 &1900072344 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1998608836038353856, guid: c08aaade51cbb584fa3c218ce60734a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1900072343}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1900072345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900072344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1286eac754b47f74091b9c1159253234, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shop: {fileID: 0}
+  Money: 0
 --- !u!1 &1943005640
 GameObject:
   m_ObjectHideFlags: 0
@@ -38552,6 +38684,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2052008326}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2052008328 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1454098418075092102, guid: 498bd2952ef138c42a7f2a49114c2952,
+    type: 3}
+  m_PrefabInstance: {fileID: 2052008326}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3261ca8b63e6e41a3db7b13ac19f23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2054805025
 GameObject:
   m_ObjectHideFlags: 0
@@ -44164,6 +44308,7 @@ GameObject:
   - component: {fileID: 1782074538463503801}
   - component: {fileID: 1782074538463503794}
   - component: {fileID: 1782074538463503803}
+  - component: {fileID: 1782074538463503804}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -44300,6 +44445,20 @@ MonoBehaviour:
   _Character: {fileID: 1782074538592484765}
   _Options: {fileID: 1782074537166192744}
   _Back: {fileID: 1782074538289841529}
+--- !u!114 &1782074538463503804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782074538463503785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 148fce3ae72e3594eaf805015507384e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moneyUIObject: {fileID: 1605007876}
+  _wallet: {fileID: 1900072345}
 --- !u!1 &1782074538468178128
 GameObject:
   m_ObjectHideFlags: 0
