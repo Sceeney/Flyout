@@ -11,7 +11,7 @@ public class Load_Screen : MonoBehaviour
     public Slider bar;
     bool isDone_UI;
     
-    void Start()
+    void OnEnable()
     {
         isDone_UI = false;
     }
