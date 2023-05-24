@@ -8,9 +8,10 @@ using TMPro;
 public class Main_Script : MonoBehaviour
 {
     //загрузка меню
-    public string Load_level;
+    public int Load_level_index;
     public GameObject Loading_Screen;
     public Slider bar;
+    public SceneLoader loader;
     // Статусы
     enum State {Gold, Silver, Bronze, No_medal}  
     State state;
@@ -244,15 +245,10 @@ public class Main_Script : MonoBehaviour
         Time.timeScale = 1f;
         Audio_Listener.Listener = 0f;
         Loading_Screen.SetActive(true);
-        StartCoroutine(Load_async_scene_menu()); // загрузочный экран
+
+        loader.LoadScene(Load_level_index, bar);
     }
-    IEnumerator Load_async_scene_menu()
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(Load_level);
-        while(!asyncLoad.isDone){            
-            bar.value = asyncLoad.progress;            
-            yield return null;}
-    }
+    
     public void One_more_time() // Кнопка ещё заезд
     {
         if(state == State.Gold){

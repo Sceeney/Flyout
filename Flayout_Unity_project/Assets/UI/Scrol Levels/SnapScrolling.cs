@@ -3,6 +3,8 @@ using UnityEngine.UI;
  
 public class SnapScrolling : MonoBehaviour
 {
+    [SerializeField] private LevelSelecter _selecter;
+
     [Header("Levels")]
     public GameObject Level_1;
     public GameObject No_Level;
@@ -44,6 +46,7 @@ public class SnapScrolling : MonoBehaviour
             {
                 case 0:
                     instPans[i] = Instantiate(Level_1, transform, false);
+                    _selecter.SetNewLevelButton(instPans[i].GetComponent<Button>());
                     break;
                 default:
                     instPans[i] = Instantiate(No_Level, transform, false);
