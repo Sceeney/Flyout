@@ -43267,7 +43267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a34fa112dd1df4d9eeaee16b2aad23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _selecter: {fileID: 1782074537647271076}
   Level_1: {fileID: 2653442703376947145, guid: 6cf63933a0451bf428e147f5cc7cb320, type: 3}
   No_Level: {fileID: 6711776015693434309, guid: 21c0d9ddb6826674685454a570878030,
     type: 3}
@@ -43289,7 +43288,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1782074537647271072}
   - component: {fileID: 1782074537647271073}
-  - component: {fileID: 1782074537647271076}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -43297,21 +43295,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1782074537647271076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1782074537647271075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d01d3121a46d8f40908fc38027dd0bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _content: {fileID: 1782074537647271075}
-  _load: {fileID: 1782074538463503794}
-  _levels: []
 --- !u!114 &1782074537689550124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45191,7 +45174,6 @@ GameObject:
   - component: {fileID: 1782074538463503799}
   - component: {fileID: 1782074538463503798}
   - component: {fileID: 1782074538463503801}
-  - component: {fileID: 1782074538463503805}
   - component: {fileID: 1782074538463503794}
   - component: {fileID: 1782074538463503803}
   - component: {fileID: 1782074538463503804}
@@ -45209,15 +45191,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1782074538463503785}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ab364a586e6ddc4882332b31d6e43a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Load_level_index: 1
+  Load_level: Level_Jump_Hight
   Loading_Screen: {fileID: 6195243490370332317}
   bar: {fileID: 6195243488431524994}
-  loader: {fileID: 1782074538463503805}
 --- !u!223 &1782074538463503796
 Canvas:
   m_ObjectHideFlags: 0
@@ -45346,18 +45327,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moneyUIObject: {fileID: 1605007876}
   _wallet: {fileID: 351327975}
---- !u!114 &1782074538463503805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1782074538463503785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eddbe7b14d06754091563e53d859f7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1782074538468178128
 GameObject:
   m_ObjectHideFlags: 0
