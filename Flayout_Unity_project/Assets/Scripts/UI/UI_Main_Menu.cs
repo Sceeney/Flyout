@@ -31,7 +31,6 @@ public class UI_Main_Menu : MonoBehaviour
     {
         button_Index = 1;
         isOpen = false;
-        Сhoice_Level.Start_Level_1 = false;
     }
 
     public void Main_click() // выход в меню 

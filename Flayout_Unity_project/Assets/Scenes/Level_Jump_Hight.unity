@@ -1913,6 +1913,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 103676131}
+  - component: {fileID: 103676135}
   - component: {fileID: 103676130}
   - component: {fileID: 103676134}
   - component: {fileID: 103676133}
@@ -1935,7 +1936,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 531e762ffac9b6c4ab3484b9cd5ed3cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Load_level: Main Menu
+  loader: {fileID: 103676135}
+  Load_level_Index: 0
   Loading_Screen: {fileID: 726279374}
   bar: {fileID: 535159615}
   Start_UI: {fileID: 754345457}
@@ -2112,6 +2114,18 @@ MonoBehaviour:
   Slider_Main_audio: {fileID: 3726691}
   audio_Music: {fileID: 103676133}
   Slidel_Music: {fileID: 186284780}
+--- !u!114 &103676135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103676129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eddbe7b14d06754091563e53d859f7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &103756462
 GameObject:
   m_ObjectHideFlags: 0
