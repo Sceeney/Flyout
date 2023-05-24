@@ -195,6 +195,12 @@ public class Main_Script : MonoBehaviour
         PlayerPrefs.DeleteKey ("round_3");  
         SceneManager.LoadScene(1);
     }
+
+    public void Restart_round() // Кнопка рестарта раунда
+    {
+        SceneManager.LoadScene(1);
+    }
+
     public void Click_Start_Button() // Кнопка старта
     {
         start_but = !start_but;

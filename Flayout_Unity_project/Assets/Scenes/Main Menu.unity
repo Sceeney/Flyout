@@ -40053,10 +40053,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shoot:
-  - {fileID: 8300000, guid: 3c8dbfb28434be64391e8697f23be804, type: 3}
   - {fileID: 8300000, guid: a82c4be37e9b22649917e8f38622c922, type: 3}
   - {fileID: 8300000, guid: ed55c4f0917fc424f9980dc1f4bf9e9b, type: 3}
   - {fileID: 8300000, guid: ff1c703cd44cc5e45b3796dd19a36fbb, type: 3}
+  - {fileID: 8300000, guid: afc430fd066bcca46b33f73a865e7fce, type: 3}
+  - {fileID: 8300000, guid: 3c81af3859d89e44fa78bc9c236bbd0e, type: 3}
+  - {fileID: 8300000, guid: d9afe204b4496854ea0efa68727801ce, type: 3}
   Slider_Main_audio: {fileID: 677050763857265169}
   audio_Music: {fileID: 2104192144}
   Slidel_Music: {fileID: 677050763976648094}
