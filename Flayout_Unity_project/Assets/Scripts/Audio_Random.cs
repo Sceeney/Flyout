@@ -17,7 +17,7 @@ public class Audio_Random : MonoBehaviour
         [Space(5)]
     private float music_Volume = 1f;
 
- void Start()
+ void OnEnable()
  {
     audio_Music = GetComponent<AudioSource>();
         music_Volume = 1f;
@@ -31,7 +31,7 @@ public class Audio_Random : MonoBehaviour
          shootClip = shoot[index];
          audioSource.clip = shootClip;
          audioSource.Play();
-
+    print("1");
  }
     void Update()
     {
