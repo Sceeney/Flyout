@@ -587,7 +587,7 @@ GameObject:
   - component: {fileID: 139260024}
   - component: {fileID: 139260023}
   - component: {fileID: 139260025}
-  - component: {fileID: 139260026}
+  - component: {fileID: 139260028}
   - component: {fileID: 139260027}
   m_Layer: 5
   m_Name: But_Corvette
@@ -725,7 +725,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 73ba22669425da143825c8e46e291846, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9aa4348290784b2468144a97eb15d8d7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -735,26 +735,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &139260026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139260020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a33814206e91d1447a8f44de38da8063, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChangedImage: {fileID: 0}
-  _changeColorDurationInSeconds: 0
-  _endChangeColor:
-    m_PersistentCalls:
-      m_Calls: []
-  _normalColor: {r: 1, g: 1, b: 1, a: 1}
-  _pressedColor: {r: 1, g: 1, b: 1, a: 1}
-  _hoverColor: {r: 0.62352943, g: 0.62352943, b: 0.62352943, a: 1}
 --- !u!114 &139260027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -772,9 +752,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 139260026}
-          m_TargetAssemblyTypeName: ButtonView, Assembly-CSharp
-          m_MethodName: OnMouseEnter
+        - m_Target: {fileID: 139260028}
+          m_TargetAssemblyTypeName: CarCellView, Assembly-CSharp
+          m_MethodName: OnPointerEnter
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -788,9 +768,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 139260026}
-          m_TargetAssemblyTypeName: ButtonView, Assembly-CSharp
-          m_MethodName: OnMouseExit
+        - m_Target: {fileID: 139260028}
+          m_TargetAssemblyTypeName: CarCellView, Assembly-CSharp
+          m_MethodName: OnPointerExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -800,6 +780,38 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 139260028}
+          m_TargetAssemblyTypeName: CarCellView, Assembly-CSharp
+          m_MethodName: OnPointerClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &139260028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139260020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ddb3022b4f1a7f4bb79c818635d0f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _info: {fileID: 11400000, guid: 8833472c96afdc24b831b075e6d61472, type: 2}
+  _shop: {fileID: 1579245165}
+  _imgBUY: {fileID: 0}
+  _priceText: {fileID: 0}
 --- !u!1 &155025581
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,7 +1804,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 08258385172631e48a35bae569ff832e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9aa4348290784b2468144a97eb15d8d7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1820,8 +1832,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 304459764}
-          m_TargetAssemblyTypeName: ButtonView, Assembly-CSharp
-          m_MethodName: OnMouseEnter
+          m_TargetAssemblyTypeName: CarCellView, Assembly-CSharp
+          m_MethodName: OnPointerEnter
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1836,8 +1848,24 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 304459764}
-          m_TargetAssemblyTypeName: ButtonView, Assembly-CSharp
-          m_MethodName: OnMouseExit
+          m_TargetAssemblyTypeName: CarCellView, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 304459764}
+          m_TargetAssemblyTypeName: CarCellView, Assembly-CSharp
+          m_MethodName: OnPointerClick
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1856,17 +1884,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 304459757}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a33814206e91d1447a8f44de38da8063, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ddb3022b4f1a7f4bb79c818635d0f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangedImage: {fileID: 0}
-  _changeColorDurationInSeconds: 0
-  _endChangeColor:
-    m_PersistentCalls:
-      m_Calls: []
-  _normalColor: {r: 1, g: 1, b: 1, a: 1}
-  _pressedColor: {r: 0, g: 0, b: 0, a: 0}
-  _hoverColor: {r: 0.62352943, g: 0.62352943, b: 0.62352943, a: 1}
+  _info: {fileID: 11400000, guid: 779a31203e89d9f48a5a717ac63e3db0, type: 2}
+  _shop: {fileID: 1579245165}
+  _imgBUY: {fileID: 517029299}
+  _priceText: {fileID: 429962713}
 --- !u!1 &317678634
 GameObject:
   m_ObjectHideFlags: 0
@@ -2616,9 +2640,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '50 000
-
-'
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -33157,9 +33179,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'price
-
-'
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -34082,7 +34102,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c38e52c7b4b40c2469a50a46d02e5f39, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9aa4348290784b2468144a97eb15d8d7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -34110,8 +34130,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 923666114}
-          m_TargetAssemblyTypeName: ButtonView, Assembly-CSharp
-          m_MethodName: OnMouseEnter
+          m_TargetAssemblyTypeName: CarCellView, Assembly-CSharp
+          m_MethodName: OnPointerEnter
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -34126,8 +34146,24 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 923666114}
-          m_TargetAssemblyTypeName: ButtonView, Assembly-CSharp
-          m_MethodName: OnMouseExit
+          m_TargetAssemblyTypeName: CarCellView, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 923666114}
+          m_TargetAssemblyTypeName: CarCellView, Assembly-CSharp
+          m_MethodName: OnPointerClick
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -34146,17 +34182,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 923666107}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a33814206e91d1447a8f44de38da8063, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ddb3022b4f1a7f4bb79c818635d0f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangedImage: {fileID: 0}
-  _changeColorDurationInSeconds: 0
-  _endChangeColor:
-    m_PersistentCalls:
-      m_Calls: []
-  _normalColor: {r: 1, g: 1, b: 1, a: 1}
-  _pressedColor: {r: 0, g: 0, b: 0, a: 0}
-  _hoverColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
+  _info: {fileID: 11400000, guid: 8a2281d6b46d1bd489e6fade8ee780b2, type: 2}
+  _shop: {fileID: 1579245165}
+  _imgBUY: {fileID: 51703796}
+  _priceText: {fileID: 2054805027}
 --- !u!1 &938153077
 GameObject:
   m_ObjectHideFlags: 0
@@ -37202,6 +37234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1579245162}
+  - component: {fileID: 1579245166}
   - component: {fileID: 1579245165}
   - component: {fileID: 1579245164}
   - component: {fileID: 1579245163}
@@ -37237,17 +37270,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579245161}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86a3e38bac52b6042bffddb7ee94fd8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _money: 0
   _lastSelectedCarIndex: 0
-  _cars:
-  - {fileID: 1698235451}
-  - {fileID: 1547260135}
-  - {fileID: 2052008328}
+  _cars: {fileID: 1579245166}
   _wallet: {fileID: 351327975}
   _carShop: {fileID: 1579245165}
   DataUpdated:
@@ -37284,19 +37314,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579245161}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3170434d15e57c84eaa2236c606c8251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cars:
-  - {fileID: 1698235451}
-  - {fileID: 1547260135}
-  - {fileID: 2052008328}
-  _priceText: {fileID: 0}
-  _selectButton: {fileID: 0}
-  _BuyButton: {fileID: 0}
-  _shop: {fileID: 1579245165}
+  _cars: {fileID: 1579245166}
 --- !u!114 &1579245165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37309,12 +37332,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd31f3765b62e1b408d4a6effbdecea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cars:
+  _cars: {fileID: 1579245166}
+  _wallet: {fileID: 351327975}
+  LastSelectedCarIndex: 0
+--- !u!114 &1579245166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579245161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 492e717baeab0f2488de7bf0d95cc06e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cars:
   - {fileID: 1698235451}
   - {fileID: 1547260135}
   - {fileID: 2052008328}
-  _wallet: {fileID: 351327975}
-  LastSelectedCarIndex: 0
+  _shop: {fileID: 1579245165}
 --- !u!1 &1597656926
 GameObject:
   m_ObjectHideFlags: 0
@@ -39547,9 +39584,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '100 000
-
-'
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

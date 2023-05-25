@@ -222,10 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3261ca8b63e6e41a3db7b13ac19f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _index: 0
-  _name: 
-  _price: 0
-  _isDefaultActive: 0
+  _cellInfo: {fileID: 11400000, guid: 779a31203e89d9f48a5a717ac63e3db0, type: 2}
   _isBuyed: 0
 --- !u!1 &2237157266841522500
 GameObject:

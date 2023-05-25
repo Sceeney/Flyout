@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13ac33f3d2d05ff479a01b9ee6ef768e, type: 3}
+  m_Name: Skyline
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 21300000, guid: 08258385172631e48a35bae569ff832e, type: 3}
+  _index: 1
+  _price: 50000
+  _isDefaultActive: 0

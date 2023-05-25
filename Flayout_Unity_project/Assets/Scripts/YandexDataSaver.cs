@@ -8,7 +8,7 @@ public class YandexDataSaver : MonoBehaviour
 {
     [SerializeField] private int _money;
     [SerializeField] private int _lastSelectedCarIndex;
-    [SerializeField] private Car[] _cars;
+    [SerializeField] private CarList _cars;
     [SerializeField] private Wallet _wallet;
     [SerializeField] private CarShop _carShop;
 
@@ -46,7 +46,7 @@ public class YandexDataSaver : MonoBehaviour
     
     public bool GetIsBuyedCarByIndex(int index)
     {
-        return _cars[index].IsBuyed;
+        return _cars.Cars[index].IsBuyed;
     }
 
     public void Save()
@@ -57,9 +57,9 @@ public class YandexDataSaver : MonoBehaviour
 
         YandexGame.savesData.LastSelectedCarIndex = _carShop.LastSelectedCarIndex;
 
-        bool[] temp = new bool[_cars.Length];
-        for (int i = 0; i < _cars.Length; i++)
-            temp[i] = _cars[i].IsBuyed;
+        bool[] temp = new bool[_cars.Cars.Length];
+        for (int i = 0; i < _cars.Cars.Length; i++)
+            temp[i] = _cars.Cars[i].IsBuyed;
 
         YandexGame.savesData.BuyedCar = temp;
 
@@ -86,7 +86,7 @@ public class YandexDataSaver : MonoBehaviour
         {
             bool isBuyed = YandexGame.savesData.BuyedCar[i];
             if (isBuyed)
-                _cars[i].Purchase();
+                _cars.Cars[i].Purchase();
         }
 
         Debug.Log($"Language - {YandexGame.savesData.language}\n" +

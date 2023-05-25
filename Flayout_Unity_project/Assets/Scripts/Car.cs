@@ -1,24 +1,25 @@
 using UnityEngine;
+using System;
 
 public class Car : MonoBehaviour
 {
-    [SerializeField] private int _index;
-    [SerializeField] private string _name;
-    [SerializeField] private int _price;
-    [SerializeField] private bool _isDefaultActive;
+    [SerializeField] private CarCellInfo _cellInfo;
     [SerializeField] private bool _isBuyed;
 
-    public int Index => _index;
-    public string Name => _name;
-    public int Price => _price;
+    public int Index => _cellInfo.Index;
+    public int Price => _cellInfo.Price;
     public bool IsBuyed => _isBuyed;
-    public bool IsDefaultActive => _isDefaultActive;
+    public bool IsDefaultActive => _cellInfo.IsDefaultActive;
+
+    private void OnValidate()
+    {
+        if (_cellInfo == null)
+            throw new ArgumentNullException($"{_cellInfo}");
+    }
 
     private void Start()
     {
-        _name = gameObject.name;
-
-        if (_isDefaultActive == false)
+        if (IsDefaultActive == false)
         {
             gameObject.SetActive(false);
         }

@@ -4,19 +4,46 @@ using UnityEngine.Events;
 
 public class CarShop : MonoBehaviour
 {
-    [SerializeField] private Car[] _cars;
+    [SerializeField] private CarList _cars;
     [SerializeField] private Wallet _wallet;
 
-    public event UnityAction<int> LasrSelectedCarIndexChanged;
+    public event UnityAction<int> LastSelectedCarIndexChanged;
     public event UnityAction<Car> Purchased;
 
     public int LastSelectedCarIndex = 0;
 
-    public void OnTryPurchase()
+
+    public void OnCellClick(int index)
     {
-        if (CheckPossibilityPurchase())
+        LastSelectedCarIndex = index;
+        LastSelectedCarIndexChanged?.Invoke(LastSelectedCarIndex);
+
+        TryPurchase(index);
+    }
+
+    public bool CanPurchase(int index)
+    {
+        return CheckPossibilityPurchase(index) && !_cars.Cars[index].IsBuyed;
+    }
+
+    public void OnDataUpdated()
+    {
+        LastSelectedCarIndexChanged?.Invoke(LastSelectedCarIndex);
+
+        Car car = _cars.Cars.First(c => c.IsDefaultActive == true);
+
+        if (car.Index != LastSelectedCarIndex)
         {
-            Car purchasedCar = _cars[LastSelectedCarIndex];
+            car.gameObject.SetActive(false);
+            _cars.Cars[LastSelectedCarIndex].gameObject.SetActive(true);
+        }
+    }
+
+    private void TryPurchase(int index)
+    {
+        if (CanPurchase(index))
+        {
+            Car purchasedCar = _cars.Cars[index];
             purchasedCar.Purchase();
 
             Purchased?.Invoke(purchasedCar);
@@ -27,38 +54,8 @@ public class CarShop : MonoBehaviour
         }
     }
 
-    public void OnNextCar(int key)
+    private bool CheckPossibilityPurchase(int index)
     {
-        int index = LastSelectedCarIndex + key;
-
-        if (index < 0)
-        {
-            index = _cars.Length - 1;
-        }
-        else if(index >= _cars.Length)
-        {
-            index = 0;
-        }
-
-        LastSelectedCarIndex = index;
-        LasrSelectedCarIndexChanged?.Invoke(LastSelectedCarIndex);
-    }
-
-    public void OnDataUpdated()
-    {
-        LasrSelectedCarIndexChanged?.Invoke(LastSelectedCarIndex);
-
-        Car car = _cars.First(c => c.IsDefaultActive == true);
-
-        if (car.Index != LastSelectedCarIndex)
-        {
-            car.gameObject.SetActive(false);
-            _cars[LastSelectedCarIndex].gameObject.SetActive(true);
-        }
-    }
-
-    private bool CheckPossibilityPurchase()
-    {
-        return _cars[LastSelectedCarIndex].Price <= _wallet.Money;
+        return _cars.Cars[index].Price <= _wallet.Money;
     }
 }
