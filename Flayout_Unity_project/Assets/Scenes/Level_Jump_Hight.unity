@@ -97,9 +97,9 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: a3511d344c54f1844a9e6deb631ecf4f,
+  m_LightingDataAsset: {fileID: 112000000, guid: 104f812cb5d0f5b49af43ce870a8c3fb,
     type: 2}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 0797451f4ccd91842a6d633545a54698,
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 4c07abfa057fabe4bb6c40d146d3c016,
     type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -36099,7 +36099,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '+10.000
+  m_Text: '+7.000
 
 '
 --- !u!222 &2036202418
@@ -37793,7 +37793,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '+30.000
+  m_Text: '+10.000
 
 '
 --- !u!222 &2097835815
@@ -38737,8 +38737,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1180337236524422882}
   m_LocalRotation: {x: -0.7071068, y: -0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -5.4, z: 341.7}
-  m_LocalScale: {x: 0.60637635, y: 1.7627257, z: 1.2309707}
+  m_LocalPosition: {x: 0, y: -8.05, z: 398.94}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
