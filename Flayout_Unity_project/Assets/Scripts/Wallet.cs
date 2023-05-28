@@ -1,6 +1,7 @@
 using UnityEngine.Events;
 using UnityEngine;
 using System;
+using YG;
 
 public class Wallet : MonoBehaviour
 {
@@ -18,11 +19,21 @@ public class Wallet : MonoBehaviour
 
     private void OnEnable()
     {
+        YandexGame.GetDataEvent += OnDataUpdated;
         _shop.Purchased += OnPurchased;
+    }
+
+    private void Start()
+    {
+        if (YandexGame.SDKEnabled == true)
+        {
+            OnDataUpdated();
+        }
     }
 
     private void OnDisable()
     {
+        YandexGame.GetDataEvent -= OnDataUpdated;
         _shop.Purchased -= OnPurchased;
     }
 
@@ -33,17 +44,17 @@ public class Wallet : MonoBehaviour
         UpdateMoney?.Invoke(Money);
     }
 
+    private void OnDataUpdated()
+    {
+        Money = YandexGame.savesData.Money;
+
+        UpdateMoney?.Invoke(Money);
+    }
+
     private void OnPurchased(Car car)
     {
         Money -= car.Price;
 
-        UpdateMoney?.Invoke(Money);
-    }
-    
-    public void OnDataUpdated()
-    {
-        //Money = Saver.Money;
-        Debug.Log($"Wallet.Money = {Money}");
         UpdateMoney?.Invoke(Money);
     }
 }

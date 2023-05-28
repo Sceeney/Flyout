@@ -34426,6 +34426,75 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1014639382}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1028630819
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2211564899198745197, guid: caf9732433f4dc044845763962493607,
+        type: 3}
+      propertyPath: m_Name
+      value: YandexGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211564899198745199, guid: caf9732433f4dc044845763962493607,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211564899198745199, guid: caf9732433f4dc044845763962493607,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211564899198745199, guid: caf9732433f4dc044845763962493607,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211564899198745199, guid: caf9732433f4dc044845763962493607,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211564899198745199, guid: caf9732433f4dc044845763962493607,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211564899198745199, guid: caf9732433f4dc044845763962493607,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211564899198745199, guid: caf9732433f4dc044845763962493607,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211564899198745199, guid: caf9732433f4dc044845763962493607,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211564899198745199, guid: caf9732433f4dc044845763962493607,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211564899198745199, guid: caf9732433f4dc044845763962493607,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211564899198745199, guid: caf9732433f4dc044845763962493607,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: caf9732433f4dc044845763962493607, type: 3}
 --- !u!1 &1071762778 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2c9777acba10d904a9e94d961a76d375,
@@ -37254,7 +37323,6 @@ GameObject:
   - component: {fileID: 1579245162}
   - component: {fileID: 1579245166}
   - component: {fileID: 1579245165}
-  - component: {fileID: 1579245164}
   - component: {fileID: 1579245163}
   m_Layer: 0
   m_Name: Cars
@@ -37293,51 +37361,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a3e38bac52b6042bffddb7ee94fd8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _money: 0
-  _lastSelectedCarIndex: 0
   _cars: {fileID: 1579245166}
   _wallet: {fileID: 351327975}
   _carShop: {fileID: 1579245165}
-  DataUpdated:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 351327975}
-        m_TargetAssemblyTypeName: Wallet, Assembly-CSharp
-        m_MethodName: OnDataUpdated
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1579245165}
-        m_TargetAssemblyTypeName: CarShop, Assembly-CSharp
-        m_MethodName: OnDataUpdated
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1579245164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1579245161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3170434d15e57c84eaa2236c606c8251, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cars: {fileID: 1579245166}
 --- !u!114 &1579245165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44205,6 +44231,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1579245163}
+        m_TargetAssemblyTypeName: YandexDataSaver, Assembly-CSharp
+        m_MethodName: Save
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1782074538289841529
 GameObject:
   m_ObjectHideFlags: 0
@@ -45844,6 +45882,7 @@ GameObject:
   - component: {fileID: 1782074538635307412}
   - component: {fileID: 1782074538635307410}
   - component: {fileID: 1782074538635307413}
+  - component: {fileID: 1782074538635307416}
   m_Layer: 5
   m_Name: Top menu
   m_TagString: Untagged
@@ -45851,6 +45890,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1782074538635307416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782074538635307415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 148fce3ae72e3594eaf805015507384e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moneyUIObject: {fileID: 1605007876}
+  _wallet: {fileID: 351327975}
 --- !u!224 &1782074538652176000
 RectTransform:
   m_ObjectHideFlags: 0

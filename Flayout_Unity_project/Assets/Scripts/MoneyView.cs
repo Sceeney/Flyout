@@ -26,6 +26,7 @@ public class MoneyView : MonoBehaviour
 
     private void OnUpdateMoney(int value)
     {
+        Debug.Log("moneyUpdated");
         _moneyUIObject.text = value.ToString();
     }
 }

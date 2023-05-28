@@ -21,13 +21,10 @@ public class CarList : MonoBehaviour
 
     private void OnLasrSelectedCarIndexChanged(int index)
     {
-        
-        foreach (var car in Cars)
-        {
-            car.gameObject.SetActive(false);
-        }
+        Cars.First(c =>
+        c.gameObject.activeSelf == true)
+            .gameObject.SetActive(false);
 
-        Debug.Log($"active {index}");
         Cars[index].gameObject.SetActive(true);
     }
 }

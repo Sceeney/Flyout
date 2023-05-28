@@ -1,6 +1,8 @@
+using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using YG;
 
 public class CarShop : MonoBehaviour
 {
@@ -12,46 +14,77 @@ public class CarShop : MonoBehaviour
 
     public int LastSelectedCarIndex = 0;
 
+    private void OnEnable()
+    {
+        YandexGame.GetDataEvent += OnDataUpdated;
+    }
+
+    private void Start()
+    {
+        if (YandexGame.SDKEnabled == true)
+        {
+            OnDataUpdated();
+        }
+    }
+
+    private void OnDisable()
+    {
+        YandexGame.GetDataEvent -= OnDataUpdated;
+    }
 
     public void OnCellClick(int index)
     {
-        LastSelectedCarIndex = index;
-        LastSelectedCarIndexChanged?.Invoke(LastSelectedCarIndex);
-
-        TryPurchase(index);
+        if (_cars.Cars[index].IsBuyed)
+        {
+            Select(index);
+        }
+        else
+        {
+            if (CanPurchase(index))
+            {
+                Purchase(index);
+                Select(index);
+            }
+            else
+            {
+                Debug.Log("Purchase impossible");
+            }
+        }
     }
 
     public bool CanPurchase(int index)
     {
-        return CheckPossibilityPurchase(index) && !_cars.Cars[index].IsBuyed;
+        return CheckPossibilityPurchase(index) 
+            && !_cars.Cars[index].IsBuyed;
     }
 
-    public void OnDataUpdated()
+    private void OnDataUpdated()
     {
+        LastSelectedCarIndex = YandexGame.savesData.LastSelectedCarIndex;
+
+        for (int i = 0; i < YandexGame.savesData.BuyedCar.Length; i++)
+        {
+            bool isBuyed = YandexGame.savesData.BuyedCar[i];
+            if (isBuyed)
+                _cars.Cars[i].Purchase();
+        }
+
+        
+        Select(YandexGame.savesData.LastSelectedCarIndex);
+    }
+
+    private void Purchase(int index)
+    {
+        Car purchasedCar = _cars.Cars[index];
+        purchasedCar.Purchase();
+
+        Purchased?.Invoke(purchasedCar);
+    }
+
+    private void Select(int index)
+    {
+        LastSelectedCarIndex = index;
         LastSelectedCarIndexChanged?.Invoke(LastSelectedCarIndex);
-
-        Car car = _cars.Cars.First(c => c.IsDefaultActive == true);
-
-        if (car.Index != LastSelectedCarIndex)
-        {
-            car.gameObject.SetActive(false);
-            _cars.Cars[LastSelectedCarIndex].gameObject.SetActive(true);
-        }
-    }
-
-    private void TryPurchase(int index)
-    {
-        if (CanPurchase(index))
-        {
-            Car purchasedCar = _cars.Cars[index];
-            purchasedCar.Purchase();
-
-            Purchased?.Invoke(purchasedCar);
-        }
-        else
-        {
-            Debug.Log("Purchase impossible");
-        }
     }
 
     private bool CheckPossibilityPurchase(int index)

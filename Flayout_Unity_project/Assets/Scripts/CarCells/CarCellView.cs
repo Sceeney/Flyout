@@ -31,6 +31,9 @@ public class CarCellView : MonoBehaviour
 
     public void OnPointerEnter()
     {
+        Debug.Log($"_imgBUY = {_imgBUY != null}");
+        Debug.Log($"Purchase = {_shop.CanPurchase(_info.Index)}");
+
         if (_imgBUY != null && _shop.CanPurchase(_info.Index))
             _imgBUY.SetActive(true);
     }
