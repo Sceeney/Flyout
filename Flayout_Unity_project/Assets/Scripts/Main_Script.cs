@@ -211,10 +211,10 @@ public class Main_Script : MonoBehaviour
     }
     public void Next_round_button() // Кнопка сл раунд
     {
-        SceneManager.LoadScene(1);
         Next_round_UI.SetActive(false);
         which_round = PlayerPrefs.GetInt("Try's")+1;
         PlayerPrefs.SetInt("Try's",which_round);
+        SceneManager.LoadScene(1);
     }
     public void Main_Menu_button() // Кнопка меню
     {
