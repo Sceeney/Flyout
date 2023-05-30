@@ -37,13 +37,6 @@ public class Wallet : MonoBehaviour
         _shop.Purchased -= OnPurchased;
     }
 
-    public void OnSetMoney()
-    {
-        Money += 100000;
-
-        UpdateMoney?.Invoke(Money);
-    }
-
     private void OnDataUpdated()
     {
         Money = YandexGame.savesData.Money;

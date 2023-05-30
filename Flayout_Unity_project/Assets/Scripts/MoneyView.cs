@@ -6,7 +6,6 @@ public class MoneyView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _moneyUIObject;
     [SerializeField] private Wallet _wallet;
-    private int Money => _wallet.Money;
 
     private void OnValidate()
     {
@@ -26,7 +25,6 @@ public class MoneyView : MonoBehaviour
 
     private void OnUpdateMoney(int value)
     {
-        Debug.Log("moneyUpdated");
         _moneyUIObject.text = value.ToString();
     }
 }

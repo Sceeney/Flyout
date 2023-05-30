@@ -60,15 +60,12 @@ public class CarShop : MonoBehaviour
 
     private void OnDataUpdated()
     {
-        LastSelectedCarIndex = YandexGame.savesData.LastSelectedCarIndex;
-
         for (int i = 0; i < YandexGame.savesData.BuyedCar.Length; i++)
         {
             bool isBuyed = YandexGame.savesData.BuyedCar[i];
             if (isBuyed)
                 _cars.Cars[i].Purchase();
         }
-
         
         Select(YandexGame.savesData.LastSelectedCarIndex);
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using YG;
 
 public class Main_Script : MonoBehaviour
 {
@@ -219,22 +220,18 @@ public class Main_Script : MonoBehaviour
         pause = false;
         AIM_Shot.is_Crash = false;
         if(state == State.Gold){
-            Money = Money + Gold_Money;
-            PlayerPrefs.SetInt("Money_save", Money);
-                //Progress.Instance.PlayerInfo.Coins = Money;
-                //Progress.Instance.Save();
+            SaveMoney(Gold_Money);
+
+            //Money = Money + Gold_Money;
+            //PlayerPrefs.SetInt("Money_save", Money);
+            //    //Progress.Instance.PlayerInfo.Coins = Money;
+            //    //Progress.Instance.Save();
                 }
         else if(state == State.Silver){
-            Money = Money + Silver_Money;
-            PlayerPrefs.SetInt("Money_save", Money);
-                //Progress.Instance.PlayerInfo.Coins = Money;
-                //Progress.Instance.Save();
-                }
+            SaveMoney(Silver_Money);
+        }
         else if(state == State.Bronze){
-            Money = Money + Bronze_Money;
-            PlayerPrefs.SetInt("Money_save", Money);
-                //Progress.Instance.PlayerInfo.Coins = Money;
-                //Progress.Instance.Save();
+            SaveMoney(Bronze_Money);
                 }
         else{
             Money = Money + 0;
@@ -253,6 +250,13 @@ public class Main_Script : MonoBehaviour
         Loading_Screen.SetActive(true);
 
         loader.LoadScene(Load_level_Index, bar);
+    }
+
+    private void SaveMoney(int money)
+    {
+        YandexGame.savesData.Money += money;
+
+        YandexGame.SaveProgress();
     }
 
     public void One_more_time() // Кнопка ещё заезд
