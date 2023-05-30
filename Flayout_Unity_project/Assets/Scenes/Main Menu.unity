@@ -42718,8 +42718,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1782074537689550124}
   m_HandleRect: {fileID: 1782074537689550127}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.99999994
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -43273,6 +43273,7 @@ MonoBehaviour:
   Level_1: {fileID: 2653442703376947145, guid: 6cf63933a0451bf428e147f5cc7cb320, type: 3}
   No_Level: {fileID: 6711776015693434309, guid: 21c0d9ddb6826674685454a570878030,
     type: 3}
+  Levels: []
   panCount: 3
   panOffset: 1000
   snapSpeed: 9.51
@@ -43441,8 +43442,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1782074538122082830}
   m_HandleRect: {fileID: 1782074538122082817}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.99999994
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -43581,19 +43582,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1782074537713132238}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Money_script, Assembly-CSharp
-        m_MethodName: Add_Money_and_Gold
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1782074537713132227
 GameObject:
   m_ObjectHideFlags: 0
