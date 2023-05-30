@@ -1951,7 +1951,6 @@ MonoBehaviour:
   Crash_text_UI: {fileID: 18846334}
   Next_round_but: {fileID: 166784705}
   Finish_but: {fileID: 901111125}
-  Out_track_UI: {fileID: 0}
   Finish_UI: {fileID: 957862826}
   round_1: {fileID: 1306199943}
   round_2: {fileID: 1532538014}

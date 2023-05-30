@@ -8,6 +8,7 @@ public class Impulse_and_Mass : MonoBehaviour
 {
     Rigidbody rb;
     public static float Value_Height;
+    public static float Value_Distance;
     public static bool trigger;
     AudioSource audioSource;
 
@@ -32,8 +33,9 @@ public class Impulse_and_Mass : MonoBehaviour
 
     void Update()
     {     
-        if (this.gameObject.tag == "Body" && trigger == true)
+        if (this.gameObject.tag == "Body" && trigger == true){
             Value_Height = transform.position.y;
+            Value_Distance = transform.position.z;}
         else if(Collision_trigger.trigger_out == true)
             Value_Height = 0f;
         else if(Velocity_Car.car_collision_triggered == true && Main_Script.text_hight == false)

@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level_Jump_Hight.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Level_Long_Jump.unity
+    guid: ec69a45ec6f0855498f00ea7ecf900f6
   - enabled: 0
     path: Assets/Scenes/OLD  Menu.unity
     guid: 57e38a6d79863ea4cb0e40efefc00ac5

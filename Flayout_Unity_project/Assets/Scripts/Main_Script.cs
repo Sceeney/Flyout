@@ -37,7 +37,6 @@ public class Main_Script : MonoBehaviour
             public GameObject Next_round_but;
             public GameObject Finish_but;
             [Space(5)]
-    public GameObject Out_track_UI;
     public GameObject Finish_UI;
     public GameObject round_1;
     public GameObject round_2;
@@ -76,6 +75,7 @@ public class Main_Script : MonoBehaviour
         [Space(20)]        
     [SerializeField] TextMeshProUGUI Angle_Text;
     [SerializeField] TextMeshProUGUI Height_Text;
+    [SerializeField] TextMeshProUGUI Distance_Text;
         [Space(5)]
     public GameObject Shoot_UI;
     public GameObject Start_Button;
@@ -167,6 +167,7 @@ public class Main_Script : MonoBehaviour
         {
             if(text_hight == true){
                 Height_Text.text = Impulse_and_Mass.Value_Height.ToString("0.00");
+                Distance_Text.text = Impulse_and_Mass.Value_Distance.ToString("0.00");
                 yield return null;}        
             else yield break;
         }
@@ -390,11 +391,7 @@ public class Main_Script : MonoBehaviour
                 break;
         }
     }
-    void Out_track()
-    {
-        Out_track_UI.SetActive(true);
-        Time.timeScale = 0.01f;
-    }
+
     public void Finish()
     {
         summ_score = PlayerPrefs.GetFloat("round_1") + PlayerPrefs.GetFloat("round_2") + Impulse_and_Mass.Value_Height;
