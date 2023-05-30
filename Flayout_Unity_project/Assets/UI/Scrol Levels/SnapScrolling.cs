@@ -8,6 +8,7 @@ public class SnapScrolling : MonoBehaviour
     [Header("Levels")]
     public GameObject Level_1;
     public GameObject No_Level;
+    public GameObject[] Levels;
     [Range(1, 50)]
     [Header("Controllers")]
     public int panCount;
@@ -52,6 +53,13 @@ public class SnapScrolling : MonoBehaviour
                     instPans[i] = Instantiate(No_Level, transform, false);
                     break;
             }
+
+            //foreach (var level in Levels)
+            //{
+            //    instPans[i] = Instantiate(level, transform, false);
+            //    selecter.SetNewLevelButton(instPans[i].GetComponent<Button>());
+            //}
+
             //instPans[i] = Instantiate(panPrefab, transform, false);
             if (i == 0) continue;
             instPans[i].transform.localPosition = new Vector2(instPans[i-1].transform.localPosition.x + panPrefab.GetComponent<RectTransform>().sizeDelta.x + panOffset, 
