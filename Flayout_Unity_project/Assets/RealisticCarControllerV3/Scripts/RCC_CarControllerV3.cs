@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 
 [AddComponentMenu("BoneCracker Games/Realistic Car Controller/Realistic Car Controller V3")]
 [RequireComponent (typeof(Rigidbody))]
@@ -134,9 +135,12 @@ bool audio_crash;
 
 	private GameObject allAudioSources;
 	private GameObject allContactParticles;
-	
-	// Inputs.
-	[HideInInspector]public float gasInput = 0f;
+
+	private bool is_countdown;
+	private bool is_crash;
+
+    // Inputs.
+    [HideInInspector]public float gasInput = 0f;
 	[HideInInspector]public float brakeInput = 0f;
 	[HideInInspector]public float steerInput = 0f;
 	[HideInInspector]public float clutchInput = 0f;
@@ -274,6 +278,8 @@ bool audio_crash;
 	public bool useNOS = false;
 	public bool useTurbo = false;
 
+
+
 	void Awake (){
 
 		Time.fixedDeltaTime = RCCSettings.fixedTimeStep;
@@ -400,9 +406,11 @@ bool audio_crash;
 	}
 
 	void OnEnable(){
-
+		is_countdown = false;
+		is_crash = false;
 		StartCoroutine("ReEnable");
-
+		AIM_Shot.Crashed += OnCrashed;
+		AIM_Shot.TimeHasExpired += OnTimeHasExpired;
 	}
 
 	IEnumerator ReEnable(){
@@ -765,18 +773,18 @@ bool audio_crash;
 			engineSoundIdle.volume = 0f;
 	}
 	void Update (){
-		if(Main_Script.pause == true)
+		if(Main_Script.IsPause == true)
 		{
 			Pause_sound();
 		}
 		else if(!audio_crash)
 		{
-			if(Main_Script.start_but == false && AIM_Shot.is_countdown == true)
+			if(Main_Script.IsStartBut == false && is_countdown == true)
 			{
 				KillOrStartEngine ();
 				audio_crash = true;
 			}
-			if(AIM_Shot.is_Crash == true)// && Main_Script.start_but == true && AIM_Shot.is_countdown == false)
+			if(is_crash == true)// && Main_Script.start_but == true && AIM_Shot.is_countdown == false)
 			{
 				KillOrStartEngine ();
 				//Invoke("Crahs_sound", 0.8f);			
@@ -808,19 +816,29 @@ bool audio_crash;
 		
 	}
 
+	private void OnCrashed()
+	{
+		is_crash = true;
+	}
+
+	private void OnTimeHasExpired()
+	{
+		is_countdown = true;
+	}
+
 	void Inputs(){
 		
 		switch(RCCSettings.controllerType){
 
 		case RCC_Settings.ControllerType.Keyboard:
 			
-			if(AIM_Shot.is_Click == true || AIM_Shot.is_Crash == true || AIM_Shot.end_track == true)// || RCC_UIDashboardButton.StartEngene == false)
+			if(AIM_Shot.is_Click == true || is_crash == true || AIM_Shot.end_track == true)// || RCC_UIDashboardButton.StartEngene == false)
 				gasInput = 0f; // тут было Input.GetAxis(RCCSettings.verticalInput)
 			else
 				gasInput = 1f; // тут было Input.GetAxis(RCCSettings.verticalInput)
 			brakeInput = Mathf.Clamp01(-Input.GetAxis(RCCSettings.verticalInput));
 		
-		if(Main_Script.start_but == true)
+		if(Main_Script.IsStartBut == true)
 			handbrakeInput = 0f; // тут было GetInput(handbrakeButton)
 		else			
 			handbrakeInput = 1f; // тут было GetInput(handbrakeButton)
@@ -1725,8 +1743,10 @@ bool audio_crash;
 	}
 
 	void OnDisable(){
-		
-		if(canControl){
+        AIM_Shot.Crashed -= OnCrashed;
+        AIM_Shot.TimeHasExpired -= OnTimeHasExpired;
+
+        if (canControl){
 			if(gameObject.GetComponentInChildren<RCC_Camera>())
 				gameObject.GetComponentInChildren<RCC_Camera>().transform.SetParent(null);
 			}

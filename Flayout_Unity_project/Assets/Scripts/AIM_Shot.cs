@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class AIM_Shot: MonoBehaviour
 {   
     // Булы
     public static bool slow_mo;
-    public static bool is_Crash;
     public static bool end_track;
     public static bool is_Click;
 
@@ -31,7 +31,11 @@ public class AIM_Shot: MonoBehaviour
         public static float Value_angle_shot;
 
         float countdown = 15.0f;
-        public static bool is_countdown;
+
+    private bool _isCrached;
+
+    public static event UnityAction TimeHasExpired;
+    public static event UnityAction Crashed;
 
     void Start()
     {
@@ -41,35 +45,36 @@ public class AIM_Shot: MonoBehaviour
         Time.timeScale = 1f;
 
         slow_mo = false;
-        is_Crash = false;
         is_Click = false;
         end_track = false;
-        is_countdown = false;
     }
 
     void Update()
     {
         countdown -= Time.deltaTime;
-        if(!is_countdown){
-            if(countdown <= 0.0f && Main_Script.start_but == false){
+        if(countdown > 0)
+        {
+            if(countdown <= 0.0f && Main_Script.IsStartBut == false)
+            {
                 Crash();
-                is_Crash = true; 
-                is_countdown = true;}
+                TimeHasExpired?.Invoke();
+            }
         }
 
         Angle_rotation_right_left(); // чекаем куда поворачивает тачка
 
         if(!is_Click)// чекаем когда придёт нажатие кнопки
+        {
+            if(Main_Script.IsShoot == true)
             {
-                if(Main_Script.bool_shoot == true){
                 is_Click = true;
-                Shoot();}
+                Shoot();
             }
+        }
         
-        if(!is_Crash)
+        if(!_isCrached)
         {
             if(Velocity_Car.car_collision_triggered == true){ // чекаем если чел втащится
-                is_Crash = true; 
                 Crash();}
         }
 
@@ -81,7 +86,7 @@ public class AIM_Shot: MonoBehaviour
 
     public void OnTriggerEnter(Collider other) // вошёл в триггер, замедляю время и даю выбор угла
     {
-        if(is_Crash == false)
+        if(_isCrached == false)
         {        
             if(other.gameObject.name != "trigger") return;//state != State.no_Work && 
             slow_mo = true;
@@ -119,7 +124,8 @@ public class AIM_Shot: MonoBehaviour
     void Shoot() // стреляю человеком
     {
         slow_mo = false;
-        is_Crash = true;
+        Crashed?.Invoke();
+        _isCrached = true;
         Player.SetActive(true);
         Camera_Car.SetActive(false);
         Camera_Player.SetActive(true);
@@ -130,6 +136,8 @@ public class AIM_Shot: MonoBehaviour
     void Crash() // если втащился
     {
         slow_mo = false;
+        Crashed?.Invoke();
+        _isCrached = true;
         Time.timeScale = 1f;
     }
 

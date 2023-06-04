@@ -28,6 +28,7 @@ public class RCC_MobileButtons : MonoBehaviour {
 	private Vector3 orgBrakeButtonPos;
 
 	private float Controls_save;
+	private bool is_crash;
 
 	void Start(){
         Controls_save = PlayerPrefs.GetFloat("Controls_save");
@@ -128,7 +129,7 @@ public class RCC_MobileButtons : MonoBehaviour {
 				rightButton.gameObject.SetActive(true);
 			
 		}
-		if(AIM_Shot.is_Click == true || AIM_Shot.is_Crash == true || AIM_Shot.end_track == true)// || RCC_UIDashboardButton.StartEngene == false)
+		if(AIM_Shot.is_Click == true || is_crash == true || AIM_Shot.end_track == true)// || RCC_UIDashboardButton.StartEngene == false)
 			gasInput = 0f; // тут было GetInput(gasButton)
 		else			
 			gasInput = 1f; // тут было GetInput(gasButton)
@@ -144,7 +145,7 @@ public class RCC_MobileButtons : MonoBehaviour {
 			gyroInput = 0f;
 		
 		// Ручник
-		if(Main_Script.start_but == true)
+		if(Main_Script.IsStartBut == true)
 			handbrakeInput = 0f; // тут было GetInput(handbrakeButton)
 		else			
 			handbrakeInput = 1f; // тут было GetInput(handbrakeButton)
@@ -165,6 +166,22 @@ public class RCC_MobileButtons : MonoBehaviour {
 			
 		}
 
+	}
+
+    private void OnEnable()
+    {
+		is_crash = false;
+		AIM_Shot.Crashed += OnCrashed;
+    }
+
+    private void OnDisable()
+    {
+        AIM_Shot.Crashed -= OnCrashed;
+    }
+
+    private void OnCrashed()
+	{
+		is_crash = true;
 	}
 
 	float GetInput(RCC_UIController button){

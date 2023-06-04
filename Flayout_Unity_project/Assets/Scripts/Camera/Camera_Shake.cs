@@ -17,7 +17,7 @@ public class Camera_Shake : MonoBehaviour
 
     void Shake()
     {
-        if(Main_Script.start_but == false)
+        if(Main_Script.IsStartBut == false)
         {
             Quaternion _rotate = Quaternion.Euler(Random.Range(-offsetX, offsetX), Random.Range(-offsetY, offsetY), Random.Range(-offsetZ, offsetZ));
             _camera.transform.localRotation = Quaternion.Slerp(_camera.localRotation, _camera.localRotation * _rotate, speed);    

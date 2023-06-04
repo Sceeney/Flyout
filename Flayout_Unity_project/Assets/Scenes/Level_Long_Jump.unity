@@ -2153,52 +2153,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 531e762ffac9b6c4ab3484b9cd5ed3cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loader: {fileID: 103676135}
-  Load_level_Index: 0
-  Loading_Screen: {fileID: 726279374}
-  bar: {fileID: 535159615}
-  Start_UI: {fileID: 754345457}
-  Pause_UI: {fileID: 8095580640651110296}
-  Pause_Options: {fileID: 8095580640651066408}
-  Next_round_UI: {fileID: 1361570067}
-  Target_text_UI: {fileID: 19669847}
-  Crash_text_UI: {fileID: 18846334}
-  Next_round_but: {fileID: 166784705}
-  Finish_but: {fileID: 901111125}
-  Finish_UI: {fileID: 957862826}
-  round_1: {fileID: 1306199943}
-  round_2: {fileID: 1532538014}
-  round_3: {fileID: 1266987434}
-  round_1_text: {fileID: 906709776}
-  round_2_text: {fileID: 1689553610}
-  round_3_text: {fileID: 2105080258}
-  total_text: {fileID: 2042847522}
-  total_text_finish: {fileID: 1168439911}
-  Gold_Score: 350
-  Silver_Score: 280
-  Bronze_Score: 100
-  Gold_Money: 10000
-  Silver_Money: 7000
-  Bronze_Money: 5000
-  Gold_score_text: {fileID: 1980303333}
-  Silver_score_text: {fileID: 887264909}
-  Bronze_score_text: {fileID: 269132498}
-  Medal_Gold: {fileID: 1181016721}
-  Medal_Silver: {fileID: 153861166}
-  Medal_Bronze: {fileID: 1524524165}
-  No_Medal: {fileID: 1726098045}
-  wich_round_text: {fileID: 1639522970}
-  Angle_Text: {fileID: 588081088}
-  Height_Text: {fileID: 2004573017}
-  Distance_Text: {fileID: 1763670529}
-  Shoot_UI: {fileID: 1401801127}
-  Start_Button: {fileID: 754345457}
-  Slider_Main_audio: {fileID: 3726691}
-  audio_Stadium: {fileID: 1344687011}
-  Slider_Stadium: {fileID: 0}
-  audio_Music: {fileID: 103676133}
-  Slidel_Music: {fileID: 186284780}
-  music_Volume: 1
+  _loader: {fileID: 0}
+  _loadLevelIndex: 0
+  _loadingScreen: {fileID: 0}
+  _loadingProgressBar: {fileID: 0}
+  _startScreen: {fileID: 0}
+  _pauseScreen: {fileID: 0}
+  _endRoundScreen: {fileID: 0}
+  _finishScreen: {fileID: 0}
+  _nextRaceButtonsScreen: {fileID: 0}
+  _endRoundFinishScreen: {fileID: 0}
+  _shootScreen: {fileID: 0}
+  _pauseToggle: {fileID: 0}
+  _textTarget: {fileID: 0}
+  _textCrash: {fileID: 0}
+  _textCurrentRound: {fileID: 0}
+  _textShootAngle: {fileID: 0}
+  _textCurrentHeight: {fileID: 0}
+  _textCurrentDistance: {fileID: 0}
+  _roundsInfo: []
+  _textsScoreRound: []
+  _textTotalScore: {fileID: 0}
+  _textTotalScoreFinish: {fileID: 0}
+  _textGoldScore: {fileID: 0}
+  _textSilverScore: {fileID: 0}
+  _textBronzeScore: {fileID: 0}
+  _medalsInfo: []
+  _medals: []
+  _mainAudioSlider: {fileID: 0}
+  _stadiumAudioSlider: {fileID: 0}
+  _musicVolumeSlider: {fileID: 0}
+  _stadiumAudioSource: {fileID: 0}
+  _musicAudioSource: {fileID: 0}
 --- !u!4 &103676131
 Transform:
   m_ObjectHideFlags: 0
@@ -27181,6 +27167,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1306199943}
   m_CullTransparentMesh: 1
+--- !u!1 &1306477835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1306477837}
+  - component: {fileID: 1306477836}
+  m_Layer: 0
+  m_Name: TypedProcessor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1306477836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306477835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b75bc3aeafff29d4294a27937966d3bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1306477837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306477835}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1307902486 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1003090863208150, guid: 929c17a972f3434448acb1f432a7048b,
@@ -34779,7 +34809,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 161.13998, y: -95.420074}
+  m_AnchoredPosition: {x: 161.14001, y: -95.420074}
   m_SizeDelta: {x: 244.26, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1675582272
@@ -42010,7 +42040,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 161.13998, y: -95.420074}
+  m_AnchoredPosition: {x: 161.14001, y: -95.420074}
   m_SizeDelta: {x: 244.26, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1983557452

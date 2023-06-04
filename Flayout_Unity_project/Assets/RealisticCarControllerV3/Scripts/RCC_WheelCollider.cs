@@ -11,6 +11,7 @@ using UnityEngine;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 [AddComponentMenu("BoneCracker Games/Realistic Car Controller/Wheel Collider")]
 [RequireComponent (typeof(WheelCollider))]
@@ -183,11 +184,6 @@ public class RCC_WheelCollider : MonoBehaviour {
 
 	void Update(){
 		
-		if(AIM_Shot.is_Crash == true)
-		{
-			Invoke("Crahs_sound", 0.8f);
-		}
-
 		if(!carController.sleepingRigid){
 
 			WheelAlign();
@@ -196,6 +192,21 @@ public class RCC_WheelCollider : MonoBehaviour {
 		}
 
 	}
+
+    private void OnEnable()
+    {
+		AIM_Shot.Crashed += OnCrashed;
+    }
+
+    private void OnDisable()
+    {
+        AIM_Shot.Crashed -= OnCrashed;
+    }
+
+    private void OnCrashed()
+	{
+        Invoke("Crahs_sound", 0.8f);
+    }
 	
 	void  FixedUpdate (){
 

@@ -47,7 +47,7 @@ public class SnapScrolling : MonoBehaviour
             {
                 case 0:
                     instPans[i] = Instantiate(Level_1, transform, false);
-                    selecter.SetNewLevelButton(instPans[i].GetComponent<Button>());
+                    selecter.SetNewLevelLoader(instPans[i].GetComponent<Load_Screen>());
                     break;
                 default:
                     instPans[i] = Instantiate(No_Level, transform, false);

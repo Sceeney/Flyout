@@ -1,22 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Collision_trigger : MonoBehaviour
 {
-    public static bool trigger_out;
-    public static bool trigger_wire;
+    public static event UnityAction TriggerOUT;
+    public static event UnityAction TriggerWIRE;
 
-    void Start()
+    private void OnCollisionEnter(Collision other)
     {
-        trigger_out = false;
-        trigger_wire = false;
-    }
-    void OnCollisionEnter(Collision other) // Касание коллизии
-    {
-        if(other.gameObject.tag == "Body" && this.gameObject.tag == "Out_zone")
-            trigger_out = true;
-        if(other.gameObject.tag == "Body" && this.gameObject.tag == "Wire")
-            trigger_wire = true;
+        if(other.gameObject.TryGetComponent(out Body body))
+        {
+            if (gameObject.TryGetComponent(out OutZone zone))
+                TriggerOUT?.Invoke();
+
+            if (gameObject.TryGetComponent(out Wire wire))
+                TriggerWIRE?.Invoke();
+        }
    }
 }

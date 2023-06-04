@@ -12,6 +12,8 @@ public class Impulse_and_Mass : MonoBehaviour
     public static bool trigger;
     AudioSource audioSource;
 
+    private bool trigger_out;
+
     void Start()
     {   
         trigger = true;
@@ -36,9 +38,25 @@ public class Impulse_and_Mass : MonoBehaviour
         if (this.gameObject.tag == "Body" && trigger == true){
             Value_Height = transform.position.y;
             Value_Distance = transform.position.z;}
-        else if(Collision_trigger.trigger_out == true)
+        else if(trigger_out == true)
             Value_Height = 0f;
-        else if(Velocity_Car.car_collision_triggered == true && Main_Script.text_hight == false)
+        else if(Velocity_Car.car_collision_triggered == true && Main_Script.IsShootInfoDisplay == false)
             Value_Height = 0f;
+    }
+
+    private void OnEnable()
+    {
+        trigger_out = false;
+        Collision_trigger.TriggerOUT += OUT;
+    }
+
+    private void OnDisable()
+    {
+        Collision_trigger.TriggerOUT -= OUT;
+    }
+
+    private void OUT()
+    {
+        trigger_out = true;
     }
 }
