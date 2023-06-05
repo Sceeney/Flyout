@@ -58,7 +58,6 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
     [Header("Переход в главное меню")]
     [SerializeField] private Load_Screen _loadScreen;
-    [SerializeField] private int _loadLevelIndex;
     [SerializeField] private GameObject _loadingScreen;
     [SerializeField] private Slider _loadingProgressBar;
 

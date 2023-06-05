@@ -8,7 +8,7 @@ public class JumpLongLoader : Load_Screen
     {
         IsDoneLoading = false;
 
-        AsyncOperation asyncLoad = Level_Long_Jump.LoadAsync();
+        AsyncOperation asyncLoad = Level_Long_Jump.LoadAsync(new LevelInfo());
 
         while (!asyncLoad.isDone)
         {

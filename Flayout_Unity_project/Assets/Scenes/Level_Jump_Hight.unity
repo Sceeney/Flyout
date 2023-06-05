@@ -1940,7 +1940,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loadScreen: {fileID: 103676135}
-  _loadLevelIndex: 0
   _loadingScreen: {fileID: 726279374}
   _loadingProgressBar: {fileID: 535159615}
   _startScreen: {fileID: 754345457}
