@@ -7,6 +7,7 @@ public class SnapScrolling : MonoBehaviour
 
     [Header("Levels")]
     public GameObject Level_1;
+    public GameObject Level_2;
     public GameObject No_Level;
     public GameObject[] Levels;
     [Range(1, 50)]
@@ -47,6 +48,10 @@ public class SnapScrolling : MonoBehaviour
             {
                 case 0:
                     instPans[i] = Instantiate(Level_1, transform, false);
+                    selecter.SetNewLevelLoader(instPans[i].GetComponent<Load_Screen>());
+                    break;
+                case 1:
+                    instPans[i] = Instantiate(Level_2, transform, false);
                     selecter.SetNewLevelLoader(instPans[i].GetComponent<Load_Screen>());
                     break;
                 default:
