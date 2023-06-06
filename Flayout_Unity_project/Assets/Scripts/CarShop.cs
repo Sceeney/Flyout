@@ -12,7 +12,7 @@ public class CarShop : MonoBehaviour
     public event UnityAction<int> LastSelectedCarIndexChanged;
     public event UnityAction<Car> Purchased;
 
-    public int LastSelectedCarIndex = 0;
+    private int _lastSelectedCarIndex = 0;
 
     private void OnEnable()
     {
@@ -52,6 +52,17 @@ public class CarShop : MonoBehaviour
         }
     }
 
+    public void OnDataSaving()
+    {
+        YandexGame.savesData.LastSelectedCarIndex = _lastSelectedCarIndex;
+
+        bool[] temp = new bool[_cars.Cars.Length];
+        for (int i = 0; i < _cars.Cars.Length; i++)
+            temp[i] = _cars.Cars[i].IsBuyed;
+
+        YandexGame.savesData.BuyedCar = temp;
+    }
+
     public bool CanPurchase(int index)
     {
         return CheckPossibilityPurchase(index) 
@@ -80,8 +91,8 @@ public class CarShop : MonoBehaviour
 
     private void Select(int index)
     {
-        LastSelectedCarIndex = index;
-        LastSelectedCarIndexChanged?.Invoke(LastSelectedCarIndex);
+        _lastSelectedCarIndex = index;
+        LastSelectedCarIndexChanged?.Invoke(_lastSelectedCarIndex);
     }
 
     private bool CheckPossibilityPurchase(int index)

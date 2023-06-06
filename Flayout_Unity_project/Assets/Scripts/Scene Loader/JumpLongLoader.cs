@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class JumpLongLoader : SceneLoader
 {
+    public override Value LevelID => Value.Distance;
+
     protected override IEnumerator Load_async_scene_menu()
     {
         IsDoneLoading = false;

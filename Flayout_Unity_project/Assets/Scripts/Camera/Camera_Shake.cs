@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Camera_Shake : MonoBehaviour
 {
+    public Main_Script Main_Script;
     public Transform _camera;
     public float offsetX = 0.25f;
     public float offsetY = 0.25f;

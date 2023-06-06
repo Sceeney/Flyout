@@ -12,8 +12,11 @@ public class AIM_Shot: MonoBehaviour
     public static bool end_track;
     public static bool is_Click;
 
+    [SerializeField] private Main_Script _main_script;
+
     // Гейм обжекты
-    public GameObject Player; // тело
+    public GameObject Player;
+    public GameObject ShootPoint;
         [Space(20)]
     public GameObject Camera_Car;
     public GameObject Camera_Player;
@@ -24,7 +27,7 @@ public class AIM_Shot: MonoBehaviour
     // Переменные
         [SerializeField] float Angle_rotation_up_down = 90f; // значение угла 
         //[SerializeField] int speed_rot_Angle = 3;
-        public static float Force_Shoot = 11f; // сила импульса
+        public static float Force_Shoot = 22f; // сила импульса
         float angle;
         private Vector3 Vector_rot;
         public static Vector3 Speed_shoot;
@@ -40,6 +43,7 @@ public class AIM_Shot: MonoBehaviour
     void Start()
     {
         Player.SetActive(false);
+
         Camera_Car.SetActive(true);
         Camera_Player.SetActive(false);
         Time.timeScale = 1f;
@@ -54,7 +58,7 @@ public class AIM_Shot: MonoBehaviour
         countdown -= Time.deltaTime;
         if(countdown > 0)
         {
-            if(countdown <= 0.0f && Main_Script.IsStartBut == false)
+            if(countdown <= 0.0f && _main_script.IsStartBut == false)
             {
                 Crash();
                 TimeHasExpired?.Invoke();
@@ -65,7 +69,7 @@ public class AIM_Shot: MonoBehaviour
 
         if(!is_Click)// чекаем когда придёт нажатие кнопки
         {
-            if(Main_Script.IsShoot == true)
+            if(_main_script.IsShoot == true)
             {
                 is_Click = true;
                 Shoot();
@@ -127,6 +131,8 @@ public class AIM_Shot: MonoBehaviour
         Crashed?.Invoke();
         _isCrached = true;
         Player.SetActive(true);
+        Player.transform.position = ShootPoint.transform.position;
+        Player.transform.rotation = ShootPoint.transform.rotation;
         Camera_Car.SetActive(false);
         Camera_Player.SetActive(true);
         Speed_shoot = Target_AIM.transform.position - transform.position;
@@ -142,3 +148,4 @@ public class AIM_Shot: MonoBehaviour
     }
 
 }
+ 

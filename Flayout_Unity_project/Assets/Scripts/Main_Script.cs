@@ -51,13 +51,16 @@ public class LevelInfo
 
 public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 {
-    public static bool IsShoot;
-    public static bool IsStartBut;
-    public static bool IsShootInfoDisplay;
-    public static bool IsPause;
+    [Header("Необходимые компоненты")]
+    [SerializeField] private Impulse_and_Mass _impulse_And_Mass;
+    [SerializeField] private Body _player;
+
+    [Space(20)]
 
     [Header("Загрузчик уровня ")]
     [SerializeField] private SceneLoader _levelLoader;
+
+    [Space(20)]
 
     [Header("Переход в главное меню")]
     [SerializeField] private SceneLoader _mainMenuLoader;
@@ -112,6 +115,25 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     private LevelInfo _levelInfo;
     private float _totalScore;
     private Medal _medal;
+    private bool _isGameOver;
+    private bool _isTriggered;
+
+    public bool IsShoot { get; private set; }
+    public bool IsStartBut { get; private set; }
+    public bool IsShootInfoDisplay { get; private set; }
+    public bool IsPause { get; private set; }
+
+    private float CurrentScore
+    {
+        get
+        {
+            if (!_isGameOver)
+                return _impulse_And_Mass.GetValue(_levelLoader.LevelID);
+            else
+                return 0;
+        }
+        set{}
+    }
     
 
     private enum Medal
@@ -129,8 +151,8 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
         AIM_Shot.Crashed += OnCrashed;
         AIM_Shot.TimeHasExpired += TimeHasExpired;
 
-        Collision_trigger.TriggerOUT += OnTriggerOUT;
-        Collision_trigger.TriggerWIRE += OnTriggerWire;
+        _impulse_And_Mass.TriggerOut += OnTriggerOUT;
+        _impulse_And_Mass.TriggerWire += OnTriggerWire;
     }
 
     private void OnDisable()
@@ -140,18 +162,20 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
         AIM_Shot.Crashed -= OnCrashed;
         AIM_Shot.TimeHasExpired -= TimeHasExpired;
 
-        Collision_trigger.TriggerOUT += OnTriggerOUT;
-        Collision_trigger.TriggerWIRE += OnTriggerWire;
+        _impulse_And_Mass.TriggerOut += OnTriggerOUT;
+        _impulse_And_Mass.TriggerWire += OnTriggerWire;
     }
 
     private void Awake()
     {
+        _isTriggered = false;
         _medal = Medal.No_medal;
         Time.timeScale = 1f;
         IsShoot = false;
         IsShootInfoDisplay = false;
         IsStartBut = false;
         IsPause = false;
+        _isGameOver = false;
         _endRoundScreen.SetActive(false);
         _endRoundFinishScreen.SetActive(false);
         _shootScreen.SetActive(false);
@@ -163,6 +187,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
         _musicAudioSource = GetComponent<AudioSource>();
 
         _mainMenuLoader.Init(_loadingScreen, _loadingProgressBar);
+        _levelLoader.Init(_loadingScreen, _loadingProgressBar);
 
         if (YandexGame.SDKEnabled)
             GetData();
@@ -217,11 +242,15 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
     IEnumerator ShootInfoDisplay()
     {
+        yield return _player.gameObject.activeSelf == true;
+
         for (int i = 0; i >= 0; i++)
         {
-            if (IsShootInfoDisplay == true)
+            if (IsShootInfoDisplay == true && _isTriggered == false)
             {
-                _textCurrentScore.text = Impulse_and_Mass.Value_Height.ToString("0.00");
+                _textCurrentScore.text = CurrentScore.ToString("0.00");
+                _levelInfo.SetRoundScore(_levelInfo.CurrentRound - 1,
+                    CurrentScore);
                 yield return null;
             }
             else yield break;
@@ -230,7 +259,9 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
     IEnumerator Timer()
     {
+        yield return _player.gameObject.activeSelf == true;
         yield return new WaitForSeconds(20f);
+        Debug.Log("TIMER");
         Next_round();
     }
 
@@ -251,12 +282,12 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     public void RestartLevel()
     {
         _levelInfo = new LevelInfo();
-        Level_Jump_Hight.Load(_levelInfo);
+        _levelLoader.Load(_levelInfo);
     }
 
     public void RestartRound()
     {
-        Level_Jump_Hight.Load(_levelInfo);
+        _levelLoader.Load(_levelInfo);
     }
 
     public void StartButtonClick()
@@ -270,7 +301,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     {
         _endRoundScreen.SetActive(false);
         _levelInfo.SetRound(_levelInfo.CurrentRound + 1);
-        Level_Jump_Hight.Load(_levelInfo);
+        _levelLoader.Load(_levelInfo);
     }
 
     public void MainMenuButtonClick()
@@ -298,7 +329,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
         SaveMoney(_medalsInfo[(int)_medal].Reward);
 
         _medal = Medal.No_medal;
-        Level_Jump_Hight.Load(_levelInfo);
+        _levelLoader.Load(_levelInfo);
     }
 
     private void TryShowShootScreen()
@@ -313,9 +344,10 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     {
         if (IsShootInfoDisplay == false)
         {
+            Debug.Log("CRASH");
             _textCrash.gameObject.SetActive(true);
             _textTarget.gameObject.SetActive(false);
-            Impulse_and_Mass.Value_Height = 0f;
+            _isGameOver = true;
             Invoke(nameof(Next_round), 1f);
         }
         else
@@ -327,18 +359,23 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
     private void TimeHasExpired()
     {
-        Impulse_and_Mass.Value_Height = 0f;
+        Debug.Log("TIME");
+        _isGameOver = true;
         Invoke(nameof(StartButtonClick), 0.1f);
         Invoke(nameof(Next_round), 1f);
     }
 
     private void OnTriggerOUT()
     {
+        _isTriggered = true;
+        ShowRoundInfo();
         Invoke(nameof(Next_round), 0.1f);
     }
 
     private void OnTriggerWire()
     {
+        _isTriggered = true;
+        ShowRoundInfo();
         Invoke(nameof(Next_round), 2f);
     }
 
@@ -349,16 +386,11 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
         ShowNextScreen();
 
-        ShowRoundInfo();
-
         CalculateAndShowTotalScore();
     }
 
     private void ShowRoundInfo()
     {
-        _levelInfo.SetRoundScore(_levelInfo.CurrentRound - 1,
-            Impulse_and_Mass.Value_Height);
-
         for (int i = 0; i < _levelInfo.CurrentRound; i++)
         {
             _roundsInfo[i].gameObject.SetActive(true);

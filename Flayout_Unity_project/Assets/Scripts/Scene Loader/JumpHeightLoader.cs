@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class JumpHeightLoader : SceneLoader
 {
+    public override Value LevelID => Value.Height;
+
     protected override IEnumerator Load_async_scene_menu()
     {
         IsDoneLoading = false;

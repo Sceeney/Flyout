@@ -5,6 +5,7 @@ using System.Collections;
 [AddComponentMenu("BoneCracker Games/Realistic Car Controller/UI/Mobile/Mobile Buttons")]
 public class RCC_MobileButtons : MonoBehaviour {
 
+	public Main_Script Main_Script;
 	public RCC_CarControllerV3[] carControllers;
 
 	public RCC_UIController gasButton;

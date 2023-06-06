@@ -1,62 +1,81 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Events;
 
+public enum Value
+{
+    Height,
+    Distance
+}
 
 public class Impulse_and_Mass : MonoBehaviour
 {
     Rigidbody rb;
-    public static float Value_Height;
-    public static float Value_Distance;
-    public static bool trigger;
     AudioSource audioSource;
 
-    private bool trigger_out;
+    private ValueGetter[] _valueGetter;
+    private bool _isTriggered;
+
+    public bool Trigger { get; private set; }
+
+    public event UnityAction TriggerWire;
+    public event UnityAction TriggerOut;
+
+    private delegate float ValueGetter();
 
     void Start()
-    {   
-        trigger = true;
+    {
+        _isTriggered = false;
+        Trigger = true;
         audioSource = GetComponent <AudioSource> ();
         rb = GetComponent <Rigidbody>();
         rb.velocity = (Velocity_Car.vel / 2)+(AIM_Shot.Speed_shoot * Random.Range((AIM_Shot.Force_Shoot -1), (AIM_Shot.Force_Shoot +1)));
         rb.mass = 10f;
-        Value_Height = 0f;
+
+        ValueGetter height = new(GetHeight);
+        ValueGetter distance = new(GetDistance);
+
+        _valueGetter = new ValueGetter[]
+        {
+            height,
+            distance
+        };
     }
 
-    void OnTriggerEnter(Collider other) // Касание коллизии
+    public void OnTriggerWire()
     {
-        rb.velocity = new Vector3(0,0,0);
-        rb.angularVelocity = new Vector3(0,0,0);
-        trigger = false;
-        if (this.gameObject.tag == "Body")
-            audioSource.Play();
+        if (_isTriggered)
+            return;
+        _isTriggered = true;
+
+        Collision();
+        TriggerWire?.Invoke();
     }
 
-    void Update()
-    {     
-        if (this.gameObject.tag == "Body" && trigger == true){
-            Value_Height = transform.position.y;
-            Value_Distance = transform.position.z;}
-        else if(trigger_out == true)
-            Value_Height = 0f;
-        else if(Velocity_Car.car_collision_triggered == true && Main_Script.IsShootInfoDisplay == false)
-            Value_Height = 0f;
-    }
-
-    private void OnEnable()
+    public void OnTriggerOut()
     {
-        trigger_out = false;
-        Collision_trigger.TriggerOUT += OUT;
+        if (_isTriggered)
+            return;
+        _isTriggered = true;
+
+        Collision();
+        TriggerOut?.Invoke();
     }
 
-    private void OnDisable()
+    public float GetValue(Value value)
     {
-        Collision_trigger.TriggerOUT -= OUT;
+        return _valueGetter[(int)value].Invoke();
     }
 
-    private void OUT()
+    private void Collision()
     {
-        trigger_out = true;
+        rb.velocity = new Vector3(0, 0, 0);
+        rb.angularVelocity = new Vector3(0, 0, 0);
+        Trigger = false;
+
+        audioSource.Play();
     }
+
+    private float GetHeight() => transform.position.y;
+
+    private float GetDistance() => transform.position.z;
 }

@@ -7,7 +7,7 @@ public class Wallet : MonoBehaviour
 {
     [SerializeField] private CarShop _shop;
 
-    public int Money;
+    public int Money { get; private set; }
 
     public event UnityAction<int> UpdateMoney;
 
@@ -35,6 +35,11 @@ public class Wallet : MonoBehaviour
     {
         YandexGame.GetDataEvent -= OnDataUpdated;
         _shop.Purchased -= OnPurchased;
+    }
+
+    public void OnDataSaving()
+    {
+        YandexGame.savesData.Money = Money;
     }
 
     private void OnDataUpdated()

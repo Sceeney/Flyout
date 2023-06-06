@@ -11,6 +11,7 @@ using Unity.VisualScripting;
 [RequireComponent (typeof(Rigidbody))]
 public class RCC_CarControllerV3 : MonoBehaviour {
 
+	
 	private RCC_Settings RCCSettings{get{return RCC_Settings.Instance;}}
 	private Rigidbody rigid;		// Rigidbody.
 	internal bool sleepingRigid = false;		// Used For Disabling Unnecessary Raycasts When RB Is Sleeping.
@@ -205,8 +206,9 @@ bool audio_crash;
 	public enum IndicatorsOn{Off, Right, Left, All}
 	public float indicatorTimer = 0f;
 
-	// Damage.
-	public bool useDamage = true;
+    // Damage.
+    public Main_Script Main_Script;
+    public bool useDamage = true;
 	struct originalMeshVerts{public Vector3[] meshVerts;}
 	public MeshFilter[] deformableMeshFilters;
 	public float randomizeVertices = 1f;

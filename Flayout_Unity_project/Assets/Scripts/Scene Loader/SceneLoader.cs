@@ -11,6 +11,8 @@ public abstract class SceneLoader : MonoBehaviour
     private GameObject _loading_Screen;
     private Coroutine _loaderCoroutine;
 
+    public virtual Value LevelID => throw new NotImplementedException();
+
     public void Init(GameObject loading_Screen, Slider bar)
     {
         _loading_Screen = loading_Screen;
