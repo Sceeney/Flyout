@@ -2128,7 +2128,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shop: {fileID: 1579245165}
-  Money: 0
 --- !u!4 &351327976
 Transform:
   m_ObjectHideFlags: 0
@@ -37427,7 +37426,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cars: {fileID: 1579245166}
   _wallet: {fileID: 351327975}
-  LastSelectedCarIndex: 0
 --- !u!114 &1579245166
 MonoBehaviour:
   m_ObjectHideFlags: 0

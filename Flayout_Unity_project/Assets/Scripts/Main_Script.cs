@@ -51,6 +51,10 @@ public class LevelInfo
 
 public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 {
+    [Header("Выстрел")]
+    [SerializeField, Range(1f, 30f)] private float _forceShoot = 10f;
+    [Space(20)]
+
     [Header("Необходимые компоненты")]
     [SerializeField] private Impulse_and_Mass _impulse_And_Mass;
     [SerializeField] private Body _player;
@@ -122,6 +126,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     public bool IsStartBut { get; private set; }
     public bool IsShootInfoDisplay { get; private set; }
     public bool IsPause { get; private set; }
+    public float ForceShoot => _forceShoot;
 
     private float CurrentScore
     {

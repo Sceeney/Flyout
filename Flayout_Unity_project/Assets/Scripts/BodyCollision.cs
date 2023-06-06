@@ -6,6 +6,9 @@ public class BodyCollision : MonoBehaviour
 {
     [SerializeField] private Impulse_and_Mass _impulse_And_Mass;
 
+    private Rigidbody rb;
+    private float _forceShoot => _impulse_And_Mass.ForceShoot;
+
     public event UnityAction TriggerOUT;
     public event UnityAction TriggerWIRE;
 
@@ -13,6 +16,13 @@ public class BodyCollision : MonoBehaviour
     {
         TriggerOUT += _impulse_And_Mass.OnTriggerOut;
         TriggerWIRE += _impulse_And_Mass.OnTriggerWire;
+    }
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        rb.velocity = (Velocity_Car.vel / 2) + (AIM_Shot.Speed_shoot * Random.Range((_forceShoot - 1), (_forceShoot + 1)));
+        rb.mass = 10f;
     }
 
     private void OnDisable()

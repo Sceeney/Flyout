@@ -27,7 +27,7 @@ public class AIM_Shot: MonoBehaviour
     // Переменные
         [SerializeField] float Angle_rotation_up_down = 90f; // значение угла 
         //[SerializeField] int speed_rot_Angle = 3;
-        public static float Force_Shoot = 22f; // сила импульса
+        public float Force_Shoot => _main_script.ForceShoot; // сила импульса
         float angle;
         private Vector3 Vector_rot;
         public static Vector3 Speed_shoot;

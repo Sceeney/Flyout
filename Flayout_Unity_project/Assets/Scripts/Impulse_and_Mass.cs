@@ -9,6 +9,8 @@ public enum Value
 
 public class Impulse_and_Mass : MonoBehaviour
 {
+    [SerializeField] private Main_Script _mainScript;
+
     Rigidbody rb;
     AudioSource audioSource;
 
@@ -16,6 +18,7 @@ public class Impulse_and_Mass : MonoBehaviour
     private bool _isTriggered;
 
     public bool Trigger { get; private set; }
+    public float ForceShoot => _mainScript.ForceShoot;
 
     public event UnityAction TriggerWire;
     public event UnityAction TriggerOut;
@@ -28,8 +31,10 @@ public class Impulse_and_Mass : MonoBehaviour
         Trigger = true;
         audioSource = GetComponent <AudioSource> ();
         rb = GetComponent <Rigidbody>();
-        rb.velocity = (Velocity_Car.vel / 2)+(AIM_Shot.Speed_shoot * Random.Range((AIM_Shot.Force_Shoot -1), (AIM_Shot.Force_Shoot +1)));
+        rb.velocity = (Velocity_Car.vel / 2)+(AIM_Shot.Speed_shoot * Random.Range((ForceShoot -1), (ForceShoot +1)));
         rb.mass = 10f;
+
+        audioSource.Play();
 
         ValueGetter height = new(GetHeight);
         ValueGetter distance = new(GetDistance);
@@ -72,7 +77,7 @@ public class Impulse_and_Mass : MonoBehaviour
         rb.angularVelocity = new Vector3(0, 0, 0);
         Trigger = false;
 
-        audioSource.Play();
+        
     }
 
     private float GetHeight() => transform.position.y;
