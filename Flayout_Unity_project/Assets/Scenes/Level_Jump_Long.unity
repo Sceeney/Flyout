@@ -1184,7 +1184,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 103676129}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ec462c1cfa06de4abc3aa73e43aa9a9, type: 3}
+  m_Script: {fileID: 11500000, guid: e98430a33bd78d744be39d21cc15fe69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &103756462
@@ -15213,7 +15213,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Height
+  m_text: Distance
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15240,10 +15240,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 44.75
   m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 19
@@ -15302,8 +15302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b177fc34ab45049bb39db35346c419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _en: Height
-  _ru: "\u0432\u044B\u0441\u043E\u0442\u0430"
+  _en: Distance
+  _ru: "\u0414\u0438\u0441\u0442\u0430\u043D\u0446\u0438\u044F"
 --- !u!1 &2004573013
 GameObject:
   m_ObjectHideFlags: 0
@@ -15335,7 +15335,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1983557451}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
