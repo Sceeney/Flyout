@@ -2,13 +2,28 @@ using IJunior.TypedScenes;
 using System.Collections;
 using UnityEngine;
 
-public class JumpHeightLoader : Load_Screen
+public class JumpHeightLoader : SceneLoader
 {
     protected override IEnumerator Load_async_scene_menu()
     {
         IsDoneLoading = false;
 
         AsyncOperation asyncLoad = Level_Jump_Hight.LoadAsync(new LevelInfo());
+
+        while (!asyncLoad.isDone)
+        {
+            Bar.value = asyncLoad.progress;
+            yield return null;
+        }
+
+        IsDoneLoading = true;
+    }
+
+    protected override IEnumerator Load_async_scene_menu(LevelInfo levelInfo)
+    {
+        IsDoneLoading = false;
+
+        AsyncOperation asyncLoad = Level_Jump_Hight.LoadAsync(levelInfo);
 
         while (!asyncLoad.isDone)
         {

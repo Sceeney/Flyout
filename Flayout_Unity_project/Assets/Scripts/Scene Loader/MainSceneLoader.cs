@@ -2,7 +2,7 @@ using IJunior.TypedScenes;
 using System.Collections;
 using UnityEngine;
 
-public class MainSceneLoader : Load_Screen
+public class MainSceneLoader : SceneLoader
 {
     protected override IEnumerator Load_async_scene_menu()
     {

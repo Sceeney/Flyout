@@ -1,8 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
-public abstract class Load_Screen : MonoBehaviour
+public abstract class SceneLoader : MonoBehaviour
 {
     protected Slider Bar;
     protected bool IsDoneLoading;
@@ -23,6 +24,13 @@ public abstract class Load_Screen : MonoBehaviour
         LoadScene();
     }
 
+    public void Load(LevelInfo levelInfo)
+    {
+        _loading_Screen.SetActive(true);
+
+        LoadScene(levelInfo);
+    }
+
     private void LoadScene()
     {
         if (!IsDoneLoading && _loaderCoroutine != null)
@@ -36,5 +44,23 @@ public abstract class Load_Screen : MonoBehaviour
         _loaderCoroutine = StartCoroutine(Load_async_scene_menu());
     }
 
+    private void LoadScene(LevelInfo levelInfo)
+    {
+        if (!IsDoneLoading && _loaderCoroutine != null)
+        {
+            return;
+        }
+
+        if (_loaderCoroutine != null)
+            StopCoroutine(_loaderCoroutine);
+
+        _loaderCoroutine = StartCoroutine(Load_async_scene_menu(levelInfo));
+    }
+
     protected abstract IEnumerator Load_async_scene_menu();
+    protected virtual IEnumerator Load_async_scene_menu(LevelInfo levelInfo)
+    {
+        yield return null;
+        throw new NotImplementedException();
+    }
 }

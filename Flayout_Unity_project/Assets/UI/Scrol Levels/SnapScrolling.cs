@@ -3,7 +3,7 @@ using UnityEngine.UI;
  
 public class SnapScrolling : MonoBehaviour
 {
-    [SerializeField] private LevelSelecter selecter;
+    [SerializeField] private LevelInitializer selecter;
 
     [Header("Levels")]
     public GameObject Level_1;
@@ -48,11 +48,11 @@ public class SnapScrolling : MonoBehaviour
             {
                 case 0:
                     instPans[i] = Instantiate(Level_1, transform, false);
-                    selecter.SetNewLevelLoader(instPans[i].GetComponent<Load_Screen>());
+                    selecter.SetNewLevelLoader(instPans[i].GetComponent<SceneLoader>());
                     break;
                 case 1:
                     instPans[i] = Instantiate(Level_2, transform, false);
-                    selecter.SetNewLevelLoader(instPans[i].GetComponent<Load_Screen>());
+                    selecter.SetNewLevelLoader(instPans[i].GetComponent<SceneLoader>());
                     break;
                 default:
                     instPans[i] = Instantiate(No_Level, transform, false);

@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelSelecter : MonoBehaviour
+public class LevelInitializer : MonoBehaviour
 {
     [SerializeField] private GameObject _loadingScreen;
     [SerializeField] private Slider _bar;
 
-    public void SetNewLevelLoader(Load_Screen load_screen)
+    public void SetNewLevelLoader(SceneLoader load_screen)
     {
         load_screen.Init(_loadingScreen, _bar);
     }

@@ -1916,6 +1916,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 103676131}
+  - component: {fileID: 103676136}
   - component: {fileID: 103676135}
   - component: {fileID: 103676130}
   - component: {fileID: 103676134}
@@ -1939,7 +1940,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 531e762ffac9b6c4ab3484b9cd5ed3cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loadScreen: {fileID: 103676135}
+  _levelLoader: {fileID: 103676136}
+  _mainMenuLoader: {fileID: 103676135}
   _loadingScreen: {fileID: 726279374}
   _loadingProgressBar: {fileID: 535159615}
   _startScreen: {fileID: 754345457}
@@ -1954,8 +1956,7 @@ MonoBehaviour:
   _textCrash: {fileID: 18846335}
   _textCurrentRound: {fileID: 1639522970}
   _textShootAngle: {fileID: 588081088}
-  _textCurrentHeight: {fileID: 2004573017}
-  _textCurrentDistance: {fileID: 0}
+  _textCurrentScore: {fileID: 2004573017}
   _roundsInfo:
   - {fileID: 1306199945}
   - {fileID: 1532538016}
@@ -2126,6 +2127,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25eb1a84bb478d940bdc4c5245c67378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &103676136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103676129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec462c1cfa06de4abc3aa73e43aa9a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &103756462
@@ -34949,7 +34962,7 @@ GameObject:
   - component: {fileID: 1983557452}
   - component: {fileID: 1983557455}
   m_Layer: 5
-  m_Name: Text Height
+  m_Name: Text Score
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -35200,7 +35213,7 @@ GameObject:
   - component: {fileID: 2004573016}
   - component: {fileID: 2004573017}
   m_Layer: 5
-  m_Name: Current Height
+  m_Name: Current Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37229,7 +37242,7 @@ GameObject:
   - component: {fileID: 2075738271}
   - component: {fileID: 2075738274}
   m_Layer: 5
-  m_Name: text_Total
+  m_Name: Total Text
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

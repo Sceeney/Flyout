@@ -12,12 +12,12 @@ using System;
 public class LevelInfo
 {
     public int CurrentRound { get; private set; }
-    public float[] RoundsHeight { get; private set; }
+    public float[] RoundsScore { get; private set; }
 
     public LevelInfo()
     {
         CurrentRound = 1;
-        RoundsHeight = new float[] { 0, 0, 0};
+        RoundsScore = new float[] { 0, 0, 0};
     }
 
     public void SetRound(int round)
@@ -28,19 +28,19 @@ public class LevelInfo
         CurrentRound = round;
     }
 
-    public void SetRoundHeight(int roundIndex, float value)
+    public void SetRoundScore(int roundIndex, float value)
     {
         if (roundIndex < 0 || roundIndex > 2)
             throw new ArgumentOutOfRangeException(nameof(roundIndex));
 
-        RoundsHeight[roundIndex] = value;
+        RoundsScore[roundIndex] = value;
     }
 
     public float GetTotalScore()
     {
         float total = 0;
 
-        foreach (var score in RoundsHeight)
+        foreach (var score in RoundsScore)
         {
             total += score;
         }
@@ -56,8 +56,11 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     public static bool IsShootInfoDisplay;
     public static bool IsPause;
 
+    [Header("Загрузчик уровня ")]
+    [SerializeField] private SceneLoader _levelLoader;
+
     [Header("Переход в главное меню")]
-    [SerializeField] private Load_Screen _loadScreen;
+    [SerializeField] private SceneLoader _mainMenuLoader;
     [SerializeField] private GameObject _loadingScreen;
     [SerializeField] private Slider _loadingProgressBar;
 
@@ -81,8 +84,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     [SerializeField] private TMP_Text _textCurrentRound;
     [Space(5)]
     [SerializeField] private TMP_Text _textShootAngle;
-    [SerializeField] private TMP_Text _textCurrentHeight;
-    [SerializeField] private TMP_Text _textCurrentDistance;
+    [SerializeField] private TMP_Text _textCurrentScore;
     [Space(5)]
     [SerializeField] private Image[] _roundsInfo;
     [SerializeField] private Text[] _textsScoreRound;
@@ -159,8 +161,8 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     private void Start()
     {
         _musicAudioSource = GetComponent<AudioSource>();
-        _loadScreen = GetComponent<Load_Screen>();
-        _loadScreen.Init(_loadingScreen, _loadingProgressBar);
+
+        _mainMenuLoader.Init(_loadingScreen, _loadingProgressBar);
 
         if (YandexGame.SDKEnabled)
             GetData();
@@ -219,8 +221,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
         {
             if (IsShootInfoDisplay == true)
             {
-                _textCurrentHeight.text = Impulse_and_Mass.Value_Height.ToString("0.00");
-                _textCurrentDistance.text = Impulse_and_Mass.Value_Distance.ToString("0.00");
+                _textCurrentScore.text = Impulse_and_Mass.Value_Height.ToString("0.00");
                 yield return null;
             }
             else yield break;
@@ -282,7 +283,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
         Audio_Listener.Listener = 0f;
         _loadingScreen.SetActive(true);
 
-        _loadScreen.Load();
+        _mainMenuLoader.Load();
     }
 
     private void SaveMoney(int money)
@@ -355,14 +356,14 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
     private void ShowRoundInfo()
     {
-        _levelInfo.SetRoundHeight(_levelInfo.CurrentRound - 1,
+        _levelInfo.SetRoundScore(_levelInfo.CurrentRound - 1,
             Impulse_and_Mass.Value_Height);
 
         for (int i = 0; i < _levelInfo.CurrentRound; i++)
         {
             _roundsInfo[i].gameObject.SetActive(true);
-            _textsScoreRound[i].text = _levelInfo.RoundsHeight[i].ToString();
-            Debug.Log($"Height {_levelInfo.RoundsHeight[i]}");
+            _textsScoreRound[i].text = _levelInfo.RoundsScore[i].ToString();
+            Debug.Log($"Height {_levelInfo.RoundsScore[i]}");
         }
     }
 
