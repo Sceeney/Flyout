@@ -13,10 +13,10 @@ namespace IJunior.TypedScenes
     using UnityEngine.SceneManagement;
     
     
-    public class Level_Long_Jump : TypedScene
+    public class Level_Jump_Long : TypedScene
     {
         
-        private const string _sceneName = "Level_Long_Jump";
+        private const string _sceneName = "Level_Jump_Long";
         
         public static void Load(LevelInfo argument, LoadSceneMode loadSceneMode = LoadSceneMode.Single)
         {

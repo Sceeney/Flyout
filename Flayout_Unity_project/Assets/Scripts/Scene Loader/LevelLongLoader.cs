@@ -1,8 +1,9 @@
 using IJunior.TypedScenes;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpLongLoader : SceneLoader
+public class LevelLongLoader : SceneLoader
 {
     public override Value LevelID => Value.Distance;
 
@@ -10,7 +11,7 @@ public class JumpLongLoader : SceneLoader
     {
         IsDoneLoading = false;
 
-        AsyncOperation asyncLoad = Level_Long_Jump.LoadAsync(new LevelInfo());
+        AsyncOperation asyncLoad = Level_Jump_Long.LoadAsync(new LevelInfo());
 
         while (!asyncLoad.isDone)
         {
@@ -25,7 +26,7 @@ public class JumpLongLoader : SceneLoader
     {
         IsDoneLoading = false;
 
-        AsyncOperation asyncLoad = Level_Jump_Hight.LoadAsync(levelInfo);
+        AsyncOperation asyncLoad = Level_Jump_Long.LoadAsync(levelInfo);
 
         while (!asyncLoad.isDone)
         {
