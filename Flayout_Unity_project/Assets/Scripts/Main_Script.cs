@@ -394,7 +394,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
         for (int i = 0; i < _levelInfo.CurrentRound; i++)
         {
             _roundsInfo[i].gameObject.SetActive(true);
-            _textsScoreRound[i].text = _levelInfo.RoundsScore[i].ToString();
+            _textsScoreRound[i].text = _levelInfo.RoundsScore[i].ToString("0.00");
             Debug.Log($"Height {_levelInfo.RoundsScore[i]}");
         }
     }
