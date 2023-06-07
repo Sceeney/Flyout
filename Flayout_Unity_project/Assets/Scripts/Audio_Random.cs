@@ -2,52 +2,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 public class Audio_Random : MonoBehaviour
 {
- private AudioSource audioSource;
- public AudioClip[] shoot;
- private AudioClip shootClip;
+    [SerializeField] private AudioClip[] _tracks;
+    [SerializeField] private Slider _sliderMusicVolume;
+    [SerializeField] private Slider _sliderMainVolume;
+    [SerializeField] private AudioSource _musicAudioSource;
 
-        [Space(20)]
-    public Slider Slider_Main_audio;
-        [Space(5)]
-    public AudioSource audio_Music;
-    public Slider Slidel_Music;
-        [Space(5)]
-    private float music_Volume = 1f;
-
- void OnEnable()
- {
-    audio_Music = GetComponent<AudioSource>();
-        music_Volume = 1f;
-        Slidel_Music.value = 1f;
-        Slidel_Music.value = PlayerPrefs.GetFloat("Slidel_Music.value");
-        Slider_Main_audio.value = PlayerPrefs.GetFloat("Listener"); 
-        music_Volume = PlayerPrefs.GetFloat("music_Volume");
-
-     audioSource = gameObject.GetComponent<AudioSource>();
-        int index = Random.Range(0, shoot.Length);
-         shootClip = shoot[index];
-         audioSource.clip = shootClip;
-         audioSource.Play();
-    print("1");
- }
-    void Update()
+    private void OnEnable()
     {
-        audio_Music.volume = music_Volume;
+        int index = Random.Range(0, _tracks.Length);
+        _musicAudioSource.clip = _tracks[index];
+        YandexGame.GetDataEvent += GetData;
+        _musicAudioSource.Stop();
+        _musicAudioSource.Play();
     }
 
-    public void Volume_Music()
+    private void Start()
     {
-        music_Volume = Slidel_Music.value;
-        PlayerPrefs.SetFloat("music_Volume", music_Volume);
-        PlayerPrefs.SetFloat("Slidel_Music.value", Slidel_Music.value);
+        if (YandexGame.SDKEnabled)
+            GetData();
     }
-    public void Main_audio()
+
+    private void OnDisable()
     {
-        Audio_Listener.Listener = Slider_Main_audio.value;
-        PlayerPrefs.SetFloat("Listener", Audio_Listener.Listener);
-        PlayerPrefs.SetFloat("Slider_Main_audio", Slider_Main_audio.value);
+        YandexGame.GetDataEvent -= GetData;
+    }
+
+    public void OnChangedMusicVolume()
+    {
+        _musicAudioSource.volume =
+            YandexGame.savesData.MusicVolume =
+                _sliderMusicVolume.value;
+    }
+
+    public void OnChangedMainVolume()
+    {
+        AudioListener.volume =
+            YandexGame.savesData.MainVolume =
+                _sliderMainVolume.value;
+    }
+
+    private void GetData()
+    {
+        AudioListener.volume = 
+            _sliderMainVolume.value = 
+                YandexGame.savesData.MainVolume;
+
+        _musicAudioSource.volume =
+            _sliderMusicVolume.value =
+                YandexGame.savesData.MusicVolume;
     }
  }

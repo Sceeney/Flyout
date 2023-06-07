@@ -40063,7 +40063,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -40160,16 +40160,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d5b200f115fb1458351a82bc53f066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shoot:
+  _tracks:
   - {fileID: 8300000, guid: a82c4be37e9b22649917e8f38622c922, type: 3}
   - {fileID: 8300000, guid: ed55c4f0917fc424f9980dc1f4bf9e9b, type: 3}
   - {fileID: 8300000, guid: ff1c703cd44cc5e45b3796dd19a36fbb, type: 3}
   - {fileID: 8300000, guid: afc430fd066bcca46b33f73a865e7fce, type: 3}
   - {fileID: 8300000, guid: 3c81af3859d89e44fa78bc9c236bbd0e, type: 3}
   - {fileID: 8300000, guid: d9afe204b4496854ea0efa68727801ce, type: 3}
-  Slider_Main_audio: {fileID: 677050763857265169}
-  audio_Music: {fileID: 2104192144}
-  Slidel_Music: {fileID: 677050763976648094}
+  _sliderMusicVolume: {fileID: 677050763976648094}
+  _sliderMainVolume: {fileID: 677050763857265169}
+  _musicAudioSource: {fileID: 2104192144}
 --- !u!1 &2119723432
 GameObject:
   m_ObjectHideFlags: 0
@@ -40834,9 +40834,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UI_Main_Menu, Assembly-CSharp
-        m_MethodName: Main_audio
+      - m_Target: {fileID: 2104192145}
+        m_TargetAssemblyTypeName: Audio_Random, Assembly-CSharp
+        m_MethodName: OnChangedMainVolume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -41071,9 +41071,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UI_Main_Menu, Assembly-CSharp
-        m_MethodName: Volume_Music
+      - m_Target: {fileID: 2104192145}
+        m_TargetAssemblyTypeName: Audio_Random, Assembly-CSharp
+        m_MethodName: OnChangedMusicVolume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

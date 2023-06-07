@@ -1427,15 +1427,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d5b200f115fb1458351a82bc53f066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shoot:
+  _tracks:
   - {fileID: 8300000, guid: a72b4cd999ce47e4da2b10334892c75e, type: 3}
   - {fileID: 8300000, guid: 96073cd325061e147a971fda9ee5f239, type: 3}
   - {fileID: 8300000, guid: c677a40baf264da4d9d321596c81691d, type: 3}
   - {fileID: 8300000, guid: 5c86a6fd3f1f3a64aaa2896a8800bde5, type: 3}
   - {fileID: 8300000, guid: b7efb6de4b375c54c9825f828a0e8d99, type: 3}
-  Slider_Main_audio: {fileID: 3726691}
-  audio_Music: {fileID: 103676133}
-  Slidel_Music: {fileID: 186284780}
+  _sliderMusicVolume: {fileID: 186284780}
+  _sliderMainVolume: {fileID: 3726691}
+  _musicAudioSource: {fileID: 103676133}
 --- !u!114 &103676135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12856,7 +12856,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1344687010}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -12952,17 +12952,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1344687010}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16d5b200f115fb1458351a82bc53f066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shoot:
-  - {fileID: 8300000, guid: 7937da1ce14082f40b19dd9f7325ea5b, type: 3}
-  - {fileID: 8300000, guid: 09fb37357e5b5904684edab2efa2b682, type: 3}
-  Slider_Main_audio: {fileID: 3726691}
-  audio_Music: {fileID: 1344687011}
-  Slidel_Music: {fileID: 186284780}
+  _tracks: []
+  _sliderMusicVolume: {fileID: 0}
+  _sliderMainVolume: {fileID: 0}
+  _musicAudioSource: {fileID: 0}
 --- !u!4 &1344687013
 Transform:
   m_ObjectHideFlags: 0
@@ -18866,7 +18864,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 233.8, y: -95.420074}
+  m_AnchoredPosition: {x: 233.79999, y: -95.420074}
   m_SizeDelta: {x: 389.5, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1983557452
