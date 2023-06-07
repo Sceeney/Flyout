@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bef5be10e9a745546a95bb1653316a35, type: 3}
   m_Name: Silver
   m_EditorClassIdentifier: 
-  _score: 280
+  _score: 1100
   _reward: 7000
