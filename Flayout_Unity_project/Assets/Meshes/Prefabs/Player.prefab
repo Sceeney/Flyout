@@ -1312,6 +1312,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d409a7e0147d894699ec78db61beaea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mainScript: {fileID: 0}
+  _dropClip: {fileID: 8300000, guid: a6470667b00fcea4da8f875fc679730b, type: 3}
+  _screamClip: {fileID: 8300000, guid: 22aaaeb50a7d4834c9ae04ca9c37d9d7, type: 3}
 --- !u!114 &6698641406864965783
 MonoBehaviour:
   m_ObjectHideFlags: 0
