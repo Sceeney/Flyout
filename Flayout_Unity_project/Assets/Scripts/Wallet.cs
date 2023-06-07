@@ -6,8 +6,9 @@ using YG;
 public class Wallet : MonoBehaviour
 {
     [SerializeField] private CarShop _shop;
+    [SerializeField] private int _money;
 
-    public int Money { get; private set; }
+    public int Money => _money;
 
     public event UnityAction<int> UpdateMoney;
 
@@ -44,14 +45,14 @@ public class Wallet : MonoBehaviour
 
     private void OnDataUpdated()
     {
-        Money = YandexGame.savesData.Money;
+        _money = YandexGame.savesData.Money;
 
         UpdateMoney?.Invoke(Money);
     }
 
     private void OnPurchased(Car car)
     {
-        Money -= car.Price;
+        _money -= car.Price;
 
         UpdateMoney?.Invoke(Money);
     }

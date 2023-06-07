@@ -86,5 +86,5 @@ public class Impulse_and_Mass : MonoBehaviour
 
     private float GetHeight() => transform.position.y;
 
-    private float GetDistance() => transform.position.z;
+    private float GetDistance() => transform.position.z - 100;
 }

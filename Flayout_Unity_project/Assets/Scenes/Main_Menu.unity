@@ -2128,6 +2128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shop: {fileID: 1579245165}
+  _money: 0
 --- !u!4 &351327976
 Transform:
   m_ObjectHideFlags: 0

@@ -71,6 +71,8 @@ public class CarShop : MonoBehaviour
 
     private void OnDataUpdated()
     {
+        //YandexGame.ResetSaveProgress();
+
         for (int i = 0; i < YandexGame.savesData.BuyedCar.Length; i++)
         {
             bool isBuyed = YandexGame.savesData.BuyedCar[i];
