@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 900
     height: 1600
   m_ShowMode: 0
-  m_Title: Game
+  m_Title: Console
   m_RootView: {fileID: 5}
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
@@ -43,7 +43,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Project
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 45
+  controlID: 109
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 173
+  controlID: 185
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 17
+  controlID: 153
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -701,7 +701,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 3.9230387, y: -0.42655137, z: -5.4474955}
     speed: 2
-    m_Value: {x: 3.9230387, y: -0.42655137, z: -5.4474955}
+    m_Value: {x: 0, y: -0.016, z: 0.063}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -754,7 +754,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 5.9506946
     speed: 2
-    m_Value: 5.9506946
+    m_Value: 10
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -811,9 +811,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: fc7b0000
       m_LastClickedID: 0
-      m_ExpandedIDs: 1615fdff6e15fdff8220fdfff822fdfff633fdff5636fdffae36fdffba43fdff2c46fdff6c57fdff0a6efdffea0dfefff81efeffb836feffd840feffc24afeffd255feffe260feffda71feffd282feffd696fefffca1feffe0b4feff9c1dffff9832ffff0845ffff8a7affff647cffff70a9ffffacc9ffffbcd4ffffb4e5ffffacf6ffffc4720000dc720000207400008674000056230200ce270200022b02005c300200ec300200fc340200d436020042380200a2410200324202002cc00400c4cc0400bccd04003cd00400
+      m_ExpandedIDs: 88a0ffff96abffffa4b6ffff9cc7ffff94d8ffff08fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -879,22 +879,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Meshes/Prefabs
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Meshes/Prefabs
   m_LastFoldersGridSize: 16
   m_LastProjectPath: E:\Repos\Flyout_Main\Flayout_Unity_project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 151}
-    m_SelectedIDs: 907b0000
-    m_LastClickedID: 31632
-    m_ExpandedIDs: 000000007e7b0000807b0000827b0000847b0000867b0000887b00008a7b00008c7b00008e7b0000907b0000927b0000947b0000967b0000987b00009a7b00009c7b00009e7b0000a07b0000a27b0000c87b000000ca9a3b
+    scrollPos: {x: 0, y: 39}
+    m_SelectedIDs: fc7b0000
+    m_LastClickedID: 31740
+    m_ExpandedIDs: 000000007e7b0000807b0000827b0000847b0000867b0000887b00008a7b00008c7b00008e7b0000907b0000927b0000947b0000967b0000987b00009a7b00009c7b00009e7b0000a07b000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -922,7 +922,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000007e7b0000807b0000827b0000847b0000867b0000887b00008a7b00008c7b00008e7b0000907b0000927b0000947b0000967b0000987b00009a7b00009c7b00009e7b0000a07b0000a27b0000a47b0000
+    m_ExpandedIDs: 000000007e7b0000807b0000827b0000847b0000867b0000887b00008a7b00008c7b00008e7b0000907b0000927b0000947b0000967b0000987b00009a7b00009c7b00009e7b0000a07b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -953,18 +953,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Wallet
-      m_OriginalName: Wallet
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 7954
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 13}
     m_CreateAssetUtility:

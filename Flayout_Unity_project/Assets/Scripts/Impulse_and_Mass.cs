@@ -36,8 +36,8 @@ public class Impulse_and_Mass : MonoBehaviour
         rb.velocity = (Velocity_Car.vel / 2)+(AIM_Shot.Speed_shoot * Random.Range((ForceShoot -1), (ForceShoot +1)));
         rb.mass = 10f;
 
-        //audioSource.clip = _screamClip;
-        //audioSource.Play();
+        audioSource.clip = _screamClip;
+        audioSource.Play();
 
         ValueGetter height = new(GetHeight);
         ValueGetter distance = new(GetDistance);
@@ -80,8 +80,8 @@ public class Impulse_and_Mass : MonoBehaviour
         rb.angularVelocity = new Vector3(0, 0, 0);
         Trigger = false;
 
-        //audioSource.clip = _dropClip;
-        //audioSource.Play();
+        audioSource.clip = _dropClip;
+        audioSource.Play();
     }
 
     private float GetHeight() => transform.position.y;
