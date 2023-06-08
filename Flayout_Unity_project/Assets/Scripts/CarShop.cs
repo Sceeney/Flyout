@@ -9,10 +9,11 @@ public class CarShop : MonoBehaviour
     [SerializeField] private CarList _cars;
     [SerializeField] private Wallet _wallet;
 
-    public event UnityAction<int> LastSelectedCarIndexChanged;
-    public event UnityAction<Car> Purchased;
-
     private int _lastSelectedCarIndex = 0;
+    private int _currentSelectedCarIndex;
+
+    public event UnityAction<int> DisplayedCarChanged;
+    public event UnityAction<Car> Purchased;
 
     private void OnEnable()
     {
@@ -34,26 +35,35 @@ public class CarShop : MonoBehaviour
 
     public void OnCellClick(int index)
     {
-        if (_cars.Cars[index].IsBuyed)
+        if(_currentSelectedCarIndex == index)
         {
-            Select(index);
-        }
-        else
-        {
-            if (CanPurchase(index))
+            if (_cars.Cars[index].IsBuyed)
             {
-                Purchase(index);
-                Select(index);
+                SelectCar(index);
             }
             else
             {
-                Debug.Log("Purchase impossible");
+                if (CanPurchase(index))
+                {
+                    Purchase(index);
+                    SelectCar(index);
+                }
+                else
+                {
+                    Debug.Log("Purchase impossible");
+                }
             }
+        }
+        else
+        {
+            ShowCar(index);
         }
     }
 
     public void OnDataSaving()
     {
+        SelectCar(_lastSelectedCarIndex);
+
         YandexGame.savesData.LastSelectedCarIndex = _lastSelectedCarIndex;
 
         bool[] temp = new bool[_cars.Cars.Length];
@@ -66,21 +76,23 @@ public class CarShop : MonoBehaviour
     public bool CanPurchase(int index)
     {
         return CheckPossibilityPurchase(index) 
-            && !_cars.Cars[index].IsBuyed;
+            && !_cars.Cars[index].IsBuyed
+            && CheckSelectedCar(index);
     }
 
     private void OnDataUpdated()
     {
-        //YandexGame.ResetSaveProgress();
-
         for (int i = 0; i < YandexGame.savesData.BuyedCar.Length; i++)
         {
             bool isBuyed = YandexGame.savesData.BuyedCar[i];
             if (isBuyed)
                 _cars.Cars[i].Purchase();
         }
-        
-        Select(YandexGame.savesData.LastSelectedCarIndex);
+
+
+        _currentSelectedCarIndex = YandexGame.savesData.LastSelectedCarIndex;
+
+        SelectCar(_currentSelectedCarIndex);
     }
 
     private void Purchase(int index)
@@ -91,14 +103,25 @@ public class CarShop : MonoBehaviour
         Purchased?.Invoke(purchasedCar);
     }
 
-    private void Select(int index)
+    private void ShowCar(int index)
     {
-        _lastSelectedCarIndex = index;
-        LastSelectedCarIndexChanged?.Invoke(_lastSelectedCarIndex);
+        _currentSelectedCarIndex = index;
+        DisplayedCarChanged?.Invoke(_currentSelectedCarIndex);
+    }
+
+    private void SelectCar(int index)
+    {
+        _lastSelectedCarIndex = _currentSelectedCarIndex = index;
+        DisplayedCarChanged?.Invoke(_lastSelectedCarIndex);
     }
 
     private bool CheckPossibilityPurchase(int index)
     {
         return _cars.Cars[index].Price <= _wallet.Money;
+    }
+
+    private bool CheckSelectedCar(int index)
+    {
+        return _currentSelectedCarIndex == index;
     }
 }

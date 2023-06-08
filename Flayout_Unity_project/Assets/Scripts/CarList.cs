@@ -11,15 +11,15 @@ public class CarList : MonoBehaviour
     {
         Cars[0].gameObject.SetActive(true);
 
-        _shop.LastSelectedCarIndexChanged += OnLasrSelectedCarIndexChanged;
+        _shop.DisplayedCarChanged += OnDisplayedCarChanged;
     }
 
     private void OnDisable()
     {
-        _shop.LastSelectedCarIndexChanged -= OnLasrSelectedCarIndexChanged;
+        _shop.DisplayedCarChanged -= OnDisplayedCarChanged;
     }
 
-    private void OnLasrSelectedCarIndexChanged(int index)
+    private void OnDisplayedCarChanged(int index)
     {
         Cars.First(c =>
         c.gameObject.activeSelf == true)
