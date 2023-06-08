@@ -121,6 +121,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     private Medal _medal;
     private bool _isGameOver;
     private bool _isTriggered;
+    private bool _isStartScreenNeeded;
 
     public bool IsShoot { get; private set; }
     public bool IsStartBut { get; private set; }
@@ -274,6 +275,13 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     {
         IsPause = true;
         Time.timeScale = 0.01f;
+
+        if (_startScreen.activeSelf)
+        {
+            _startScreen.SetActive(false);
+            _isStartScreenNeeded = true;
+        }
+
         _pauseScreen.SetActive(true);
     }
 
@@ -281,6 +289,13 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     {
         IsPause = false;
         _pauseScreen.SetActive(false);
+
+        if (_isStartScreenNeeded)
+        {
+            _startScreen.SetActive(true);
+            _isStartScreenNeeded = false;
+        }
+
         Time.timeScale = 1f;
     }
 
@@ -353,6 +368,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
             _textCrash.gameObject.SetActive(true);
             _textTarget.gameObject.SetActive(false);
             _isGameOver = true;
+            ShowRoundInfo();
             Invoke(nameof(Next_round), 1f);
         }
         else
