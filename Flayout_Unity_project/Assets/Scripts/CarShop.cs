@@ -37,26 +37,27 @@ public class CarShop : MonoBehaviour
     {
         if(_currentSelectedCarIndex == index)
         {
-            if (_cars.Cars[index].IsBuyed)
+            if (CanPurchase(index))
             {
+                Purchase(index);
                 SelectCar(index);
             }
             else
             {
-                if (CanPurchase(index))
-                {
-                    Purchase(index);
-                    SelectCar(index);
-                }
-                else
-                {
-                    Debug.Log("Purchase impossible");
-                }
+                Debug.Log("Purchase impossible");
             }
         }
         else
         {
-            ShowCar(index);
+            if (IsBuyed(index))
+            {
+                Debug.Log("Buyed");
+                SelectCar(index);
+            }
+            else
+            {
+                ShowCar(index);
+            }
         }
     }
 
@@ -75,13 +76,15 @@ public class CarShop : MonoBehaviour
 
     public bool CanPurchase(int index)
     {
-        return CheckPossibilityPurchase(index) 
-            && !_cars.Cars[index].IsBuyed
-            && CheckSelectedCar(index);
+        return IsEnoughMoney(index) 
+            && !IsBuyed(index)
+            && IsSelectedCar(index);
     }
 
     private void OnDataUpdated()
     {
+        //YandexGame.ResetSaveProgress();
+
         for (int i = 0; i < YandexGame.savesData.BuyedCar.Length; i++)
         {
             bool isBuyed = YandexGame.savesData.BuyedCar[i];
@@ -93,6 +96,16 @@ public class CarShop : MonoBehaviour
         _currentSelectedCarIndex = YandexGame.savesData.LastSelectedCarIndex;
 
         SelectCar(_currentSelectedCarIndex);
+    }
+
+    public bool IsBuyed(int index)
+    {
+        return _cars.Cars[index].IsBuyed;
+    }
+
+    public bool IsEnoughMoney(int index)
+    {
+        return _cars.Cars[index].Price <= _wallet.Money;
     }
 
     private void Purchase(int index)
@@ -115,12 +128,7 @@ public class CarShop : MonoBehaviour
         DisplayedCarChanged?.Invoke(_lastSelectedCarIndex);
     }
 
-    private bool CheckPossibilityPurchase(int index)
-    {
-        return _cars.Cars[index].Price <= _wallet.Money;
-    }
-
-    private bool CheckSelectedCar(int index)
+    private bool IsSelectedCar(int index)
     {
         return _currentSelectedCarIndex == index;
     }

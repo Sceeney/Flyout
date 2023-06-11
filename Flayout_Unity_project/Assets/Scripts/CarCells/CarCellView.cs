@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class CarCellView : MonoBehaviour
@@ -17,11 +16,8 @@ public class CarCellView : MonoBehaviour
         if (_imgBUY != null)
             _imgBUY.SetActive(false);
 
-        _image = GetComponent<Image>();
-        _image.sprite = _info.Icon;
-
-        if (_priceText != null)
-            _priceText.text = _info.Price.ToString();
+        SetImage();
+        TrySetPriceText();
     }
 
     public void OnPointerClick()
@@ -31,7 +27,7 @@ public class CarCellView : MonoBehaviour
 
     public void OnPointerEnter()
     {
-        if (_imgBUY != null && _shop.CanPurchase(_info.Index))
+        if (_imgBUY != null && !_shop.IsBuyed(_info.Index))
             _imgBUY.SetActive(true);
     }
 
@@ -39,5 +35,36 @@ public class CarCellView : MonoBehaviour
     {
         if (_imgBUY != null && _imgBUY.activeSelf)
             _imgBUY.SetActive(false);
+    }
+
+    private void SetImage()
+    {
+        _image = GetComponent<Image>();
+        _image.sprite = _info.Icon;
+    }
+
+    private void TrySetPriceText()
+    {
+        if (_priceText != null)
+        {
+            _priceText.text = _info.Price.ToString();
+
+            if (_shop.IsBuyed(_info.Index))
+            {
+                _priceText.gameObject.SetActive(false);
+            }
+            else
+            {
+                SetPriceColor();
+            }
+        }
+    }
+
+    private void SetPriceColor()
+    {
+        if (_shop.IsEnoughMoney(_info.Index))
+            _priceText.color = Color.green;
+        else
+            _priceText.color = Color.red;
     }
 }

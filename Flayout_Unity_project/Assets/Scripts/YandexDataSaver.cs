@@ -25,14 +25,14 @@ public class YandexDataSaver : MonoBehaviour
     {
         DataSaving += _carShop.OnDataSaving;
         DataSaving += _wallet.OnDataSaving;
-        YandexGame.onResetProgress += OnResetProgress;
+        //YandexGame.onResetProgress += OnResetProgress;
     }
 
     private void OnDisable()
     {
         DataSaving -= _carShop.OnDataSaving;
         DataSaving -= _wallet.OnDataSaving;
-        YandexGame.onResetProgress -= OnResetProgress;
+        //YandexGame.onResetProgress -= OnResetProgress;
     }
 
     public void Save()
@@ -42,11 +42,16 @@ public class YandexDataSaver : MonoBehaviour
         YandexGame.SaveProgress();
     }
 
-    private void OnResetProgress()
+    public void OnResetProgress()
     {
-        Debug.Log("Reset");
+        YandexGame.ResetSaveProgress();
+
         YandexGame.savesData.Money = 0;
         YandexGame.savesData.LastSelectedCarIndex = 0;
         YandexGame.savesData.BuyedCar = new bool[1] { false };
+
+        YandexGame.SaveProgress();
+
+        Debug.Log("Reset");
     }
 }
