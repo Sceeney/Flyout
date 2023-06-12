@@ -306,7 +306,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     {
         IsPause = false;
 
-        SaveMoney(_medalsInfo[(int)_medal].Reward);
+        SaveMoney();
 
         Time.timeScale = 1f;
         _loadingScreen.SetActive(true);
@@ -314,19 +314,19 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
         _mainMenuLoader.Load();
     }
 
-    private void SaveMoney(int money)
+    public void SaveMoney()
     {
-        YandexGame.savesData.Money += money;
+        YandexGame.savesData.Money += _medalsInfo[(int)_medal].Reward;
 
         YandexGame.SaveProgress();
     }
 
     public void One_more_time()
     {
-        SaveMoney(_medalsInfo[(int)_medal].Reward);
+        SaveMoney();
 
         _medal = Medal.No_medal;
-        _levelLoader.Load(_levelInfo);
+        _levelLoader.Load(new LevelInfo());
     }
 
     private void TryShowShootScreen()
