@@ -16,7 +16,6 @@ public class Audio_Random : MonoBehaviour
         int index = Random.Range(0, _tracks.Length);
         _musicAudioSource.clip = _tracks[index];
         YandexGame.GetDataEvent += GetData;
-        _musicAudioSource.Stop();
         _musicAudioSource.Play();
     }
 
@@ -28,6 +27,7 @@ public class Audio_Random : MonoBehaviour
 
     private void OnDisable()
     {
+        _musicAudioSource.Stop();
         YandexGame.GetDataEvent -= GetData;
     }
 

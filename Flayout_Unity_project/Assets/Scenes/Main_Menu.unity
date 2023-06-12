@@ -35370,7 +35370,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1180459712}
   - component: {fileID: 1180459711}
-  - component: {fileID: 1180459710}
   - component: {fileID: 1180459713}
   m_Layer: 0
   m_Name: Camera Main
@@ -35379,14 +35378,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1180459710
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1180459709}
-  m_Enabled: 1
 --- !u!20 &1180459711
 Camera:
   m_ObjectHideFlags: 0
@@ -40240,6 +40231,7 @@ GameObject:
   - component: {fileID: 2104192141}
   - component: {fileID: 2104192144}
   - component: {fileID: 2104192145}
+  - component: {fileID: 2104192146}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -40380,6 +40372,14 @@ MonoBehaviour:
   _sliderMusicVolume: {fileID: 677050763976648094}
   _sliderMainVolume: {fileID: 677050763857265169}
   _musicAudioSource: {fileID: 2104192144}
+--- !u!81 &2104192146
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104192139}
+  m_Enabled: 1
 --- !u!1 &2119723432
 GameObject:
   m_ObjectHideFlags: 0

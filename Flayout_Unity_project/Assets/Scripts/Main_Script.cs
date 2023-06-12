@@ -109,13 +109,6 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     [SerializeField] private List<MedalInfo> _medalsInfo;
     [SerializeField] private List<GameObject> _medals;
 
-    [Header("Звук")]
-    [SerializeField] private Slider _mainAudioSlider;
-    [SerializeField] private Slider _stadiumAudioSlider;
-    [SerializeField] private Slider _musicVolumeSlider;
-    [SerializeField] private AudioSource _stadiumAudioSource;
-    [SerializeField] private AudioSource _musicAudioSource;
-
     private LevelInfo _levelInfo;
     private float _totalScore;
     private Medal _medal;
@@ -152,8 +145,6 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
     private void OnEnable()
     {
-        YandexGame.GetDataEvent += GetData;
-
         AIM_Shot.Crashed += OnCrashed;
         AIM_Shot.TimeHasExpired += TimeHasExpired;
 
@@ -163,8 +154,6 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
     private void OnDisable()
     {
-        YandexGame.GetDataEvent -= GetData;
-
         AIM_Shot.Crashed -= OnCrashed;
         AIM_Shot.TimeHasExpired -= TimeHasExpired;
 
@@ -190,13 +179,8 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
     private void Start()
     {
-        _musicAudioSource = GetComponent<AudioSource>();
-
         _mainMenuLoader.Init(_loadingScreen, _loadingProgressBar);
         _levelLoader.Init(_loadingScreen, _loadingProgressBar);
-
-        if (YandexGame.SDKEnabled)
-            GetData();
 
         _textCurrentRound.text = _levelInfo.CurrentRound.ToString();
         _textGoldScore.text = _medalsInfo[(int)Medal.Gold].Score.ToString();
@@ -225,12 +209,6 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
         }
 
         TryShowShootScreen();
-    }
-
-    private void GetData()
-    {
-        _musicVolumeSlider.value = YandexGame.savesData.MusicVolume;
-        _mainAudioSlider.value = YandexGame.savesData.MainVolume;
     }
 
     public void OnSceneLoaded(LevelInfo argument)
@@ -331,7 +309,6 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
         SaveMoney(_medalsInfo[(int)_medal].Reward);
 
         Time.timeScale = 1f;
-        Audio_Listener.Listener = 0f;
         _loadingScreen.SetActive(true);
 
         _mainMenuLoader.Load();
@@ -473,16 +450,5 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     {
         _shootScreen.SetActive(false);
         _textShootAngle.text = "0";
-    }
-
-    public void OnMusicVolumeChanged()
-    {
-        _musicAudioSource.volume = _musicVolumeSlider.value;
-        YandexGame.savesData.MusicVolume = _musicVolumeSlider.value;
-    }
-    public void OnMainVolumeChanged()
-    {
-        Audio_Listener.Listener = _mainAudioSlider.value;
-        YandexGame.savesData.MainVolume = _mainAudioSlider.value;
     }
 }

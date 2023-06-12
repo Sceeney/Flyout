@@ -25,14 +25,12 @@ public class YandexDataSaver : MonoBehaviour
     {
         DataSaving += _carShop.OnDataSaving;
         DataSaving += _wallet.OnDataSaving;
-        //YandexGame.onResetProgress += OnResetProgress;
     }
 
     private void OnDisable()
     {
         DataSaving -= _carShop.OnDataSaving;
         DataSaving -= _wallet.OnDataSaving;
-        //YandexGame.onResetProgress -= OnResetProgress;
     }
 
     public void Save()
