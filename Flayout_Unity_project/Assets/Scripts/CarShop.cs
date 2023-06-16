@@ -8,7 +8,8 @@ public class CarShop : MonoBehaviour
 {
     [SerializeField] private CarList _cars;
     [SerializeField] private Wallet _wallet;
-
+    [SerializeField] private GameObject[] _characteristicsCar;
+ 
     private int _lastSelectedCarIndex = 0;
     private int _currentSelectedCarIndex;
 
@@ -81,6 +82,14 @@ public class CarShop : MonoBehaviour
             && IsSelectedCar(index);
     }
 
+    private void ShowCharacteristic(int index)
+    {
+        _characteristicsCar.First(c => c.activeSelf == true)
+            .SetActive(false);
+
+        _characteristicsCar[index].SetActive(true);
+    }
+
     private void OnDataUpdated()
     {
         //YandexGame.ResetSaveProgress();
@@ -120,12 +129,14 @@ public class CarShop : MonoBehaviour
     {
         _currentSelectedCarIndex = index;
         DisplayedCarChanged?.Invoke(_currentSelectedCarIndex);
+        ShowCharacteristic(index);
     }
 
     private void SelectCar(int index)
     {
         _lastSelectedCarIndex = _currentSelectedCarIndex = index;
         DisplayedCarChanged?.Invoke(_lastSelectedCarIndex);
+        ShowCharacteristic(index);
     }
 
     private bool IsSelectedCar(int index)

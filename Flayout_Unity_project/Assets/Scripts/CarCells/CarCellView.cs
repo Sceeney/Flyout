@@ -8,7 +8,7 @@ public class CarCellView : MonoBehaviour
     [SerializeField] private CarShop _shop;
     [SerializeField] private GameObject _imgBUY;
     [SerializeField] private TMP_Text _priceText;
-
+ 
     private Image _image;
 
     private void Awake()

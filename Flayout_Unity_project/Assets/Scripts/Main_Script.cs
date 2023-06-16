@@ -13,7 +13,7 @@ using System;
 public class LevelInfo
 {
     [Header("Реклама")]
-    [SerializeField] public ADViewer AdViewer;
+    [SerializeField] public ADViewer AdViewer = new();
 
     public int CurrentRound { get; private set; }
     public float[] RoundsScore { get; private set; }
@@ -333,7 +333,18 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
         Time.timeScale = 1f;
         _loadingScreen.SetActive(true);
 
+        TryShowAD();
+
         _mainMenuLoader.Load();
+    }
+
+    private void TryShowAD()
+    {
+        if(_levelInfo.CurrentRound == 3 && 
+            _levelInfo.AdViewer.CurrentNumberRaces + 1 >= 2)
+        {
+            YandexGame.FullscreenShow();
+        }
     }
 
     public void SaveMoney()

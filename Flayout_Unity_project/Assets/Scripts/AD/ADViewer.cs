@@ -9,32 +9,35 @@ public class ADViewer
     [SerializeField] private int _requiredNumberRacesToDisplayADS = 2;
     [SerializeField] private int _requiredNumderRestartsToDisplayADS = 2;
 
-    public int CurrentNumberRaces { get; private set; }
-    public int CurrentNumberRestarts { get; private set; }
+    [SerializeField] private int _currentNumberRaces;
+    [SerializeField] private int _currentNumberRestarts;
+
+    public int CurrentNumberRaces => _currentNumberRaces;
+    public int CurrentNumberRestarts => _currentNumberRestarts;
 
     public void UpdateNumderRaces()
     {
-        CurrentNumberRaces++;
+        _currentNumberRaces++;
         TryShowADS();
     }
 
     public void UpdateNumberRestarts()
     {
-        CurrentNumberRestarts++;
+        _currentNumberRestarts++;
         TryShowADS();
     }
 
     private void TryShowADS()
     {
-        if (CurrentNumberRaces >= _requiredNumberRacesToDisplayADS)
+        if (_currentNumberRaces >= _requiredNumberRacesToDisplayADS)
         {
-            YandexGame.RewVideoShow(0);
-            CurrentNumberRaces = 0;
+            YandexGame.FullscreenShow();
+            _currentNumberRaces = 0;
         }
-        else if (CurrentNumberRestarts >= _requiredNumderRestartsToDisplayADS)
+        else if (_currentNumberRestarts >= _requiredNumderRestartsToDisplayADS)
         {
-            YandexGame.RewVideoShow(0);
-            CurrentNumberRestarts = 0;
+            YandexGame.FullscreenShow();
+            _currentNumberRestarts = 0;
         }
     }
 }
