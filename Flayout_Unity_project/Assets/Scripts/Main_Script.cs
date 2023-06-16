@@ -9,8 +9,12 @@ using System.Linq;
 using IJunior.TypedScenes;
 using System;
 
+[Serializable]
 public class LevelInfo
 {
+    [Header("Реклама")]
+    [SerializeField] public ADViewer AdViewer;
+
     public int CurrentRound { get; private set; }
     public float[] RoundsScore { get; private set; }
 
@@ -53,6 +57,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 {
     [Header("Выстрел")]
     [SerializeField, Range(1f, 30f)] private float _forceShoot = 10f;
+
     [Space(20)]
 
     [Header("Необходимые компоненты")]
@@ -61,8 +66,9 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
     [Space(20)]
 
-    [Header("Загрузчик уровня ")]
+    [Header("Уровень")]
     [SerializeField] private SceneLoader _levelLoader;
+    [SerializeField] private LevelInfo _levelInfo;
 
     [Space(20)]
 
@@ -108,8 +114,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     [Header("Медали")]
     [SerializeField] private List<MedalInfo> _medalsInfo;
     [SerializeField] private List<GameObject> _medals;
-
-    private LevelInfo _levelInfo;
+    
     private float _totalScore;
     private Medal _medal;
     private bool _isGameOver;
@@ -150,6 +155,8 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
         _impulse_And_Mass.TriggerOut += OnTriggerOUT;
         _impulse_And_Mass.TriggerWire += OnTriggerWire;
+
+        YandexGame.RewardVideoEvent += OnRestartRoundAdClose;
     }
 
     private void OnDisable()
@@ -159,6 +166,8 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
         _impulse_And_Mass.TriggerOut += OnTriggerOUT;
         _impulse_And_Mass.TriggerWire += OnTriggerWire;
+
+        YandexGame.RewardVideoEvent -= OnRestartRoundAdClose;
     }
 
     private void Awake()
@@ -279,13 +288,26 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
     public void RestartLevel()
     {
+        var ad = _levelInfo.AdViewer;
+
         _levelInfo = new LevelInfo();
+
+        _levelInfo.AdViewer = ad;
+
+        _levelInfo.AdViewer.UpdateNumberRestarts();
+
         _levelLoader.Load(_levelInfo);
     }
 
     public void RestartRound()
     {
-        _levelLoader.Load(_levelInfo);
+        YandexGame.RewVideoShow(1);
+    }
+
+    public void OnRestartRoundAdClose(int id)
+    {
+        if (id == 1)
+            _levelLoader.Load(_levelInfo);
     }
 
     public void StartButtonClick()
@@ -326,7 +348,16 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
         SaveMoney();
 
         _medal = Medal.No_medal;
-        _levelLoader.Load(new LevelInfo());
+
+        var ad = _levelInfo.AdViewer;
+
+        _levelInfo = new LevelInfo();
+
+        _levelInfo.AdViewer = ad;
+
+        _levelInfo.AdViewer.UpdateNumderRaces();
+
+        _levelLoader.Load(_levelInfo);
     }
 
     private void TryShowShootScreen()

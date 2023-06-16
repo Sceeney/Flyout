@@ -2254,6 +2254,10 @@ MonoBehaviour:
   _impulse_And_Mass: {fileID: 1237924642}
   _player: {fileID: 1237924641}
   _levelLoader: {fileID: 103676136}
+  _levelInfo:
+    AdViewer:
+      _requiredNumberRacesToDisplayADS: 2
+      _requiredNumderRestartsToDisplayADS: 2
   _mainMenuLoader: {fileID: 103676135}
   _loadingScreen: {fileID: 726279374}
   _loadingProgressBar: {fileID: 535159615}
@@ -46735,7 +46739,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018099606}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1001 &2018876899
 PrefabInstance:
   m_ObjectHideFlags: 0

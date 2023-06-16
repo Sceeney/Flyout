@@ -1,10 +1,12 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using YG;
 
-public class ADViewer : MonoBehaviour
+[Serializable]
+public class ADViewer
 {
-    [SerializeField] private int _requiredNumberRacesToDisplayADS = 3;
+    [SerializeField] private int _requiredNumberRacesToDisplayADS = 2;
     [SerializeField] private int _requiredNumderRestartsToDisplayADS = 2;
 
     public int CurrentNumberRaces { get; private set; }
@@ -26,12 +28,12 @@ public class ADViewer : MonoBehaviour
     {
         if (CurrentNumberRaces >= _requiredNumberRacesToDisplayADS)
         {
-            YandexGame.FullscreenShow();
+            YandexGame.RewVideoShow(0);
             CurrentNumberRaces = 0;
         }
         else if (CurrentNumberRestarts >= _requiredNumderRestartsToDisplayADS)
         {
-            YandexGame.FullscreenShow();
+            YandexGame.RewVideoShow(0);
             CurrentNumberRestarts = 0;
         }
     }
