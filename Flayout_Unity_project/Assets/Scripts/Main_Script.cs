@@ -155,8 +155,6 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
         _impulse_And_Mass.TriggerOut += OnTriggerOUT;
         _impulse_And_Mass.TriggerWire += OnTriggerWire;
-
-        YandexGame.RewardVideoEvent += OnRestartRoundAdClose;
     }
 
     private void OnDisable()
@@ -166,8 +164,6 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
         _impulse_And_Mass.TriggerOut += OnTriggerOUT;
         _impulse_And_Mass.TriggerWire += OnTriggerWire;
-
-        YandexGame.RewardVideoEvent -= OnRestartRoundAdClose;
     }
 
     private void Awake()
@@ -302,13 +298,8 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
     public void RestartRound()
     {
-        YandexGame.RewVideoShow(1);
-    }
-
-    public void OnRestartRoundAdClose(int id)
-    {
-        if (id == 1)
-            _levelLoader.Load(_levelInfo);
+        YandexGame.FullscreenShow();
+        _levelLoader.Load(_levelInfo);
     }
 
     public void StartButtonClick()
