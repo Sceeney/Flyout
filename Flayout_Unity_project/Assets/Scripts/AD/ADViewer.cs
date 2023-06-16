@@ -31,7 +31,7 @@ public class ADViewer
     {
         if (_currentNumberRaces >= _requiredNumberRacesToDisplayADS)
         {
-            YandexGame.FullscreenShow();
+            YandexGame.RewVideoShow(0);
             _currentNumberRaces = 0;
         }
         else if (_currentNumberRestarts >= _requiredNumderRestartsToDisplayADS)

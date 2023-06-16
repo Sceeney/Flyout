@@ -253,8 +253,9 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     IEnumerator Timer()
     {
         yield return _player.gameObject.activeSelf == true;
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(15f);
         Debug.Log("TIMER");
+        ShowRoundInfo();
         Next_round();
     }
 
