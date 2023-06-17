@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using YG;
 
@@ -27,16 +26,26 @@ public class ADViewer
         TryShowADS();
     }
 
+    public void ShowAD()
+    {
+        YandexGame.FullscreenShow();
+    }
+
+    public void ShowRewAD(int id)
+    {
+        YandexGame.RewVideoShow(id);
+    }
+
     private void TryShowADS()
     {
         if (_currentNumberRaces >= _requiredNumberRacesToDisplayADS)
         {
-            YandexGame.RewVideoShow(0);
+             ShowRewAD(0);
             _currentNumberRaces = 0;
         }
         else if (_currentNumberRestarts >= _requiredNumderRestartsToDisplayADS)
         {
-            YandexGame.FullscreenShow();
+            ShowAD();
             _currentNumberRestarts = 0;
         }
     }

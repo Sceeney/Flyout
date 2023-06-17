@@ -298,7 +298,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
     public void RestartRound()
     {
-        YandexGame.FullscreenShow();
+        _levelInfo.AdViewer.ShowAD();
         _levelLoader.Load(_levelInfo);
     }
 
@@ -335,7 +335,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
         if(_levelInfo.CurrentRound == 3 && 
             _levelInfo.AdViewer.CurrentNumberRaces + 1 >= 2)
         {
-            YandexGame.FullscreenShow();
+            _levelInfo.AdViewer.ShowAD();
         }
     }
 
