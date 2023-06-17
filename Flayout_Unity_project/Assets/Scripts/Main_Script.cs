@@ -298,7 +298,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
     public void RestartRound()
     {
-        _levelInfo.AdViewer.ShowAD();
+        _levelInfo.AdViewer.ShowRewAD(0);
         _levelLoader.Load(_levelInfo);
     }
 
@@ -332,8 +332,10 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
     private void TryShowAD()
     {
-        if(_levelInfo.CurrentRound == 3 && 
-            _levelInfo.AdViewer.CurrentNumberRaces + 1 >= 2)
+        int needRound = 3;
+
+        if(_levelInfo.CurrentRound == needRound && 
+            _levelInfo.AdViewer.CurrentNumberRaces + 1 >= _levelInfo.AdViewer.RequiredNumberRacesToDisplayADS)
         {
             _levelInfo.AdViewer.ShowAD();
         }

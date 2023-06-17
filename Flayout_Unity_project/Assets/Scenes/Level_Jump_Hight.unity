@@ -2256,7 +2256,7 @@ MonoBehaviour:
   _levelLoader: {fileID: 103676136}
   _levelInfo:
     AdViewer:
-      _requiredNumberRacesToDisplayADS: 2
+      _requiredNumberRacesToDisplayADS: 3
       _requiredNumderRestartsToDisplayADS: 2
       _currentNumberRaces: 0
       _currentNumberRestarts: 0

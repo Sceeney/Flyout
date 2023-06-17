@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using UnityEngine;
 using YG;
 
@@ -8,9 +9,12 @@ public class ADViewer
     [SerializeField] private int _requiredNumberRacesToDisplayADS = 2;
     [SerializeField] private int _requiredNumderRestartsToDisplayADS = 2;
 
+    
     [SerializeField] private int _currentNumberRaces;
     [SerializeField] private int _currentNumberRestarts;
 
+    public int RequiredNumberRacesToDisplayADS => _requiredNumberRacesToDisplayADS;
+    public int RequiredNumderRestartsToDisplayADS => _requiredNumderRestartsToDisplayADS;
     public int CurrentNumberRaces => _currentNumberRaces;
     public int CurrentNumberRestarts => _currentNumberRestarts;
 
