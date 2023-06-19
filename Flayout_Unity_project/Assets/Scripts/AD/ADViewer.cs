@@ -49,7 +49,8 @@ public class ADViewer
         }
         else if (_currentNumberRestarts >= _requiredNumderRestartsToDisplayADS)
         {
-            ShowAD();
+            //ShowAD();
+             ShowRewAD(0);
             _currentNumberRestarts = 0;
         }
     }
