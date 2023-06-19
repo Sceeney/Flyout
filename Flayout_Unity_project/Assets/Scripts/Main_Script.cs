@@ -120,6 +120,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     private bool _isGameOver;
     private bool _isTriggered;
     private bool _isStartScreenNeeded;
+    private Coroutine _shootInfoDisplayCoroutine;
 
     public bool IsShoot { get; private set; }
     public bool IsStartBut { get; private set; }
@@ -225,7 +226,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     {
         IsShoot = true;
         IsShootInfoDisplay = true;
-        StartCoroutine(ShootInfoDisplay());
+        _shootInfoDisplayCoroutine = StartCoroutine(ShootInfoDisplay());
         StartCoroutine(Timer());
     }
 
@@ -233,15 +234,12 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     {
         yield return _player.gameObject.activeSelf == true;
 
-        do
+        while (IsShootInfoDisplay == true)
         {
             _textCurrentScore.text = CurrentScore.ToString("0.00");
+            WriteRoundInfo();
             yield return null;
         }
-        while (IsShootInfoDisplay == true && _isTriggered == false && _isGameOver == false);
-
-        _levelInfo.SetRoundScore(_levelInfo.CurrentRound - 1,
-                CurrentScore);
     }
 
     IEnumerator Timer()
@@ -400,14 +398,12 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     private void OnTriggerOUT()
     {
         _isGameOver = true;
-        _isTriggered = true;
         ShowRoundInfo();
         Invoke(nameof(Next_round), 0.1f);
     }
 
     private void OnTriggerWire()
     {
-        _isTriggered = true;
         ShowRoundInfo();
         Invoke(nameof(Next_round), 2f);
     }
@@ -422,8 +418,17 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
         CalculateAndShowTotalScore();
     }
 
+    private void WriteRoundInfo()
+    {
+        _levelInfo.SetRoundScore(_levelInfo.CurrentRound - 1,
+                CurrentScore);
+    }
+
     private void ShowRoundInfo()
     {
+        StopCoroutine(_shootInfoDisplayCoroutine);
+        WriteRoundInfo();
+
         for (int i = 0; i < _levelInfo.CurrentRound; i++)
         {
             _roundsInfo[i].gameObject.SetActive(true);
