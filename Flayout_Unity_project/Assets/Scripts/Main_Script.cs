@@ -233,17 +233,15 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     {
         yield return _player.gameObject.activeSelf == true;
 
-        for (int i = 0; i >= 0; i++)
+        do
         {
-            if (IsShootInfoDisplay == true && _isTriggered == false)
-            {
-                _textCurrentScore.text = CurrentScore.ToString("0.00");
-                _levelInfo.SetRoundScore(_levelInfo.CurrentRound - 1,
-                    CurrentScore);
-                yield return null;
-            }
-            else yield break;
+            _textCurrentScore.text = CurrentScore.ToString("0.00");
+            yield return null;
         }
+        while (IsShootInfoDisplay == true && _isTriggered == false && _isGameOver == false);
+
+        _levelInfo.SetRoundScore(_levelInfo.CurrentRound - 1,
+                CurrentScore);
     }
 
     IEnumerator Timer()
