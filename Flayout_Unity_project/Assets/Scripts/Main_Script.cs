@@ -401,6 +401,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
     private void OnTriggerOUT()
     {
+        _isGameOver = true;
         _isTriggered = true;
         ShowRoundInfo();
         Invoke(nameof(Next_round), 0.1f);
