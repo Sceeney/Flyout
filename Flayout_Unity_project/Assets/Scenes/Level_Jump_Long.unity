@@ -1260,12 +1260,6 @@ MonoBehaviour:
   _impulse_And_Mass: {fileID: 1952161566}
   _player: {fileID: 1952161565}
   _levelLoader: {fileID: 103676136}
-  _levelInfo:
-    AdViewer:
-      _requiredNumberRacesToDisplayADS: 3
-      _requiredNumderRestartsToDisplayADS: 3
-      _currentNumberRaces: 0
-      _currentNumberRestarts: 0
   _mainMenuLoader: {fileID: 103676135}
   _loadingScreen: {fileID: 726279374}
   _loadingProgressBar: {fileID: 535159615}
@@ -1461,6 +1455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e98430a33bd78d744be39d21cc15fe69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _adInfo: {fileID: 11400000, guid: 5530561660957b746b5b73ce6b772e2b, type: 2}
 --- !u!1 &103756462
 GameObject:
   m_ObjectHideFlags: 0

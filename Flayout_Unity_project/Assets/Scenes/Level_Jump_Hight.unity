@@ -2254,12 +2254,6 @@ MonoBehaviour:
   _impulse_And_Mass: {fileID: 1237924642}
   _player: {fileID: 1237924641}
   _levelLoader: {fileID: 103676136}
-  _levelInfo:
-    AdViewer:
-      _requiredNumberRacesToDisplayADS: 3
-      _requiredNumderRestartsToDisplayADS: 3
-      _currentNumberRaces: 0
-      _currentNumberRestarts: 0
   _mainMenuLoader: {fileID: 103676135}
   _loadingScreen: {fileID: 726279374}
   _loadingProgressBar: {fileID: 535159615}
@@ -2338,6 +2332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec462c1cfa06de4abc3aa73e43aa9a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _adInfo: {fileID: 11400000, guid: 5530561660957b746b5b73ce6b772e2b, type: 2}
 --- !u!114 &103676137
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,17 +9,15 @@ using System.Linq;
 using IJunior.TypedScenes;
 using System;
 
-[Serializable]
 public class LevelInfo
 {
-    [Header("Реклама")]
-    [SerializeField] public ADViewer AdViewer = new();
-
+    public ADViewer AdViewer { get; private set; }
     public int CurrentRound { get; private set; }
     public float[] RoundsScore { get; private set; }
 
-    public LevelInfo()
+    public LevelInfo(ADViewer adViewer)
     {
+        AdViewer = adViewer;
         CurrentRound = 1;
         RoundsScore = new float[] { 0, 0, 0};
     }
@@ -68,7 +66,6 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
     [Header("Уровень")]
     [SerializeField] private SceneLoader _levelLoader;
-    [SerializeField] private LevelInfo _levelInfo;
 
     [Space(20)]
 
@@ -114,7 +111,8 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     [Header("Медали")]
     [SerializeField] private List<MedalInfo> _medalsInfo;
     [SerializeField] private List<GameObject> _medals;
-    
+
+    private LevelInfo _levelInfo;
     private float _totalScore;
     private Medal _medal;
     private bool _isGameOver;
@@ -194,6 +192,11 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
         _textBronzeScore.text = _medalsInfo[(int)Medal.Bronze].Score.ToString();
 
         _pauseToggle.gameObject.SetActive(false);
+
+        Debug.Log("///////////////////////////");
+        Debug.Log(_levelInfo.AdViewer.RequiredNumberRacesToDisplayADS);
+        Debug.Log(_levelInfo.AdViewer.RequiredNumderRestartsToDisplayADS);
+        Debug.Log("///////////////////////////");
     }
 
     private void Update()
@@ -283,9 +286,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
     {
         var ad = _levelInfo.AdViewer;
 
-        _levelInfo = new LevelInfo();
-
-        _levelInfo.AdViewer = ad;
+        _levelInfo = new LevelInfo(ad);
 
         _levelInfo.AdViewer.UpdateNumberRestarts();
 
@@ -352,9 +353,7 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
         var ad = _levelInfo.AdViewer;
 
-        _levelInfo = new LevelInfo();
-
-        _levelInfo.AdViewer = ad;
+        _levelInfo = new LevelInfo(ad);
 
         _levelInfo.AdViewer.UpdateNumderRaces();
 

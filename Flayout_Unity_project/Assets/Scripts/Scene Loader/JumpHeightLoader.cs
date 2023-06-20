@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class JumpHeightLoader : SceneLoader
 {
+    [SerializeField] private ADInfo _adInfo;
+
     public override Value LevelID => Value.Height;
 
     protected override IEnumerator Load_async_scene_menu()
     {
         IsDoneLoading = false;
 
-        AsyncOperation asyncLoad = Level_Jump_Hight.LoadAsync(new LevelInfo());
+        AsyncOperation asyncLoad = Level_Jump_Hight.LoadAsync(new LevelInfo(new ADViewer(_adInfo)));
 
         while (!asyncLoad.isDone)
         {
