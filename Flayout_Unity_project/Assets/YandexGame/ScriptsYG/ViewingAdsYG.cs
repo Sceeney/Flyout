@@ -73,7 +73,7 @@ namespace YG
             if (!start)
             {
                 start = true;
-                //audioPauseOnAd = AudioListener.pause;
+                audioPauseOnAd = AudioListener.pause;
                 timeScaleOnAd = Time.timeScale;
                 cursorVisibleOnAd = Cursor.visible;
                 cursorLockModeOnAd = Cursor.lockState;
@@ -107,20 +107,20 @@ namespace YG
             {
                 if (pauseType == PauseType.AudioPause || pauseType == PauseType.All)
                 {
-                    //if (pauseMethod == PauseMethod.CustomState)
-                    //{
-                    //    if (pause) AudioListener.pause = true;
-                    //    else AudioListener.pause = closingADValues.audioPause;
-                    //}
-                    //else
-                    //{
-                    //    if (pause)
-                    //    {
-                    //        audioPauseOnAd = AudioListener.pause;
-                    //        AudioListener.pause = true;
-                    //    }
-                    //    else AudioListener.pause = audioPauseOnAd;
-                    //}
+                    if (pauseMethod == PauseMethod.CustomState)
+                    {
+                        if (pause) AudioListener.pause = true;
+                        else AudioListener.pause = closingADValues.audioPause;
+                    }
+                    else
+                    {
+                        if (pause)
+                        {
+                            audioPauseOnAd = AudioListener.pause;
+                            AudioListener.pause = true;
+                        }
+                        else AudioListener.pause = audioPauseOnAd;
+                    }
                 }
 
                 if (pauseType == PauseType.TimeScalePause || pauseType == PauseType.All)

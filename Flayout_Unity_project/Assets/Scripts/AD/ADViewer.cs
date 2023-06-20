@@ -6,8 +6,8 @@ using YG;
 [Serializable]
 public class ADViewer
 {
-    [SerializeField] private int _requiredNumberRacesToDisplayADS = 2;
-    [SerializeField] private int _requiredNumderRestartsToDisplayADS = 2;
+    [SerializeField] private int _requiredNumberRacesToDisplayADS;
+    [SerializeField] private int _requiredNumderRestartsToDisplayADS;
 
     
     [SerializeField] private int _currentNumberRaces;
