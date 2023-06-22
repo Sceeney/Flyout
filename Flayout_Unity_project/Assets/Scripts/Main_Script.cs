@@ -425,7 +425,9 @@ public class Main_Script : MonoBehaviour, ISceneLoadHandler<LevelInfo>
 
     private void ShowRoundInfo()
     {
-        StopCoroutine(_shootInfoDisplayCoroutine);
+        if (IsShootInfoDisplay)
+            StopCoroutine(_shootInfoDisplayCoroutine);
+
         WriteRoundInfo();
 
         for (int i = 0; i < _levelInfo.CurrentRound; i++)
