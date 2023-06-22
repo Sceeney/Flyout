@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7bc05fa4b2892f4ab55fca28577dd0e, type: 3}
   m_Name: LevelAD
   m_EditorClassIdentifier: 
-  _requireRaces: 3
-  _requireRestarts: 3
+  _requireRaces: 2
+  _requireRestarts: 2
