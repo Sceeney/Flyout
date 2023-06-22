@@ -125,7 +125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c4842da3f682ce4a9ed3310346acc58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _main_script: {fileID: 0}
   Player: {fileID: 0}
+  ShootPoint: {fileID: 0}
   Camera_Car: {fileID: 0}
   Camera_Player: {fileID: 0}
   Target_AIM: {fileID: 1560480740826630962}
@@ -650,6 +652,7 @@ MonoBehaviour:
   highBeamHeadLightsOn: 0
   indicatorsOn: 0
   indicatorTimer: 0
+  Main_Script: {fileID: 0}
   useDamage: 0
   deformableMeshFilters: []
   randomizeVertices: 1
@@ -1507,7 +1510,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c5e8dde17794b414eb2bdc9c9e8e945b, type: 2}
+  - {fileID: 2100000, guid: d1fba108965a42f488aef9f054ab9503, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
