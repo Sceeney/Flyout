@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 public class Localization_IMG : MonoBehaviour
 {
@@ -25,5 +26,8 @@ public class Localization_IMG : MonoBehaviour
         {
             ImgOBJ.sprite = _en_IMG;
         }
+
+        
+        string s = YandexGame.Instance.LanguageYG;
     }
 }
