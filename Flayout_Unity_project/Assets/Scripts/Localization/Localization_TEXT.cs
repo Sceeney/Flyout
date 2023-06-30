@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using YG;
 
 public class Localization_TEXT : MonoBehaviour
 {
@@ -10,11 +11,12 @@ public class Localization_TEXT : MonoBehaviour
 
     void Start()
     {
-        if (Language.Instance.CurrentLanguage == "en")
+        string s = YandexGame.Instance.LanguageYG;
+        if (YandexGame.Instance.LanguageYG == "en")
         {
             GetComponent<TextMeshProUGUI>().text = _en;
         }
-        else if (Language.Instance.CurrentLanguage == "ru")
+        else if (YandexGame.Instance.LanguageYG == "ru")
         {
             GetComponent<TextMeshProUGUI>().text = _ru;
         }
