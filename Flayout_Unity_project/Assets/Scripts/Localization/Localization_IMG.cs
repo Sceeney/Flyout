@@ -13,21 +13,26 @@ public class Localization_IMG : MonoBehaviour
     void Start()
     {
         ImgOBJ = GetComponent <Image>();
-        string s = YandexGame.Instance.LanguageYG;
-        
-        if (YandexGame.Instance.LanguageYG == "en")
+
+    Invoke("Lang", 0.15f);
+    }
+
+    void Lang()
+    {
+        if (Language.Instance.CurrentLanguage == "en")
         {
+            print("en");
             ImgOBJ.sprite = _en_IMG;
         }
-        else if (YandexGame.Instance.LanguageYG == "ru")
+        else if (Language.Instance.CurrentLanguage == "ru")
         {
+            print("ru");
             ImgOBJ.sprite = _ru_IMG;
         }
         else
         {
+            print("else");
             ImgOBJ.sprite = _en_IMG;
         }
-
-        
     }
 }

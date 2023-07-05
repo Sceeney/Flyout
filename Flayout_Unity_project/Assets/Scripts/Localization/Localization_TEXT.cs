@@ -11,12 +11,16 @@ public class Localization_TEXT : MonoBehaviour
 
     void Start()
     {
-        string s = YandexGame.Instance.LanguageYG;
-        if (YandexGame.Instance.LanguageYG == "en")
+        Invoke("Lang", 0.15f);
+    }
+
+    void Lang()
+    {
+        if (Language.Instance.CurrentLanguage == "en")
         {
             GetComponent<TextMeshProUGUI>().text = _en;
         }
-        else if (YandexGame.Instance.LanguageYG == "ru")
+        else if (Language.Instance.CurrentLanguage == "ru")
         {
             GetComponent<TextMeshProUGUI>().text = _ru;
         }

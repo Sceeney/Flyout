@@ -85,6 +85,7 @@ namespace YG
         #region Methods
         private void Awake()
         {
+            //print(LanguageYG);
             pathSaves = Application.dataPath + "/YandexGame/WorkingData/saveyg.yg";
             transform.SetParent(null);
             gameObject.name = "YandexGame";
