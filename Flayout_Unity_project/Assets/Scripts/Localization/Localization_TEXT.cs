@@ -9,18 +9,31 @@ public class Localization_TEXT : MonoBehaviour
     [SerializeField] string _en;
     [SerializeField] string _ru;
 
-    void Start()
+    private void OnEnable()
     {
-        Invoke("Lang", 0.15f);
+        YandexGame.GetDataEvent += OnDataUpdated;
     }
 
-    void Lang()
+    private void Start()
     {
-        if (Language.Instance.CurrentLanguage == "en")
+        if (YandexGame.SDKEnabled == true)
+        {
+            OnDataUpdated();
+        }
+    }
+
+    private void OnDisable()
+    {
+        YandexGame.GetDataEvent -= OnDataUpdated;
+    }
+
+    void OnDataUpdated()
+    {
+        if (YandexGame.Instance.LanguageYG == "en")
         {
             GetComponent<TextMeshProUGUI>().text = _en;
         }
-        else if (Language.Instance.CurrentLanguage == "ru")
+        else if (YandexGame.Instance.LanguageYG == "ru")
         {
             GetComponent<TextMeshProUGUI>().text = _ru;
         }

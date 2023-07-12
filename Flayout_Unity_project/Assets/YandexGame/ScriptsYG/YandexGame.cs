@@ -17,7 +17,6 @@ namespace YG
         public string LanguageYG;
         public YandexGame _instance;
 
-        
         public InfoYG infoYG;
         [Tooltip("Объект YandexGame не будет удаляться при смене сцены. При выборе опции singleton, объект YandexGame необходимо поместить только на одну сцену, которая первая загружается при запуске игры.\n\n •  При выборе опции singleton, полноэкранная реклама не будет автоматически показываться при загрузке новой сцены, даже при выборе параметра Ad When Loading Scene = true в InfoYG.")]
         public bool singleton;
@@ -85,7 +84,8 @@ namespace YG
         #region Methods
         private void Awake()
         {
-            //print(LanguageYG);
+            //SetLanguage();
+            //print(lang);
             pathSaves = Application.dataPath + "/YandexGame/WorkingData/saveyg.yg";
             transform.SetParent(null);
             gameObject.name = "YandexGame";

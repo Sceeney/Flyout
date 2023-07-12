@@ -14,7 +14,8 @@ public class Language : MonoBehaviour
 
     void Start()
     {
-        Invoke("Localization", 0.1f);
+        //Localization();
+        Invoke("Localization", 0.01f);
     }
 
     private void Localization()

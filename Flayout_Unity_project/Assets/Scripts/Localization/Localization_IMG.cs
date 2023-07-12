@@ -10,28 +10,41 @@ public class Localization_IMG : MonoBehaviour
     public Sprite _en_IMG;
     public Sprite _ru_IMG;
 
-    void Start()
-    {
-        ImgOBJ = GetComponent <Image>();
 
-    Invoke("Lang", 0.15f);
+    private void OnEnable()
+    {
+        YandexGame.GetDataEvent += OnDataUpdated;
     }
 
-    void Lang()
+    private void Start()
     {
-        if (Language.Instance.CurrentLanguage == "en")
+        ImgOBJ = GetComponent <Image>();
+        if (YandexGame.SDKEnabled == true)
         {
-            print("en");
+            OnDataUpdated();
+        }
+    }
+
+    private void OnDisable()
+    {
+        YandexGame.GetDataEvent -= OnDataUpdated;
+    }
+
+    void OnDataUpdated()
+    {
+        if (YandexGame.Instance.LanguageYG == "en")
+        {
+            //print("en");
             ImgOBJ.sprite = _en_IMG;
         }
-        else if (Language.Instance.CurrentLanguage == "ru")
+        else if (YandexGame.Instance.LanguageYG == "ru")
         {
-            print("ru");
+            //print("ru");
             ImgOBJ.sprite = _ru_IMG;
         }
         else
         {
-            print("else");
+            //print("else");
             ImgOBJ.sprite = _en_IMG;
         }
     }
